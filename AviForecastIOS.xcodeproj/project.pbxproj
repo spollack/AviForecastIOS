@@ -20,6 +20,9 @@
 		2EC6DC9014BF52FC005D3EC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */; };
 		2EC6DC9814BF52FC005D3EC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6DC9614BF52FC005D3EC1 /* InfoPlist.strings */; };
 		2EC6DC9B14BF52FC005D3EC1 /* AviForecastIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6DC9A14BF52FC005D3EC1 /* AviForecastIOSTests.m */; };
+		2EC6DCA514BF549A005D3EC1 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6DCA414BF549A005D3EC1 /* logo.png */; };
+		2EC6DCA714BF54B1005D3EC1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DCA614BF54B1005D3EC1 /* MapKit.framework */; };
+		2EC6DCA914BF54B7005D3EC1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,21 +40,24 @@
 		2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2EC6DC7314BF52FC005D3EC1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2EC6DC7714BF52FC005D3EC1 /* AviForecastIOS-Info.plist */ = {isa = PBXFileReference; path = "AviForecastIOS-Info.plist"; sourceTree = "<group>"; };
+		2EC6DC7714BF52FC005D3EC1 /* AviForecastIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AviForecastIOS-Info.plist"; sourceTree = "<group>"; };
 		2EC6DC7914BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2EC6DC7B14BF52FC005D3EC1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2EC6DC7D14BF52FC005D3EC1 /* AviForecastIOS-Prefix.pch */ = {isa = PBXFileReference; path = "AviForecastIOS-Prefix.pch"; sourceTree = "<group>"; };
-		2EC6DC7E14BF52FC005D3EC1 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		2EC6DC7D14BF52FC005D3EC1 /* AviForecastIOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AviForecastIOS-Prefix.pch"; sourceTree = "<group>"; };
+		2EC6DC7E14BF52FC005D3EC1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2EC6DC7F14BF52FC005D3EC1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2EC6DC8214BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		2EC6DC8414BF52FC005D3EC1 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		2EC6DC8414BF52FC005D3EC1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2EC6DC8514BF52FC005D3EC1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2EC6DC8C14BF52FC005D3EC1 /* AviForecastIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AviForecastIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC6DC8D14BF52FC005D3EC1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		2EC6DC9514BF52FC005D3EC1 /* AviForecastIOSTests-Info.plist */ = {isa = PBXFileReference; path = "AviForecastIOSTests-Info.plist"; sourceTree = "<group>"; };
+		2EC6DC9514BF52FC005D3EC1 /* AviForecastIOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AviForecastIOSTests-Info.plist"; sourceTree = "<group>"; };
 		2EC6DC9714BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2EC6DC9914BF52FC005D3EC1 /* AviForecastIOSTests.h */ = {isa = PBXFileReference; path = AviForecastIOSTests.h; sourceTree = "<group>"; };
+		2EC6DC9914BF52FC005D3EC1 /* AviForecastIOSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AviForecastIOSTests.h; sourceTree = "<group>"; };
 		2EC6DC9A14BF52FC005D3EC1 /* AviForecastIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AviForecastIOSTests.m; sourceTree = "<group>"; };
+		2EC6DCA414BF549A005D3EC1 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		2EC6DCA614BF54B1005D3EC1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EC6DCA914BF54B7005D3EC1 /* CoreLocation.framework in Frameworks */,
+				2EC6DCA714BF54B1005D3EC1 /* MapKit.framework in Frameworks */,
 				2EC6DC7014BF52FC005D3EC1 /* UIKit.framework in Frameworks */,
 				2EC6DC7214BF52FC005D3EC1 /* Foundation.framework in Frameworks */,
 				2EC6DC7414BF52FC005D3EC1 /* CoreGraphics.framework in Frameworks */,
@@ -81,6 +89,9 @@
 		2EC6DC6014BF52FC005D3EC1 = {
 			isa = PBXGroup;
 			children = (
+				2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */,
+				2EC6DCA614BF54B1005D3EC1 /* MapKit.framework */,
+				2EC6DCA414BF549A005D3EC1 /* logo.png */,
 				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
 				2EC6DC9314BF52FC005D3EC1 /* AviForecastIOSTests */,
 				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
@@ -154,9 +165,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2EC6DC6A14BF52FC005D3EC1 /* AviForecastIOS */ = {
+		2EC6DC6A14BF52FC005D3EC1 /* Avi Forecast */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2EC6DC9E14BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "AviForecastIOS" */;
+			buildConfigurationList = 2EC6DC9E14BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "Avi Forecast" */;
 			buildPhases = (
 				2EC6DC6714BF52FC005D3EC1 /* Sources */,
 				2EC6DC6814BF52FC005D3EC1 /* Frameworks */,
@@ -166,14 +177,14 @@
 			);
 			dependencies = (
 			);
-			name = AviForecastIOS;
+			name = "Avi Forecast";
 			productName = AviForecastIOS;
 			productReference = 2EC6DC6B14BF52FC005D3EC1 /* AviForecastIOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2EC6DC8B14BF52FC005D3EC1 /* AviForecastIOSTests */ = {
+		2EC6DC8B14BF52FC005D3EC1 /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2EC6DCA114BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "AviForecastIOSTests" */;
+			buildConfigurationList = 2EC6DCA114BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
 				2EC6DC8714BF52FC005D3EC1 /* Sources */,
 				2EC6DC8814BF52FC005D3EC1 /* Frameworks */,
@@ -185,7 +196,7 @@
 			dependencies = (
 				2EC6DC9214BF52FC005D3EC1 /* PBXTargetDependency */,
 			);
-			name = AviForecastIOSTests;
+			name = Tests;
 			productName = AviForecastIOSTests;
 			productReference = 2EC6DC8C14BF52FC005D3EC1 /* AviForecastIOSTests.octest */;
 			productType = "com.apple.product-type.bundle";
@@ -210,8 +221,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2EC6DC6A14BF52FC005D3EC1 /* AviForecastIOS */,
-				2EC6DC8B14BF52FC005D3EC1 /* AviForecastIOSTests */,
+				2EC6DC6A14BF52FC005D3EC1 /* Avi Forecast */,
+				2EC6DC8B14BF52FC005D3EC1 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +234,7 @@
 			files = (
 				2EC6DC7A14BF52FC005D3EC1 /* InfoPlist.strings in Resources */,
 				2EC6DC8314BF52FC005D3EC1 /* MainStoryboard.storyboard in Resources */,
+				2EC6DCA514BF549A005D3EC1 /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +288,7 @@
 /* Begin PBXTargetDependency section */
 		2EC6DC9214BF52FC005D3EC1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2EC6DC6A14BF52FC005D3EC1 /* AviForecastIOS */;
+			target = 2EC6DC6A14BF52FC005D3EC1 /* Avi Forecast */;
 			targetProxy = 2EC6DC9114BF52FC005D3EC1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -360,6 +372,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -371,6 +384,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -422,21 +436,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2EC6DC9E14BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "AviForecastIOS" */ = {
+		2EC6DC9E14BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "Avi Forecast" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2EC6DC9F14BF52FC005D3EC1 /* Debug */,
 				2EC6DCA014BF52FC005D3EC1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		2EC6DCA114BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "AviForecastIOSTests" */ = {
+		2EC6DCA114BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2EC6DCA214BF52FC005D3EC1 /* Debug */,
 				2EC6DCA314BF52FC005D3EC1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
