@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2EC6DC7014BF52FC005D3EC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */; };
+		2EC6DC7214BF52FC005D3EC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */; };
+		2EC6DC7414BF52FC005D3EC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7314BF52FC005D3EC1 /* CoreGraphics.framework */; };
+		2EC6DC7A14BF52FC005D3EC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6DC7814BF52FC005D3EC1 /* InfoPlist.strings */; };
+		2EC6DC7C14BF52FC005D3EC1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6DC7B14BF52FC005D3EC1 /* main.m */; };
+		2EC6DC8014BF52FC005D3EC1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6DC7F14BF52FC005D3EC1 /* AppDelegate.m */; };
+		2EC6DC8314BF52FC005D3EC1 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6DC8114BF52FC005D3EC1 /* MainStoryboard.storyboard */; };
+		2EC6DC8614BF52FC005D3EC1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6DC8514BF52FC005D3EC1 /* ViewController.m */; };
+		2EC6DC8E14BF52FC005D3EC1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC8D14BF52FC005D3EC1 /* SenTestingKit.framework */; };
+		2EC6DC8F14BF52FC005D3EC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */; };
+		2EC6DC9014BF52FC005D3EC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */; };
+		2EC6DC9814BF52FC005D3EC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6DC9614BF52FC005D3EC1 /* InfoPlist.strings */; };
+		2EC6DC9B14BF52FC005D3EC1 /* AviForecastIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6DC9A14BF52FC005D3EC1 /* AviForecastIOSTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2EC6DC9114BF52FC005D3EC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2EC6DC6214BF52FC005D3EC1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EC6DC6A14BF52FC005D3EC1;
+			remoteInfo = AviForecastIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2EC6DC6B14BF52FC005D3EC1 /* AviForecastIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AviForecastIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2EC6DC7314BF52FC005D3EC1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2EC6DC7714BF52FC005D3EC1 /* AviForecastIOS-Info.plist */ = {isa = PBXFileReference; path = "AviForecastIOS-Info.plist"; sourceTree = "<group>"; };
+		2EC6DC7914BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2EC6DC7B14BF52FC005D3EC1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2EC6DC7D14BF52FC005D3EC1 /* AviForecastIOS-Prefix.pch */ = {isa = PBXFileReference; path = "AviForecastIOS-Prefix.pch"; sourceTree = "<group>"; };
+		2EC6DC7E14BF52FC005D3EC1 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		2EC6DC7F14BF52FC005D3EC1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2EC6DC8214BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		2EC6DC8414BF52FC005D3EC1 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		2EC6DC8514BF52FC005D3EC1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2EC6DC8C14BF52FC005D3EC1 /* AviForecastIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AviForecastIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EC6DC8D14BF52FC005D3EC1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		2EC6DC9514BF52FC005D3EC1 /* AviForecastIOSTests-Info.plist */ = {isa = PBXFileReference; path = "AviForecastIOSTests-Info.plist"; sourceTree = "<group>"; };
+		2EC6DC9714BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2EC6DC9914BF52FC005D3EC1 /* AviForecastIOSTests.h */ = {isa = PBXFileReference; path = AviForecastIOSTests.h; sourceTree = "<group>"; };
+		2EC6DC9A14BF52FC005D3EC1 /* AviForecastIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AviForecastIOSTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2EC6DC6814BF52FC005D3EC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EC6DC7014BF52FC005D3EC1 /* UIKit.framework in Frameworks */,
+				2EC6DC7214BF52FC005D3EC1 /* Foundation.framework in Frameworks */,
+				2EC6DC7414BF52FC005D3EC1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EC6DC8814BF52FC005D3EC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EC6DC8E14BF52FC005D3EC1 /* SenTestingKit.framework in Frameworks */,
+				2EC6DC8F14BF52FC005D3EC1 /* UIKit.framework in Frameworks */,
+				2EC6DC9014BF52FC005D3EC1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2EC6DC6014BF52FC005D3EC1 = {
+			isa = PBXGroup;
+			children = (
+				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
+				2EC6DC9314BF52FC005D3EC1 /* AviForecastIOSTests */,
+				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
+				2EC6DC6C14BF52FC005D3EC1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2EC6DC6C14BF52FC005D3EC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2EC6DC6B14BF52FC005D3EC1 /* AviForecastIOS.app */,
+				2EC6DC8C14BF52FC005D3EC1 /* AviForecastIOSTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2EC6DC6E14BF52FC005D3EC1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */,
+				2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */,
+				2EC6DC7314BF52FC005D3EC1 /* CoreGraphics.framework */,
+				2EC6DC8D14BF52FC005D3EC1 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */ = {
+			isa = PBXGroup;
+			children = (
+				2EC6DC7E14BF52FC005D3EC1 /* AppDelegate.h */,
+				2EC6DC7F14BF52FC005D3EC1 /* AppDelegate.m */,
+				2EC6DC8114BF52FC005D3EC1 /* MainStoryboard.storyboard */,
+				2EC6DC8414BF52FC005D3EC1 /* ViewController.h */,
+				2EC6DC8514BF52FC005D3EC1 /* ViewController.m */,
+				2EC6DC7614BF52FC005D3EC1 /* Supporting Files */,
+			);
+			path = AviForecastIOS;
+			sourceTree = "<group>";
+		};
+		2EC6DC7614BF52FC005D3EC1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2EC6DC7714BF52FC005D3EC1 /* AviForecastIOS-Info.plist */,
+				2EC6DC7814BF52FC005D3EC1 /* InfoPlist.strings */,
+				2EC6DC7B14BF52FC005D3EC1 /* main.m */,
+				2EC6DC7D14BF52FC005D3EC1 /* AviForecastIOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2EC6DC9314BF52FC005D3EC1 /* AviForecastIOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				2EC6DC9914BF52FC005D3EC1 /* AviForecastIOSTests.h */,
+				2EC6DC9A14BF52FC005D3EC1 /* AviForecastIOSTests.m */,
+				2EC6DC9414BF52FC005D3EC1 /* Supporting Files */,
+			);
+			path = AviForecastIOSTests;
+			sourceTree = "<group>";
+		};
+		2EC6DC9414BF52FC005D3EC1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2EC6DC9514BF52FC005D3EC1 /* AviForecastIOSTests-Info.plist */,
+				2EC6DC9614BF52FC005D3EC1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2EC6DC6A14BF52FC005D3EC1 /* AviForecastIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2EC6DC9E14BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "AviForecastIOS" */;
+			buildPhases = (
+				2EC6DC6714BF52FC005D3EC1 /* Sources */,
+				2EC6DC6814BF52FC005D3EC1 /* Frameworks */,
+				2EC6DC6914BF52FC005D3EC1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AviForecastIOS;
+			productName = AviForecastIOS;
+			productReference = 2EC6DC6B14BF52FC005D3EC1 /* AviForecastIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2EC6DC8B14BF52FC005D3EC1 /* AviForecastIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2EC6DCA114BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "AviForecastIOSTests" */;
+			buildPhases = (
+				2EC6DC8714BF52FC005D3EC1 /* Sources */,
+				2EC6DC8814BF52FC005D3EC1 /* Frameworks */,
+				2EC6DC8914BF52FC005D3EC1 /* Resources */,
+				2EC6DC8A14BF52FC005D3EC1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2EC6DC9214BF52FC005D3EC1 /* PBXTargetDependency */,
+			);
+			name = AviForecastIOSTests;
+			productName = AviForecastIOSTests;
+			productReference = 2EC6DC8C14BF52FC005D3EC1 /* AviForecastIOSTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2EC6DC6214BF52FC005D3EC1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 2EC6DC6514BF52FC005D3EC1 /* Build configuration list for PBXProject "AviForecastIOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2EC6DC6014BF52FC005D3EC1;
+			productRefGroup = 2EC6DC6C14BF52FC005D3EC1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2EC6DC6A14BF52FC005D3EC1 /* AviForecastIOS */,
+				2EC6DC8B14BF52FC005D3EC1 /* AviForecastIOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2EC6DC6914BF52FC005D3EC1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EC6DC7A14BF52FC005D3EC1 /* InfoPlist.strings in Resources */,
+				2EC6DC8314BF52FC005D3EC1 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EC6DC8914BF52FC005D3EC1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EC6DC9814BF52FC005D3EC1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2EC6DC8A14BF52FC005D3EC1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2EC6DC6714BF52FC005D3EC1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EC6DC7C14BF52FC005D3EC1 /* main.m in Sources */,
+				2EC6DC8014BF52FC005D3EC1 /* AppDelegate.m in Sources */,
+				2EC6DC8614BF52FC005D3EC1 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2EC6DC8714BF52FC005D3EC1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EC6DC9B14BF52FC005D3EC1 /* AviForecastIOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2EC6DC9214BF52FC005D3EC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2EC6DC6A14BF52FC005D3EC1 /* AviForecastIOS */;
+			targetProxy = 2EC6DC9114BF52FC005D3EC1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2EC6DC7814BF52FC005D3EC1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2EC6DC7914BF52FC005D3EC1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2EC6DC8114BF52FC005D3EC1 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2EC6DC8214BF52FC005D3EC1 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		2EC6DC9614BF52FC005D3EC1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2EC6DC9714BF52FC005D3EC1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2EC6DC9C14BF52FC005D3EC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2EC6DC9D14BF52FC005D3EC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2EC6DC9F14BF52FC005D3EC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
+				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2EC6DCA014BF52FC005D3EC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
+				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		2EC6DCA214BF52FC005D3EC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AviForecastIOS.app/AviForecastIOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
+				INFOPLIST_FILE = "AviForecastIOSTests/AviForecastIOSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2EC6DCA314BF52FC005D3EC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AviForecastIOS.app/AviForecastIOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
+				INFOPLIST_FILE = "AviForecastIOSTests/AviForecastIOSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2EC6DC6514BF52FC005D3EC1 /* Build configuration list for PBXProject "AviForecastIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EC6DC9C14BF52FC005D3EC1 /* Debug */,
+				2EC6DC9D14BF52FC005D3EC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2EC6DC9E14BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "AviForecastIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EC6DC9F14BF52FC005D3EC1 /* Debug */,
+				2EC6DCA014BF52FC005D3EC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2EC6DCA114BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "AviForecastIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2EC6DCA214BF52FC005D3EC1 /* Debug */,
+				2EC6DCA314BF52FC005D3EC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2EC6DC6214BF52FC005D3EC1 /* Project object */;
+}
