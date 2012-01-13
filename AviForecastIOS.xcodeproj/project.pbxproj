@@ -87,7 +87,7 @@
 		2EA9CA8A14C075A6008DD986 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		2EA9CA8B14C075A6008DD986 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		2EA9CA8C14C075A6008DD986 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		2EC6DC6B14BF52FC005D3EC1 /* AviForecastIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AviForecastIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EC6DC6B14BF52FC005D3EC1 /* Avalanche.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avalanche.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2EC6DC7314BF52FC005D3EC1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -100,7 +100,7 @@
 		2EC6DC8214BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2EC6DC8414BF52FC005D3EC1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2EC6DC8514BF52FC005D3EC1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		2EC6DC8C14BF52FC005D3EC1 /* AviForecastIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AviForecastIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EC6DC8C14BF52FC005D3EC1 /* AviForecastIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AviForecastIOSTests.octest; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC6DC8D14BF52FC005D3EC1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		2EC6DC9514BF52FC005D3EC1 /* AviForecastIOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AviForecastIOSTests-Info.plist"; sourceTree = "<group>"; };
 		2EC6DC9714BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		2EC6DC6C14BF52FC005D3EC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2EC6DC6B14BF52FC005D3EC1 /* AviForecastIOS.app */,
+				2EC6DC6B14BF52FC005D3EC1 /* Avalanche.app */,
 				2EC6DC8C14BF52FC005D3EC1 /* AviForecastIOSTests.octest */,
 			);
 			name = Products;
@@ -274,7 +274,7 @@
 			);
 			name = Avalanche;
 			productName = AviForecastIOS;
-			productReference = 2EC6DC6B14BF52FC005D3EC1 /* AviForecastIOS.app */;
+			productReference = 2EC6DC6B14BF52FC005D3EC1 /* Avalanche.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2EC6DC8B14BF52FC005D3EC1 /* Tests */ = {

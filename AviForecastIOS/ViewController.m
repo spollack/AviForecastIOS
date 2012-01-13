@@ -9,8 +9,23 @@
 #import "ViewController.h"
 
 @implementation ViewController
+
 @synthesize forecastEngine = _forecastEngine;
 @synthesize levelDisplay = _levelDisplay;
+@synthesize map = _map;
+
+- (void) mapView:(MKMapView *) mapView
+    didUpdateUserLocation:(MKUserLocation *) userLocation
+{
+    // center and zoom in on the user's location
+    
+    CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
+
+    // 200km x 200km
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 200000, 200000); 
+    
+    [mapView setRegion:region animated:TRUE];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -23,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
     
@@ -39,6 +55,7 @@
 - (void)viewDidUnload
 {
     [self setLevelDisplay:nil];
+    [self setMap:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
