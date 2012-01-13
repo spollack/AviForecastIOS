@@ -13,6 +13,7 @@
 @synthesize forecastEngine = _forecastEngine;
 @synthesize levelDisplay = _levelDisplay;
 @synthesize map = _map;
+@synthesize fillColor = _fillColor;
 
 - (void) mapView:(MKMapView *) mapView
     didUpdateUserLocation:(MKUserLocation *) userLocation
@@ -41,12 +42,40 @@
     
     if ([overlay isKindOfClass:[MKPolygon class]]) {
         view = [[MKPolygonView alloc] initWithPolygon:(MKPolygon *) overlay]; 
-        view.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.6];
-        view.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        view.fillColor = self.fillColor;
+        view.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
         view.lineWidth = 2;
     }
-    
+        
     return view;
+}
+
+- (UIColor *) colorForAviLevel:(int) aviLevel
+{
+    UIColor * color = nil;
+    
+    switch (aviLevel) {
+        case AVI_LEVEL_LOW: 
+            color = [UIColor colorWithRed:(80/255.0) green:(184/255.0) blue:(72/255.0) alpha:0.6];
+            break;
+        case AVI_LEVEL_MODERATE: 
+            color = [UIColor colorWithRed:(255/255.0) green:(242/255.0) blue:(0/255.0) alpha:0.6];
+            break;
+        case AVI_LEVEL_CONSIDERABLE: 
+            color = [UIColor colorWithRed:(247/255.0) green:(148/255.0) blue:(30/255.0) alpha:0.6];
+            break;
+        case AVI_LEVEL_HIGH: 
+            color = [UIColor colorWithRed:(237/255.0) green:(28/255.0) blue:(36/255.0) alpha:0.6];
+            break;
+        case AVI_LEVEL_EXTREME: 
+            color = [UIColor colorWithRed:(35/255.0) green:(31/255.0) blue:(32/255.0) alpha:0.6];
+            break;
+        default:
+            color = [UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:0.6];
+            break;
+    }
+    
+    return color;
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,21 +95,26 @@
     
     self.forecastEngine = [[ForecastEngine alloc] init];
     
+    
     // BUGBUG temp to test networking
     [self.forecastEngine forecastForRegionId:@"6" 
         onCompletion:^(int aviLevel)
         {
+            self.fillColor = [self colorForAviLevel:aviLevel];
+            
+            
+            // BUGBUG temp to test overlays
+            MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47, -122));
+            MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(48, -122));
+            MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(48, -123));
+            MKMapPoint pts[3] = {p1,p2,p3};
+            MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:3];
+            [self.map addOverlay:polygon];
+
+            
             self.levelDisplay.text = [NSString stringWithFormat: @"%d", aviLevel];
         }];   
 
-    
-    // BUGBUG temp to test overlays
-    MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47, -122));
-    MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(48, -122));
-    MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(48, -123));
-    MKMapPoint pts[3] = {p1,p2,p3};
-    MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:3];
-    [self.map addOverlay:polygon];
 }
 
 - (void)viewDidUnload
