@@ -11,7 +11,6 @@
 @implementation ViewController
 
 @synthesize forecastEngine = _forecastEngine;
-@synthesize levelDisplay = _levelDisplay;
 @synthesize map = _map;
 @synthesize fillColor = _fillColor;
 
@@ -110,16 +109,13 @@
             MKMapPoint pts[3] = {p1,p2,p3};
             MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:3];
             [self.map addOverlay:polygon];
-
             
-            self.levelDisplay.text = [NSString stringWithFormat: @"%d", aviLevel];
         }];   
 
 }
 
 - (void)viewDidUnload
 {
-    [self setLevelDisplay:nil];
     [self setMap:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.

@@ -13,19 +13,12 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="Avi Level" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Mzn-to-9bI">
-                                <rect key="frame" x="139" y="196" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="NA_danger_scale_2010.jpg" id="MCn-HF-E6w">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" mapType="standard" showsUserLocation="YES" id="vhz-hg-Sgv">
-                                <rect key="frame" x="0.0" y="237" width="320" height="240"/>
+                                <rect key="frame" x="0.0" y="176" width="320" height="301"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="H8g-l0-rHi"/>
@@ -35,7 +28,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="levelDisplay" destination="Mzn-to-9bI" id="sRZ-MU-nwr"/>
                         <outlet property="map" destination="vhz-hg-Sgv" id="fZ8-nF-ZUz"/>
                     </connections>
                 </viewController>
