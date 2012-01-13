@@ -30,7 +30,7 @@
     didUpdateUserLocation:(MKUserLocation *) userLocation
 {
     // once we have the user's location, center and zoom in
-    // BUGBUG what if we never get the user's location? 
+    // BUGBUG what if we never get the user's location? should we default to something, or just let the user zoom in? 
     
     if (!self.haveUpdatedUserLocation) {
         NSLog(@"updating map position based on user location");
@@ -118,11 +118,12 @@
             
             
             // BUGBUG temp to test overlays
-            MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47, -122));
-            MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(48, -122));
-            MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(48, -123));
-            MKMapPoint pts[3] = {p1,p2,p3};
-            MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:3];
+            MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.476, -121.722));
+            MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.391, -121.476));
+            MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.709, -121.130));
+            MKMapPoint p4 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.861, -121.795));
+            MKMapPoint pts[4] = {p1,p2,p3,p4};
+            MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:4];
             [self.map addOverlay:polygon];
             
         }];   
