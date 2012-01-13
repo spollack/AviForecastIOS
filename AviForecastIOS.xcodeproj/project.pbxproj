@@ -27,7 +27,6 @@
 		2EA9C9FE14BFC15A008DD986 /* ForecastEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9C9FD14BFC15A008DD986 /* ForecastEngine.m */; };
 		2EA9C9FF14BFC15A008DD986 /* ForecastEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9C9FD14BFC15A008DD986 /* ForecastEngine.m */; };
 		2EA9CA0414C06677008DD986 /* NA_danger_scale_2010.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2EA9CA0314C06677008DD986 /* NA_danger_scale_2010.jpg */; };
-		2EA9CA0514C06677008DD986 /* NA_danger_scale_2010.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2EA9CA0314C06677008DD986 /* NA_danger_scale_2010.jpg */; };
 		2EC6DC7014BF52FC005D3EC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */; };
 		2EC6DC7214BF52FC005D3EC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */; };
 		2EC6DC7414BF52FC005D3EC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7314BF52FC005D3EC1 /* CoreGraphics.framework */; };
@@ -342,7 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EC6DC9814BF52FC005D3EC1 /* InfoPlist.strings in Resources */,
-				2EA9CA0514C06677008DD986 /* NA_danger_scale_2010.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
