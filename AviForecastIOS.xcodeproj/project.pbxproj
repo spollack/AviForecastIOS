@@ -169,16 +169,19 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		2EA9CA0614C06921008DD986 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2EC6DCA414BF549A005D3EC1 /* logo.png */,
+				2EA9CA0314C06677008DD986 /* NA_danger_scale_2010.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		2EC6DC6014BF52FC005D3EC1 = {
 			isa = PBXGroup;
 			children = (
-				2EA9C9FA14BFBD54008DD986 /* Security.framework */,
-				2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */,
-				2EA9C9F614BFBD34008DD986 /* CFNetwork.framework */,
-				2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */,
-				2EC6DCA614BF54B1005D3EC1 /* MapKit.framework */,
-				2EC6DCA414BF549A005D3EC1 /* logo.png */,
-				2EA9CA0314C06677008DD986 /* NA_danger_scale_2010.jpg */,
+				2EA9CA0614C06921008DD986 /* Images */,
 				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
 				2EC6DC9314BF52FC005D3EC1 /* AviForecastIOSTests */,
 				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
@@ -199,6 +202,11 @@
 		2EC6DC6E14BF52FC005D3EC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2EA9C9FA14BFBD54008DD986 /* Security.framework */,
+				2EA9C9F614BFBD34008DD986 /* CFNetwork.framework */,
+				2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */,
+				2EC6DCA614BF54B1005D3EC1 /* MapKit.framework */,
+				2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */,
 				2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */,
 				2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */,
 				2EC6DC7314BF52FC005D3EC1 /* CoreGraphics.framework */,
