@@ -10,7 +10,7 @@
 
 @implementation ForecastEngine
 
-- (void) forecastForRegion:(NSString*) regionId 
+- (void) forecastForRegionId:(NSString*) regionId 
     onCompletion:(ForecastResponseBlock) completionBlock
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://falling-lightning-8605.herokuapp.com/region/%@", regionId]];

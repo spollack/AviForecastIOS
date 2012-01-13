@@ -28,7 +28,7 @@
     
     self.forecastEngine = [[ForecastEngine alloc] init];
     
-    [self.forecastEngine forecastForRegion:@"6" 
+    [self.forecastEngine forecastForRegionId:@"6" 
         onCompletion:^(int aviLevel)
         {
             self.levelDisplay.text = [NSString stringWithFormat: @"%d", aviLevel];

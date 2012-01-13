@@ -11,7 +11,7 @@
 // callback for returning the data
 typedef void (^ForecastResponseBlock)(int aviLevel);
  
-- (void) forecastForRegion:(NSString*) regionId 
+- (void) forecastForRegionId:(NSString*) regionId 
     onCompletion:(ForecastResponseBlock) completionBlock;
 
 @end
