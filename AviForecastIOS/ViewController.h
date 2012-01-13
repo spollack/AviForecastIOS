@@ -10,8 +10,8 @@
 
 @interface ViewController : UIViewController <MKMapViewDelegate>
 
-@property (strong, nonatomic) ForecastEngine *forecastEngine;
-@property (weak, nonatomic) IBOutlet UILabel *levelDisplay;
-@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (strong, nonatomic) ForecastEngine * forecastEngine;
+@property (weak, nonatomic) IBOutlet UILabel * levelDisplay;
+@property (weak, nonatomic) IBOutlet MKMapView * map;
 
 @end

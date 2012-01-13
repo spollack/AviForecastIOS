@@ -10,16 +10,16 @@
 
 @implementation ForecastEngine
 
-- (void) forecastForRegionId:(NSString*) regionId 
+- (void) forecastForRegionId:(NSString *) regionId 
     onCompletion:(ForecastResponseBlock) completionBlock
 {
     // BUGBUG returned cached data if already loaded; otherwise do the networking dance below...
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://falling-lightning-8605.herokuapp.com/region/%@", regionId]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://falling-lightning-8605.herokuapp.com/region/%@", regionId]];
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
 
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
-        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
+    AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
+        success:^(NSURLRequest * request, NSHTTPURLResponse *response, id JSON)
         {
             NSLog(@"network operation success");
             

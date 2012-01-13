@@ -17,14 +17,36 @@
 - (void) mapView:(MKMapView *) mapView
     didUpdateUserLocation:(MKUserLocation *) userLocation
 {
-    // center and zoom in on the user's location
+    // once we have the user's location, center and zoom in
+    // BUGBUG what if we never get the user's location? 
+    // BUGBUG only do this once...
     
+    NSLog(@"didUpdateUserLocation called");
+
     CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
 
     // 200km x 200km
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 200000, 200000); 
     
     [mapView setRegion:region animated:TRUE];
+}
+
+- (MKOverlayView *) mapView:
+    (MKMapView *) mapView 
+    viewForOverlay:(id <MKOverlay>)overlay
+{
+    MKPolygonView * view = nil;
+    
+    NSLog(@"viewForOverlay called");
+    
+    if ([overlay isKindOfClass:[MKPolygon class]]) {
+        view = [[MKPolygonView alloc] initWithPolygon:(MKPolygon *) overlay]; 
+        view.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.6];
+        view.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        view.lineWidth = 2;
+    }
+    
+    return view;
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,12 +66,21 @@
     
     self.forecastEngine = [[ForecastEngine alloc] init];
     
+    // BUGBUG temp to test networking
     [self.forecastEngine forecastForRegionId:@"6" 
         onCompletion:^(int aviLevel)
         {
             self.levelDisplay.text = [NSString stringWithFormat: @"%d", aviLevel];
         }];   
 
+    
+    // BUGBUG temp to test overlays
+    MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47, -122));
+    MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(48, -122));
+    MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(48, -123));
+    MKMapPoint pts[3] = {p1,p2,p3};
+    MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:3];
+    [self.map addOverlay:polygon];
 }
 
 - (void)viewDidUnload
