@@ -9,6 +9,8 @@
 #import "ViewController.h"
 
 @implementation ViewController
+@synthesize forecastEngine = _forecastEngine;
+@synthesize levelDisplay = _levelDisplay;
 
 - (void)didReceiveMemoryWarning
 {
@@ -22,10 +24,26 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // NOTE network-level caching is *not* enabled, as we don't want to show any stale forecasts
+    self.forecastEngine = [[ForecastEngine alloc] initWithHostName:@"falling-lightning-8605.herokuapp.com" customHeaderFields:nil];
+
+    [self.forecastEngine forecastForId:@"6" 
+        onCompletion:^(int aviLevel)
+        {
+             self.levelDisplay.text = [NSString stringWithFormat: @"%d", aviLevel];
+        }
+        onError:^(NSError* error)
+        {
+            NSLog(@"error from forecast engine; error: %@", error);
+        }
+    ];   
+
 }
 
 - (void)viewDidUnload
 {
+    [self setLevelDisplay:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

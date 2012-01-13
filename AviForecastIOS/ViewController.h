@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ForecastEngine.h"
+
 
 @interface ViewController : UIViewController
+@property (strong, nonatomic) ForecastEngine *forecastEngine;
+@property (weak, nonatomic) IBOutlet UILabel *levelDisplay;
 
 @end
