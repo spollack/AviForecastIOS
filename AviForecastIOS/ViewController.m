@@ -12,23 +12,38 @@
 
 @synthesize forecastEngine = _forecastEngine;
 @synthesize map = _map;
+@synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
 @synthesize fillColor = _fillColor;
+
+- (id) init
+{
+    self = [super init];
+    
+    if (self) {
+        self.haveUpdatedUserLocation = FALSE; 
+    }
+        
+    return self;
+}
 
 - (void) mapView:(MKMapView *) mapView
     didUpdateUserLocation:(MKUserLocation *) userLocation
 {
     // once we have the user's location, center and zoom in
     // BUGBUG what if we never get the user's location? 
-    // BUGBUG only do this once...
     
-    NSLog(@"didUpdateUserLocation called");
+    if (!self.haveUpdatedUserLocation) {
+        NSLog(@"updating map position based on user location");
+        
+        CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
+        
+        // 200km x 200km
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 200000, 200000); 
+        
+        [mapView setRegion:region animated:TRUE];
 
-    CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
-
-    // 200km x 200km
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 200000, 200000); 
-    
-    [mapView setRegion:region animated:TRUE];
+        self.haveUpdatedUserLocation = TRUE; 
+    }
 }
 
 - (MKOverlayView *) mapView:
