@@ -13,9 +13,6 @@
     #import <Foundation/Foundation.h>
     #import <MapKit/MapKit.h>
     #import <CoreLocation/CoreLocation.h>
-    #import <CFNetwork/CFNetwork.h>
-    #import <SystemConfiguration/SystemConfiguration.h>
-    #import <Security/Security.h>
+    #import "AFNetworking.h"
 #endif
 
-#import "../MKNetworkKit/MKNetworkKit.h"

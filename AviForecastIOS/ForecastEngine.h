@@ -6,15 +6,12 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface ForecastEngine : MKNetworkEngine
+@interface ForecastEngine : NSObject
 
 // callback for returning the data
 typedef void (^ForecastResponseBlock)(int aviLevel);
  
-- (MKNetworkOperation*) forecastForId:(NSString*) id 
-                        onCompletion:(ForecastResponseBlock) completionBlock
-                        onError:(MKNKErrorBlock) errorBlock;
+- (void) forecastForRegion:(NSString*) regionId 
+    onCompletion:(ForecastResponseBlock) completionBlock;
 
 @end

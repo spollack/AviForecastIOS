@@ -6,9 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "ForecastEngine.h"
-
 
 @interface ViewController : UIViewController
 @property (strong, nonatomic) ForecastEngine *forecastEngine;
