@@ -57,7 +57,7 @@
     if ([overlay isKindOfClass:[MKPolygon class]]) {
         view = [[MKPolygonView alloc] initWithPolygon:(MKPolygon *) overlay]; 
         view.fillColor = self.fillColor;
-        view.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+        view.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         view.lineWidth = 2;
     }
         
@@ -70,22 +70,22 @@
     
     switch (aviLevel) {
         case AVI_LEVEL_LOW: 
-            color = [UIColor colorWithRed:(80/255.0) green:(184/255.0) blue:(72/255.0) alpha:0.6];
+            color = [UIColor colorWithRed:(80/255.0) green:(184/255.0) blue:(72/255.0) alpha:0.7];
             break;
         case AVI_LEVEL_MODERATE: 
-            color = [UIColor colorWithRed:(255/255.0) green:(242/255.0) blue:(0/255.0) alpha:0.6];
+            color = [UIColor colorWithRed:(255/255.0) green:(242/255.0) blue:(0/255.0) alpha:0.7];
             break;
         case AVI_LEVEL_CONSIDERABLE: 
-            color = [UIColor colorWithRed:(247/255.0) green:(148/255.0) blue:(30/255.0) alpha:0.6];
+            color = [UIColor colorWithRed:(247/255.0) green:(148/255.0) blue:(30/255.0) alpha:0.7];
             break;
         case AVI_LEVEL_HIGH: 
-            color = [UIColor colorWithRed:(237/255.0) green:(28/255.0) blue:(36/255.0) alpha:0.6];
+            color = [UIColor colorWithRed:(237/255.0) green:(28/255.0) blue:(36/255.0) alpha:0.7];
             break;
         case AVI_LEVEL_EXTREME: 
-            color = [UIColor colorWithRed:(35/255.0) green:(31/255.0) blue:(32/255.0) alpha:0.6];
+            color = [UIColor colorWithRed:(35/255.0) green:(31/255.0) blue:(32/255.0) alpha:0.7];
             break;
         default:
-            color = [UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:0.6];
+            color = [UIColor colorWithRed:(255/255.0) green:(255/255.0) blue:(255/255.0) alpha:0.7];
             break;
     }
     
@@ -161,7 +161,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

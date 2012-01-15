@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E3F9B0414C3276900D2E2C8 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3F9B0314C3276900D2E2C8 /* logo@2x.png */; };
 		2EA9C9FE14BFC15A008DD986 /* ForecastEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9C9FD14BFC15A008DD986 /* ForecastEngine.m */; };
 		2EA9C9FF14BFC15A008DD986 /* ForecastEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9C9FD14BFC15A008DD986 /* ForecastEngine.m */; };
 		2EA9CA0414C06677008DD986 /* NA_danger_scale_2010.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2EA9CA0314C06677008DD986 /* NA_danger_scale_2010.jpg */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E3F9B0314C3276900D2E2C8 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		2E4E643714C0B03300D11461 /* contants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contants.h; sourceTree = "<group>"; };
 		2EA9C9F614BFBD34008DD986 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -138,13 +140,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2EA9CA0614C06921008DD986 /* Images */ = {
+		2EA9CA0614C06921008DD986 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2E3F9B0314C3276900D2E2C8 /* logo@2x.png */,
 				2EC6DCA414BF549A005D3EC1 /* logo.png */,
 				2EA9CA0314C06677008DD986 /* NA_danger_scale_2010.jpg */,
 			);
-			name = Images;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		2EA9CA7614C075A6008DD986 /* AFNetworking */ = {
@@ -179,10 +182,10 @@
 		2EC6DC6014BF52FC005D3EC1 = {
 			isa = PBXGroup;
 			children = (
-				2EA9CA7614C075A6008DD986 /* AFNetworking */,
-				2EA9CA0614C06921008DD986 /* Images */,
+				2EA9CA0614C06921008DD986 /* Resources */,
 				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
 				2EC6DC9314BF52FC005D3EC1 /* AviForecastIOSTests */,
+				2EA9CA7614C075A6008DD986 /* AFNetworking */,
 				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
 				2EC6DC6C14BF52FC005D3EC1 /* Products */,
 			);
@@ -333,6 +336,7 @@
 				2EC6DC8314BF52FC005D3EC1 /* MainStoryboard.storyboard in Resources */,
 				2EC6DCA514BF549A005D3EC1 /* logo.png in Resources */,
 				2EA9CA0414C06677008DD986 /* NA_danger_scale_2010.jpg in Resources */,
+				2E3F9B0414C3276900D2E2C8 /* logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
