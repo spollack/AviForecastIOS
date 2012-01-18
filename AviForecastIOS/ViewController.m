@@ -13,7 +13,7 @@
 @synthesize forecastEngine = _forecastEngine;
 @synthesize map = _map;
 @synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
-@synthesize fillColor = _fillColor;
+@synthesize overlay = _overlay;
 
 - (id) init
 {
@@ -24,44 +24,6 @@
     }
         
     return self;
-}
-
-- (void) mapView:(MKMapView *) mapView
-    didUpdateUserLocation:(MKUserLocation *) userLocation
-{
-    // once we have the user's location, center and zoom in
-    // BUGBUG what if we never get the user's location? should we default to something, or just let the user zoom in? 
-    
-    if (!self.haveUpdatedUserLocation) {
-        NSLog(@"updating map position based on user location");
-        
-        CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
-        
-        // 200km x 200km
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 200000, 200000); 
-        
-        [mapView setRegion:region animated:TRUE];
-
-        self.haveUpdatedUserLocation = TRUE; 
-    }
-}
-
-- (MKOverlayView *) mapView:
-    (MKMapView *) mapView 
-    viewForOverlay:(id <MKOverlay>)overlay
-{
-    MKPolygonView * view = nil;
-    
-    NSLog(@"viewForOverlay called");
-    
-    if ([overlay isKindOfClass:[MKPolygon class]]) {
-        view = [[MKPolygonView alloc] initWithPolygon:(MKPolygon *) overlay]; 
-        view.fillColor = self.fillColor;
-        view.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-        view.lineWidth = 2;
-    }
-        
-    return view;
 }
 
 - (UIColor *) colorForAviLevel:(int) aviLevel
@@ -92,6 +54,66 @@
     return color;
 }
 
+- (void) mapView:(MKMapView *) mapView
+    didUpdateUserLocation:(MKUserLocation *) userLocation
+{
+    NSLog(@"didUpdateUserLocation called");
+
+    // once we have the user's location, center and zoom in
+    // BUGBUG what if we never get the user's location? should we default to something, or just let the user zoom in? 
+    
+    if (!self.haveUpdatedUserLocation) {
+        NSLog(@"updating map position based on user location");
+        
+        CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
+        
+        // 200km x 200km
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 200000, 200000); 
+        
+        [mapView setRegion:region animated:TRUE];
+
+        self.haveUpdatedUserLocation = TRUE; 
+    }
+}
+
+- (MKOverlayView *) mapView:
+    (MKMapView *) mapView 
+    viewForOverlay:(id <MKOverlay>)overlay
+{
+    NSLog(@"viewForOverlay called");
+
+    MKPolygonView * view = nil;
+
+    if ([overlay isKindOfClass:[MKPolygon class]]) {
+        view = [[MKPolygonView alloc] initWithPolygon:(MKPolygon *) overlay]; 
+        view.fillColor = [self colorForAviLevel:AVI_LEVEL_UNKNOWN];
+        view.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+        view.lineWidth = 2;
+        
+        self.overlay = view; 
+    }
+        
+    return view;
+}
+
+- (void) updateData: (id)notification {
+    NSLog(@"updateData called");
+    
+    if (self.forecastEngine) {
+        [self.forecastEngine forecastForRegionId:@"6" 
+            onCompletion:^(int aviLevel)
+            {
+                if (self.overlay) {
+                    // set the overlay color
+                    self.overlay.fillColor = [self colorForAviLevel:aviLevel];
+                    
+                    // redraw the annotation
+                    [self.overlay setNeedsDisplay];                     
+                }
+            }];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -107,27 +129,25 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     
+    NSLog(@"viewDidLoad called");
+   
+    // BUGBUG temp
+    MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.476, -121.722));
+    MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.391, -121.476));
+    MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.709, -121.130));
+    MKMapPoint p4 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.861, -121.795));
+    MKMapPoint pts[4] = {p1,p2,p3,p4};
+    MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:4];
+    [self.map addOverlay:polygon];
+
+    
     self.forecastEngine = [[ForecastEngine alloc] init];
     
+    // fetch the data
+    [self updateData:nil];
     
-    // BUGBUG temp to test networking
-    [self.forecastEngine forecastForRegionId:@"6" 
-        onCompletion:^(int aviLevel)
-        {
-            self.fillColor = [self colorForAviLevel:aviLevel];
-            
-            
-            // BUGBUG temp to test overlays
-            MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.476, -121.722));
-            MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.391, -121.476));
-            MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.709, -121.130));
-            MKMapPoint p4 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.861, -121.795));
-            MKMapPoint pts[4] = {p1,p2,p3,p4};
-            MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:4];
-            [self.map addOverlay:polygon];
-            
-        }];   
-
+    // receive activation notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void)viewDidUnload

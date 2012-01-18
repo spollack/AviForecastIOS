@@ -13,6 +13,6 @@
 @property (strong, nonatomic) ForecastEngine * forecastEngine;
 @property (weak, nonatomic) IBOutlet MKMapView * map;
 @property BOOL haveUpdatedUserLocation;
-@property (strong, atomic) UIColor * fillColor;
+@property (strong, atomic) MKPolygonView * overlay;
 
 @end
