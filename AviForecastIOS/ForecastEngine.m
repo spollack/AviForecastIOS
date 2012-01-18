@@ -15,7 +15,7 @@
 {
     // BUGBUG returned cached data if already loaded; otherwise do the networking dance below...
     
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://falling-lightning-8605.herokuapp.com/region/%@", regionId]];
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://falling-lightning-8605.herokuapp.com/version/1/region/%@", regionId]];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
 
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
@@ -24,8 +24,17 @@
             NSLog(@"network operation success");
             
             // parse out the data
-            // BUBUG error handling? 
-            int aviLevel = [[JSON valueForKeyPath:@"aviLevel"] intValue];
+            if ([JSON isKindOfClass:[NSArray class]]) {
+                int count = ((NSArray *)JSON).count; 
+                NSLog(@"array count: %i", count);
+                for (int i = 0; i < count; i++) {
+                    NSLog(@"slot: %i; date: %@; aviLevel: %i", i, [[JSON objectAtIndex:i] valueForKeyPath:@"date"], [[[JSON objectAtIndex:i] valueForKeyPath:@"aviLevel"] intValue]);
+                }
+            }
+            
+            // BUBUG error handling!!!
+            
+            int aviLevel = [[[JSON objectAtIndex:0] valueForKeyPath:@"aviLevel"] intValue];
             NSLog(@"aviLevel: %i", aviLevel);
             
             // invoke the callback
