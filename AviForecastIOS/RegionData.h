@@ -16,6 +16,8 @@
 @property (nonatomic, readonly) MKMapRect boundingMapRect;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
+- (int) aviLevelForToday;
+- (int) aviLevelForTomorrow;
 - (int) aviLevelForDateString:(NSString *)dateString;
 - (NSString *) dateStringForDate:(NSDate *)date;
 

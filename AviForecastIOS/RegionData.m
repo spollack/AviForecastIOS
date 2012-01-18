@@ -22,7 +22,8 @@
     return [self.polygon intersectsMapRect:mapRect];
 }
 
-- (MKMapRect) boundingMapRect {
+- (MKMapRect) boundingMapRect
+{
     return self.polygon.boundingMapRect;
 }
 
@@ -30,7 +31,22 @@
     return self.polygon.coordinate;
 }
 
-- (int) aviLevelForDateString:(NSString *)dateString {
+- (int) aviLevelForToday
+{
+    NSDate * today = [[NSDate alloc] init];
+    return [self aviLevelForDateString:[self dateStringForDate:today]];                        
+}
+
+- (int) aviLevelForTomorrow
+{
+    NSDate * today = [[NSDate alloc] init];
+    NSTimeInterval secondsPerDay = 24 * 60 * 60;
+    NSDate * tomorrow = [today dateByAddingTimeInterval: secondsPerDay];
+    return [self aviLevelForDateString:[self dateStringForDate:tomorrow]];
+}
+
+- (int) aviLevelForDateString:(NSString *)dateString
+{
     
     int aviLevel = AVI_LEVEL_UNKNOWN; 
 
@@ -48,7 +64,6 @@
                 }
             }
         }
-        
     }
 
     NSLog(@"aviLevel: %i", aviLevel);

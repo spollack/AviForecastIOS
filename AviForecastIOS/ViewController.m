@@ -97,7 +97,7 @@
         view.lineWidth = 2;
 
         // set the overlay color
-        int aviLevel = [regionData aviLevelForDateString:[regionData dateStringForDate:[[NSDate alloc] init]]];                        
+        int aviLevel = [regionData aviLevelForToday];                        
         view.fillColor = [self colorForAviLevel:aviLevel];
         
         // stash the view so we can update it later if the data changes
@@ -125,7 +125,7 @@
                     MKPolygonView * overlayView = regionData.overlayView; 
                     if (overlayView) {
                         // set the overlay color
-                        int aviLevel = [regionData aviLevelForDateString:[regionData dateStringForDate:[[NSDate alloc] init]]];                        
+                        int aviLevel = [regionData aviLevelForToday];                        
                         overlayView.fillColor = [self colorForAviLevel:aviLevel];
                         
                         // redraw the annotation
@@ -153,16 +153,6 @@
     
     NSLog(@"viewDidLoad called");
     
-    
-/*    
-    NSDate * today = [[NSDate alloc] init];
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString * todayString = [dateFormatter stringFromDate:today];
-    
-//    NSTimeInterval secondsPerDay = 24 * 60 * 60;
-//    NSDate * tomorrow = [today dateByAddingTimeInterval: secondsPerDay];
-*/    
     
     
    
