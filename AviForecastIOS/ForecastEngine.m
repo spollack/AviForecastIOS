@@ -23,18 +23,29 @@
         {
             NSLog(@"network operation success");
             
+            int aviLevel = AVI_LEVEL_UNKNOWN; 
+            
             // parse out the data
             if ([JSON isKindOfClass:[NSArray class]]) {
-                int count = ((NSArray *)JSON).count; 
-                NSLog(@"array count: %i", count);
-                for (int i = 0; i < count; i++) {
-                    NSLog(@"slot: %i; date: %@; aviLevel: %i", i, [[JSON objectAtIndex:i] valueForKeyPath:@"date"], [[[JSON objectAtIndex:i] valueForKeyPath:@"aviLevel"] intValue]);
+                
+                // get the current date
+                NSDate * today = [[NSDate alloc] init];
+                NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                NSString * todayString = [dateFormatter stringFromDate:today];
+
+                for (int i = 0; i < ((NSArray *)JSON).count; i++) {
+
+                    // look for a matching date
+                    if ([todayString isEqualToString:[[JSON objectAtIndex:i] valueForKeyPath:@"date"]]) {
+                        // found a match, grab the aviLevel
+                        aviLevel = [[[JSON objectAtIndex:i] valueForKeyPath:@"aviLevel"] intValue];
+                        NSLog(@"matching date found; slot: %i; date: %@; aviLevel: %i", i, todayString, aviLevel);
+                        break;
+                    }
                 }
             }
             
-            // BUBUG error handling!!!
-            
-            int aviLevel = [[[JSON objectAtIndex:0] valueForKeyPath:@"aviLevel"] intValue];
             NSLog(@"aviLevel: %i", aviLevel);
             
             // invoke the callback

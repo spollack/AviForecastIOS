@@ -134,6 +134,22 @@
     
     
     NSLog(@"viewDidLoad called");
+    
+    
+/*    
+    NSDate * today = [[NSDate alloc] init];
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString * todayString = [dateFormatter stringFromDate:today];
+    
+//    NSTimeInterval secondsPerDay = 24 * 60 * 60;
+//    NSDate * tomorrow = [today dateByAddingTimeInterval: secondsPerDay];
+    
+//    NSCalendar * calendar = [NSCalendar currentCalendar];
+//    NSDateComponents * dateComponents = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:today];
+//    NSLog(@"today's date: %i-%i-%i", [dateComponents year], [dateComponents month], [dateComponents day]);
+*/    
+    
    
     // BUGBUG temp
     MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.476, -121.722));
