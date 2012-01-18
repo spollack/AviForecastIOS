@@ -104,7 +104,7 @@
     NSLog(@"updateData called");
     
     if (self.forecastEngine) {
-        [self.forecastEngine forecastForRegionId:@"6" 
+        [self.forecastEngine forecastForRegionId:@"nwac_6" 
             onCompletion:^(int aviLevel)
             {
                 if (self.overlay) {
