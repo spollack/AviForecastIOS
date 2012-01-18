@@ -59,20 +59,24 @@
 {
     NSLog(@"didUpdateUserLocation called");
 
-    // once we have the user's location, center and zoom in
-    // BUGBUG what if we never get the user's location? should we default to something, or just let the user zoom in? 
+    // once we have the user's actual location, center and zoom in; however, only do this once, 
+    // so the map doesn't keep jumping around
     
     if (!self.haveUpdatedUserLocation) {
-        NSLog(@"updating map position based on user location");
         
         CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
         
-        // 200km x 200km
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 200000, 200000); 
-        
-        [mapView setRegion:region animated:TRUE];
+        if (location.latitude < 0.1 && location.longitude < 0.1) {
+            NSLog(@"location is near (0,0), not updating");
+        } else {
+            NSLog(@"updating map position based on user location");
 
-        self.haveUpdatedUserLocation = TRUE; 
+            // default to a 200km x 200km view
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 200000, 200000); 
+            [mapView setRegion:region animated:TRUE];
+
+            self.haveUpdatedUserLocation = TRUE; 
+        }
     }
 }
 
