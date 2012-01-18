@@ -7,13 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "ForecastEngine.h"
+#import "RegionData.h"
 
 @implementation ViewController
 
 @synthesize forecastEngine = _forecastEngine;
 @synthesize map = _map;
 @synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
-@synthesize overlay = _overlay;
+@synthesize regionsDict = _regionsDict;
 
 - (id) init
 {
@@ -88,13 +90,18 @@
 
     MKPolygonView * view = nil;
 
-    if ([overlay isKindOfClass:[MKPolygon class]]) {
-        view = [[MKPolygonView alloc] initWithPolygon:(MKPolygon *) overlay]; 
-        view.fillColor = [self colorForAviLevel:AVI_LEVEL_UNKNOWN];
+    if ([overlay isKindOfClass:[RegionData class]]) {
+        RegionData * regionData = (RegionData *)overlay; 
+        view = [[MKPolygonView alloc] initWithPolygon:regionData.polygon]; 
         view.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         view.lineWidth = 2;
+
+        // set the overlay color
+        int aviLevel = [regionData aviLevelForDateString:[regionData dateStringForDate:[[NSDate alloc] init]]];                        
+        view.fillColor = [self colorForAviLevel:aviLevel];
         
-        self.overlay = view; 
+        // stash the view so we can update it later if the data changes
+        regionData.overlayView = view; 
     }
         
     return view;
@@ -104,15 +111,26 @@
     NSLog(@"updateData called");
     
     if (self.forecastEngine) {
-        [self.forecastEngine forecastForRegionId:@"nwac_6" 
-            onCompletion:^(int aviLevel)
+        // BUGBUG temp
+        NSString * regionId = @"nwac_6";
+        
+        [self.forecastEngine forecastForRegionId:regionId 
+            onCompletion:^(NSString * regionId, id forecastJSON)
             {
-                if (self.overlay) {
-                    // set the overlay color
-                    self.overlay.fillColor = [self colorForAviLevel:aviLevel];
+                RegionData * regionData = [self.regionsDict objectForKey:regionId];
+                NSLog(@"onComletion called; regionId: %@; regionData: %@", regionId, regionData);
+                if (regionData) {
+                    regionData.forecastJSON = forecastJSON; 
                     
-                    // redraw the annotation
-                    [self.overlay setNeedsDisplay];                     
+                    MKPolygonView * overlayView = regionData.overlayView; 
+                    if (overlayView) {
+                        // set the overlay color
+                        int aviLevel = [regionData aviLevelForDateString:[regionData dateStringForDate:[[NSDate alloc] init]]];                        
+                        overlayView.fillColor = [self colorForAviLevel:aviLevel];
+                        
+                        // redraw the annotation
+                        [overlayView setNeedsDisplay];                     
+                    }
                 }
             }];
     }
@@ -144,23 +162,37 @@
     
 //    NSTimeInterval secondsPerDay = 24 * 60 * 60;
 //    NSDate * tomorrow = [today dateByAddingTimeInterval: secondsPerDay];
-    
-//    NSCalendar * calendar = [NSCalendar currentCalendar];
-//    NSDateComponents * dateComponents = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:today];
-//    NSLog(@"today's date: %i-%i-%i", [dateComponents year], [dateComponents month], [dateComponents day]);
 */    
+    
     
    
     // BUGBUG temp
+    
+    NSString * regionId = @"nwac_6";
+    
     MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.476, -121.722));
     MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.391, -121.476));
     MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.709, -121.130));
     MKMapPoint p4 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.861, -121.795));
     MKMapPoint pts[4] = {p1,p2,p3,p4};
     MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:4];
-    [self.map addOverlay:polygon];
 
+    RegionData * regionData = [[RegionData alloc] init];
+    regionData.regionId = regionId;
+    regionData.polygon = polygon; 
+    regionData.forecastJSON = nil;
+    regionData.overlayView = nil;
     
+    
+    [self.map addOverlay:regionData];
+    
+
+    self.regionsDict = [NSMutableDictionary dictionary];
+    [self.regionsDict setObject:regionData forKey:regionId];
+    
+    
+    
+    // create the forecast engine
     self.forecastEngine = [[ForecastEngine alloc] init];
     
     // fetch the data

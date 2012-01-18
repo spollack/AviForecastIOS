@@ -6,13 +6,14 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ForecastEngine.h"
+@class ForecastEngine;
 
 @interface ViewController : UIViewController <MKMapViewDelegate>
 
 @property (strong, nonatomic) ForecastEngine * forecastEngine;
 @property (weak, nonatomic) IBOutlet MKMapView * map;
 @property BOOL haveUpdatedUserLocation;
-@property (strong, atomic) MKPolygonView * overlay;
+@property (strong, nonatomic) NSMutableDictionary * regionsDict;
+
 
 @end

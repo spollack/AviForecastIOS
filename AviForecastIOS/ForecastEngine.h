@@ -9,7 +9,7 @@
 @interface ForecastEngine : NSObject
 
 // callback for returning the data
-typedef void (^ForecastResponseBlock)(int aviLevel);
+typedef void (^ForecastResponseBlock)(NSString * regionId, id forecastJSON);
  
 - (void) forecastForRegionId:(NSString *) regionId 
     onCompletion:(ForecastResponseBlock) completionBlock;
