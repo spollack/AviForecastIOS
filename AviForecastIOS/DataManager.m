@@ -27,6 +27,25 @@
     return self;
 }
 
+- (void) loadRegions
+{
+    // BUGBUG temp hardcoded
+    
+    NSString * regionId = @"nwac_6";
+    
+    MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.476, -121.722));
+    MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.391, -121.476));
+    MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.709, -121.130));
+    MKMapPoint p4 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.861, -121.795));
+    MKMapPoint pts[4] = {p1,p2,p3,p4};
+    MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:4];
+    
+    RegionData * regionData = [[RegionData alloc] initWithRegionId:regionId andPolygon:polygon];
+    
+    // add it to our dictionary
+    [self.regionsDict setObject:regionData forKey:regionId];
+}
+
 - (void) refreshForecasts:(DataUpdatedBlock) dataUpdatedBlock
 {
     NSArray * allKeys = [self.regionsDict allKeys]; 

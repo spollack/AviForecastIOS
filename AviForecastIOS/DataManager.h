@@ -16,6 +16,7 @@ typedef void (^DataUpdatedBlock)(NSString * regionId);
 @property (strong, nonatomic) NSMutableDictionary * regionsDict;
 @property (strong, nonatomic) ForecastEngine * forecastEngine;
 
+- (void) loadRegions;
 - (void) refreshForecasts:(DataUpdatedBlock) dataUpdatedBlock;
 
 @end

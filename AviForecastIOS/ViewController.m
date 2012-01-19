@@ -182,42 +182,28 @@
     
     NSLog(@"viewDidLoad called");
 
-    
+    // NOTE local initialization has to happen here, not in the init method, for this class
     self.dataManager = [[DataManager alloc] init];
     self.annotationsDict = [NSMutableDictionary dictionary];
     self.haveUpdatedUserLocation = FALSE; 
     self.mode = MODE_TODAY;
 
-    
-    
-   
-    // BUGBUG temp; hardcoded; and restructure into DataManager
-    
-    NSString * regionId = @"nwac_6";
-    
-    MKMapPoint p1 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.476, -121.722));
-    MKMapPoint p2 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.391, -121.476));
-    MKMapPoint p3 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.709, -121.130));
-    MKMapPoint p4 = MKMapPointForCoordinate(CLLocationCoordinate2DMake(47.861, -121.795));
-    MKMapPoint pts[4] = {p1,p2,p3,p4};
-    MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:4];
+    // initialize the data manager with the regions
+    // BUGBUG what is this is async? then need a callback within which to add the overlay
+    [self.dataManager loadRegions];
 
-    RegionData * regionData = [[RegionData alloc] initWithRegionId:regionId andPolygon:polygon];
+    NSArray * allValues = [self.dataManager.regionsDict allValues];
     
-    // add it to our dictionary
-    [self.dataManager.regionsDict setObject:regionData forKey:regionId];
-
-    // now add it to the map
-    [self.map addOverlay:regionData];
+    // now add them to the map as overlays 
+    // NOTE this is not the overlay views, just the overlay data
+    for (id value in allValues) {
+        [self.map addOverlay:(RegionData *)value];
+    }
     
-
-    
-    
-    
-    // fetch the data
+    // fetch the forecast data
     [self updateData:nil];
     
-    // receive activation notifications
+    // receive app activation notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
