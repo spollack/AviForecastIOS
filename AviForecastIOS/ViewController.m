@@ -104,7 +104,9 @@
 {
     MKPolygonView * overlayView = (MKPolygonView *)[self.annotationsDict objectForKey:regionId];
 
+    // we may or may not have a view for this overlay
     if (overlayView) {
+        
         // look up the region data
         RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
         NSAssert(regionData,@"regionData should not be nil!");
@@ -140,8 +142,6 @@
             [self refreshAnnotation:regionId];
         }
     ];
-    
-    [self refreshAnnotations];
 }
 
 - (IBAction) todayPressed:(id)sender
@@ -200,8 +200,9 @@
         [self.map addOverlay:(RegionData *)value];
     }
     
-    // fetch the forecast data
-    [self updateData:nil];
+    // NOTE the updateData method will be called by the system during the load sequence, which will
+    // initiate a fetch of the forecast data; therefore we don't need to call it explicitly here
+//    [self updateData:nil];
     
     // receive app activation notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData:) name:UIApplicationDidBecomeActiveNotification object:nil];
