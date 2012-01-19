@@ -189,20 +189,16 @@
     self.mode = MODE_TODAY;
 
     // initialize the data manager with the regions
-    // BUGBUG what is this is async? then need a callback within which to add the overlay
-    [self.dataManager loadRegions];
+    [self.dataManager loadRegions:^(NSString * regionId) {
+        RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
+        NSAssert(regionData,@"regionData should not be nil!");
 
-    NSArray * allValues = [self.dataManager.regionsDict allValues];
+        // add it to the map as an overlay (overlay data, not overlay view)
+        [self.map addOverlay:regionData];
+    }];
     
-    // now add them to the map as overlays 
-    // NOTE this is not the overlay views, just the overlay data
-    for (id value in allValues) {
-        [self.map addOverlay:(RegionData *)value];
-    }
-    
-    // NOTE the updateData method will be called by the system during the load sequence, which will
+    // NOTE the updateData: method will be called by the system during the load sequence, which will
     // initiate a fetch of the forecast data; therefore we don't need to call it explicitly here
-//    [self updateData:nil];
     
     // receive app activation notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -210,12 +206,13 @@
 
 - (void)viewDidUnload
 {
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+
     [self setMap:nil];
     [self setTodayButton:nil];
     [self setTomorrowButton:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated

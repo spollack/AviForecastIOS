@@ -27,7 +27,7 @@
     return self;
 }
 
-- (void) loadRegions
+- (void) loadRegions:(DataUpdatedBlock) dataUpdatedBlock
 {
     // BUGBUG temp hardcoded
     
@@ -44,6 +44,8 @@
     
     // add it to our dictionary
     [self.regionsDict setObject:regionData forKey:regionId];
+    
+    dataUpdatedBlock(regionId);
 }
 
 - (void) refreshForecasts:(DataUpdatedBlock) dataUpdatedBlock
