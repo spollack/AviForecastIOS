@@ -13,8 +13,6 @@
 - (void) forecastForRegionId:(NSString *) regionId 
     onCompletion:(ForecastResponseBlock) completionBlock
 {
-    // BUGBUG returned cached data if already loaded; otherwise do the networking dance below...
-    
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://falling-lightning-8605.herokuapp.com/version/1/region/%@", regionId]];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
 

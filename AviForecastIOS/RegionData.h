@@ -11,15 +11,10 @@
 @property (strong, nonatomic) NSString * regionId;
 @property (strong, nonatomic) MKPolygon * polygon;
 @property (strong, nonatomic) id forecastJSON;
-@property (weak, nonatomic) MKPolygonView * overlayView;
-
 @property (nonatomic, readonly) MKMapRect boundingMapRect;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
+- (id) initWithRegionId:(NSString *)regionId andPolygon:(MKPolygon *)polygon;
 - (int) aviLevelForMode:(int) mode;
-- (int) aviLevelForToday;
-- (int) aviLevelForTomorrow;
-- (int) aviLevelForDateString:(NSString *) dateString;
-- (NSString *) dateStringForDate:(NSDate *) date;
 
 @end

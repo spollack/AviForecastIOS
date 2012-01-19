@@ -13,7 +13,24 @@
 @synthesize regionId = _regionId;
 @synthesize polygon = _polygon;
 @synthesize forecastJSON = _forecastJSON;
-@synthesize overlayView = _overlayView;
+
+- (id) init
+{
+    return [self initWithRegionId:nil andPolygon:nil];
+}
+
+- (id) initWithRegionId:(NSString *)regionId andPolygon:(MKPolygon *)polygon
+{
+    self = [super init];
+    
+    if (self) {
+        self.regionId = regionId;
+        self.polygon = polygon;
+        self.forecastJSON = nil;
+    }
+    
+    return self;
+}
 
 // NOTE all MKOverlay protocol methods are delegated through to the MKPolygon
 
@@ -27,41 +44,19 @@
     return self.polygon.boundingMapRect;
 }
 
-- (CLLocationCoordinate2D) coordinate {
+- (CLLocationCoordinate2D) coordinate
+{
     return self.polygon.coordinate;
 }
 
-- (int) aviLevelForMode:(int) mode
+- (NSString *) dateStringForDate:(NSDate *) date
 {
     
-    int aviLevel = AVI_LEVEL_UNKNOWN; 
-
-    switch (mode) {
-        case MODE_TODAY: 
-            aviLevel = [self aviLevelForToday];
-            break;
-        case MODE_TOMORROW:
-            aviLevel = [self aviLevelForTomorrow];
-            break;
-        default:
-            break;
-    }
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
-    return aviLevel;
-}
-
-- (int) aviLevelForToday
-{
-    NSDate * today = [[NSDate alloc] init];
-    return [self aviLevelForDateString:[self dateStringForDate:today]];                        
-}
-
-- (int) aviLevelForTomorrow
-{
-    NSDate * today = [[NSDate alloc] init];
-    NSTimeInterval secondsPerDay = 24 * 60 * 60;
-    NSDate * tomorrow = [today dateByAddingTimeInterval: secondsPerDay];
-    return [self aviLevelForDateString:[self dateStringForDate:tomorrow]];
+    NSString * dateString = [dateFormatter stringFromDate:date];
+    return dateString; 
 }
 
 - (int) aviLevelForDateString:(NSString *) dateString
@@ -90,13 +85,37 @@
     return aviLevel;
 }
 
-- (NSString *) dateStringForDate:(NSDate *) date {
+- (int) aviLevelForToday
+{
+    NSDate * today = [[NSDate alloc] init];
+    return [self aviLevelForDateString:[self dateStringForDate:today]];                        
+}
+
+- (int) aviLevelForTomorrow
+{
+    NSDate * today = [[NSDate alloc] init];
+    NSTimeInterval secondsPerDay = 24 * 60 * 60;
+    NSDate * tomorrow = [today dateByAddingTimeInterval: secondsPerDay];
+    return [self aviLevelForDateString:[self dateStringForDate:tomorrow]];
+}
+
+- (int) aviLevelForMode:(int) mode
+{
     
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    int aviLevel = AVI_LEVEL_UNKNOWN; 
     
-    NSString * dateString = [dateFormatter stringFromDate:date];
-    return dateString; 
+    switch (mode) {
+        case MODE_TODAY: 
+            aviLevel = [self aviLevelForToday];
+            break;
+        case MODE_TOMORROW:
+            aviLevel = [self aviLevelForTomorrow];
+            break;
+        default:
+            break;
+    }
+    
+    return aviLevel;
 }
 
 @end

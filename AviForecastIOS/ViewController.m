@@ -9,28 +9,17 @@
 #import "ViewController.h"
 #import "ForecastEngine.h"
 #import "RegionData.h"
+#import "DataManager.h"
 
 @implementation ViewController
 
 @synthesize map = _map;
 @synthesize todayButton = _todayButton;
 @synthesize tomorrowButton = _tomorrowButton;
-@synthesize forecastEngine = _forecastEngine;
-@synthesize regionsDict = _regionsDict;
+@synthesize dataManager = _dataManager;
+@synthesize annotationsDict = _annotationsDict;
 @synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
 @synthesize mode = _mode; 
-
-- (id) init
-{
-    self = [super init];
-    
-    if (self) {
-        self.haveUpdatedUserLocation = FALSE; 
-        self.mode = MODE_TODAY;
-    }
-        
-    return self;
-}
 
 - (UIColor *) colorForAviLevel:(int) aviLevel
 {
@@ -60,8 +49,8 @@
     return color;
 }
 
-- (void) mapView:(MKMapView *) mapView
-    didUpdateUserLocation:(MKUserLocation *) userLocation
+- (void) mapView:(MKMapView *)mapView
+    didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     NSLog(@"didUpdateUserLocation called");
 
@@ -104,55 +93,55 @@
         int aviLevel = [regionData aviLevelForMode: self.mode];                        
         overlayView.fillColor = [self colorForAviLevel: aviLevel];
         
-        // stash the view so we can update it later if the data changes
-        regionData.overlayView = overlayView; 
+        // add it to our dictionary
+        [self.annotationsDict setObject:overlayView forKey:regionData.regionId];
     }
         
     return overlayView;
 }
 
-- (void) recalcAnnotation:(RegionData *) regionData
+- (void) refreshAnnotation:(NSString *)regionId
 {
-    if (regionData.overlayView) {
-        // look up and set the aviLevel-based overlay color
+    MKPolygonView * overlayView = (MKPolygonView *)[self.annotationsDict objectForKey:regionId];
+
+    if (overlayView) {
+        // look up the region data
+        RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
+        NSAssert(regionData,@"regionData should not be nil!");
+        
+        NSLog(@"refreshing annotation for regionId: %@", regionData.regionId);
+
+        // set the aviLevel-based overlay color
         int aviLevel = [regionData aviLevelForMode: self.mode];
-        regionData.overlayView.fillColor = [self colorForAviLevel: aviLevel];
+        overlayView.fillColor = [self colorForAviLevel: aviLevel];
         
         // redraw the annotation
-        [regionData.overlayView setNeedsDisplay];
+        [overlayView setNeedsDisplay];
     }
 }
 
-- (void) recalcAnnotations
+- (void) refreshAnnotations
 {
-    NSArray * allValues = [self.regionsDict allValues];
-    for (id object in allValues) {
-        RegionData * regionData = (RegionData *)object;
-        [self recalcAnnotation: regionData];
+    NSLog(@"refreshAnnotations called");
+
+    NSArray * allKeys = [self.annotationsDict allKeys];
+    
+    for (id key in allKeys) {
+        NSString * regionId = (NSString *)key;
+        [self refreshAnnotation: regionId];
     }
 }
 
-- (void) updateData: (id) notification {
+- (void) updateData: (id)notification {
     NSLog(@"updateData called");
     
-    if (self.forecastEngine) {
-        // BUGBUG temp
-        NSString * regionId = @"nwac_6";
-        
-        [self.forecastEngine forecastForRegionId:regionId 
-            onCompletion:^(NSString * regionId, id forecastJSON)
-            {
-                RegionData * regionData = [self.regionsDict objectForKey:regionId];
-                NSLog(@"onComletion called; regionId: %@; regionData: %@", regionId, regionData);
-                if (regionData) {
-                    // save the new data
-                    regionData.forecastJSON = forecastJSON; 
-                    
-                    // update the annotation
-                    [self recalcAnnotation: regionData];
-                }
-            }];
-    }
+    [self.dataManager refreshForecasts:
+        ^(NSString * regionId) {
+            [self refreshAnnotation:regionId];
+        }
+    ];
+    
+    [self refreshAnnotations];
 }
 
 - (IBAction) todayPressed:(id)sender
@@ -163,7 +152,7 @@
     self.todayButton.style = UIBarButtonItemStyleDone;
     self.tomorrowButton.style = UIBarButtonItemStyleBordered;
     
-    [self recalcAnnotations];
+    [self refreshAnnotations];
 }
 
 - (IBAction) tomorrowPressed:(id)sender
@@ -174,7 +163,7 @@
     self.tomorrowButton.style = UIBarButtonItemStyleDone;
     self.todayButton.style = UIBarButtonItemStyleBordered;
 
-    [self recalcAnnotations];
+    [self refreshAnnotations];
 }
 
 - (void) didReceiveMemoryWarning
@@ -191,20 +180,18 @@
     
 	// Do any additional setup after loading the view, typically from a nib.
     
-    
     NSLog(@"viewDidLoad called");
-    
-    
-    
-    // create the regions dictionary
-    self.regionsDict = [NSMutableDictionary dictionary];
-    
-    // create the forecast engine
-    self.forecastEngine = [[ForecastEngine alloc] init];
 
     
+    self.dataManager = [[DataManager alloc] init];
+    self.annotationsDict = [NSMutableDictionary dictionary];
+    self.haveUpdatedUserLocation = FALSE; 
+    self.mode = MODE_TODAY;
+
+    
+    
    
-    // BUGBUG temp
+    // BUGBUG temp; hardcoded; and restructure into DataManager
     
     NSString * regionId = @"nwac_6";
     
@@ -215,14 +202,10 @@
     MKMapPoint pts[4] = {p1,p2,p3,p4};
     MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:4];
 
-    RegionData * regionData = [[RegionData alloc] init];
-    regionData.regionId = regionId;
-    regionData.polygon = polygon; 
-    regionData.forecastJSON = nil;
-    regionData.overlayView = nil;
+    RegionData * regionData = [[RegionData alloc] initWithRegionId:regionId andPolygon:polygon];
     
     // add it to our dictionary
-    [self.regionsDict setObject:regionData forKey:regionId];
+    [self.dataManager.regionsDict setObject:regionData forKey:regionId];
 
     // now add it to the map
     [self.map addOverlay:regionData];
