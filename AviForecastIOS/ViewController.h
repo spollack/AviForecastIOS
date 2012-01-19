@@ -10,10 +10,14 @@
 
 @interface ViewController : UIViewController <MKMapViewDelegate>
 
-@property (strong, nonatomic) ForecastEngine * forecastEngine;
 @property (weak, nonatomic) IBOutlet MKMapView * map;
-@property BOOL haveUpdatedUserLocation;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *todayButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *tomorrowButton;
+@property (strong, nonatomic) ForecastEngine * forecastEngine;
 @property (strong, nonatomic) NSMutableDictionary * regionsDict;
-
+@property BOOL haveUpdatedUserLocation;
+@property int mode; 
+- (IBAction)todayPressed:(id)sender;
+- (IBAction)tomorrowPressed:(id)sender;
 
 @end

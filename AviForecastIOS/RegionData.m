@@ -31,6 +31,25 @@
     return self.polygon.coordinate;
 }
 
+- (int) aviLevelForMode:(int) mode
+{
+    
+    int aviLevel = AVI_LEVEL_UNKNOWN; 
+
+    switch (mode) {
+        case MODE_TODAY: 
+            aviLevel = [self aviLevelForToday];
+            break;
+        case MODE_TOMORROW:
+            aviLevel = [self aviLevelForTomorrow];
+            break;
+        default:
+            break;
+    }
+    
+    return aviLevel;
+}
+
 - (int) aviLevelForToday
 {
     NSDate * today = [[NSDate alloc] init];
@@ -45,7 +64,7 @@
     return [self aviLevelForDateString:[self dateStringForDate:tomorrow]];
 }
 
-- (int) aviLevelForDateString:(NSString *)dateString
+- (int) aviLevelForDateString:(NSString *) dateString
 {
     
     int aviLevel = AVI_LEVEL_UNKNOWN; 
@@ -71,7 +90,7 @@
     return aviLevel;
 }
 
-- (NSString *) dateStringForDate:(NSDate *)date {
+- (NSString *) dateStringForDate:(NSDate *) date {
     
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];

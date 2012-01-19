@@ -12,10 +12,13 @@
 
 @implementation ViewController
 
-@synthesize forecastEngine = _forecastEngine;
 @synthesize map = _map;
-@synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
+@synthesize todayButton = _todayButton;
+@synthesize tomorrowButton = _tomorrowButton;
+@synthesize forecastEngine = _forecastEngine;
 @synthesize regionsDict = _regionsDict;
+@synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
+@synthesize mode = _mode; 
 
 - (id) init
 {
@@ -23,6 +26,7 @@
     
     if (self) {
         self.haveUpdatedUserLocation = FALSE; 
+        self.mode = MODE_TODAY;
     }
         
     return self;
@@ -88,26 +92,47 @@
 {
     NSLog(@"viewForOverlay called");
 
-    MKPolygonView * view = nil;
+    MKPolygonView * overlayView = nil;
 
     if ([overlay isKindOfClass:[RegionData class]]) {
         RegionData * regionData = (RegionData *)overlay; 
-        view = [[MKPolygonView alloc] initWithPolygon:regionData.polygon]; 
-        view.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-        view.lineWidth = 2;
+        overlayView = [[MKPolygonView alloc] initWithPolygon:regionData.polygon]; 
+        overlayView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+        overlayView.lineWidth = 2;
 
         // set the overlay color
-        int aviLevel = [regionData aviLevelForToday];                        
-        view.fillColor = [self colorForAviLevel:aviLevel];
+        int aviLevel = [regionData aviLevelForMode: self.mode];                        
+        overlayView.fillColor = [self colorForAviLevel: aviLevel];
         
         // stash the view so we can update it later if the data changes
-        regionData.overlayView = view; 
+        regionData.overlayView = overlayView; 
     }
         
-    return view;
+    return overlayView;
 }
 
-- (void) updateData: (id)notification {
+- (void) recalcAnnotation:(RegionData *) regionData
+{
+    if (regionData.overlayView) {
+        // look up and set the aviLevel-based overlay color
+        int aviLevel = [regionData aviLevelForMode: self.mode];
+        regionData.overlayView.fillColor = [self colorForAviLevel: aviLevel];
+        
+        // redraw the annotation
+        [regionData.overlayView setNeedsDisplay];
+    }
+}
+
+- (void) recalcAnnotations
+{
+    NSArray * allValues = [self.regionsDict allValues];
+    for (id object in allValues) {
+        RegionData * regionData = (RegionData *)object;
+        [self recalcAnnotation: regionData];
+    }
+}
+
+- (void) updateData: (id) notification {
     NSLog(@"updateData called");
     
     if (self.forecastEngine) {
@@ -120,23 +145,39 @@
                 RegionData * regionData = [self.regionsDict objectForKey:regionId];
                 NSLog(@"onComletion called; regionId: %@; regionData: %@", regionId, regionData);
                 if (regionData) {
+                    // save the new data
                     regionData.forecastJSON = forecastJSON; 
                     
-                    MKPolygonView * overlayView = regionData.overlayView; 
-                    if (overlayView) {
-                        // set the overlay color
-                        int aviLevel = [regionData aviLevelForToday];                        
-                        overlayView.fillColor = [self colorForAviLevel:aviLevel];
-                        
-                        // redraw the annotation
-                        [overlayView setNeedsDisplay];                     
-                    }
+                    // update the annotation
+                    [self recalcAnnotation: regionData];
                 }
             }];
     }
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction) todayPressed:(id)sender
+{
+    NSLog(@"todayPressed called");
+    
+    self.mode = MODE_TODAY;
+    self.todayButton.style = UIBarButtonItemStyleDone;
+    self.tomorrowButton.style = UIBarButtonItemStyleBordered;
+    
+    [self recalcAnnotations];
+}
+
+- (IBAction) tomorrowPressed:(id)sender
+{
+    NSLog(@"tomorrowPressed called");
+    
+    self.mode = MODE_TOMORROW;
+    self.tomorrowButton.style = UIBarButtonItemStyleDone;
+    self.todayButton.style = UIBarButtonItemStyleBordered;
+
+    [self recalcAnnotations];
+}
+
+- (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
@@ -154,6 +195,13 @@
     NSLog(@"viewDidLoad called");
     
     
+    
+    // create the regions dictionary
+    self.regionsDict = [NSMutableDictionary dictionary];
+    
+    // create the forecast engine
+    self.forecastEngine = [[ForecastEngine alloc] init];
+
     
    
     // BUGBUG temp
@@ -173,17 +221,15 @@
     regionData.forecastJSON = nil;
     regionData.overlayView = nil;
     
-    
+    // add it to our dictionary
+    [self.regionsDict setObject:regionData forKey:regionId];
+
+    // now add it to the map
     [self.map addOverlay:regionData];
     
 
-    self.regionsDict = [NSMutableDictionary dictionary];
-    [self.regionsDict setObject:regionData forKey:regionId];
     
     
-    
-    // create the forecast engine
-    self.forecastEngine = [[ForecastEngine alloc] init];
     
     // fetch the data
     [self updateData:nil];
@@ -195,6 +241,8 @@
 - (void)viewDidUnload
 {
     [self setMap:nil];
+    [self setTodayButton:nil];
+    [self setTomorrowButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

@@ -19,14 +19,14 @@
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
 
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
-        success:^(NSURLRequest * request, NSHTTPURLResponse *response, id JSON)
+        success:^(NSURLRequest * request, NSHTTPURLResponse * response, id JSON)
         {
             NSLog(@"network operation success");
                         
             // invoke the callback, returning the data
             completionBlock(regionId, JSON);
         }
-        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON)
+        failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
             NSLog(@"network operation failure: %@", error);
             

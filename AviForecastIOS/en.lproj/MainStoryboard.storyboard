@@ -18,17 +18,36 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" mapType="standard" showsUserLocation="YES" id="vhz-hg-Sgv">
-                                <rect key="frame" x="0.0" y="176" width="320" height="301"/>
+                                <rect key="frame" x="0.0" y="176" width="320" height="283"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="H8g-l0-rHi"/>
                                 </connections>
                             </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.69999999999999996" contentMode="scaleToFill" barStyle="blackTranslucent" id="WrJ-m9-tCb">
+                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <barButtonItem title="Today" style="done" id="WfC-M0-14R">
+                                        <connections>
+                                            <action selector="todayPressed:" destination="2" id="aNh-gY-mMA"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Tomorrow" id="UvQ-Bu-fSk">
+                                        <connections>
+                                            <action selector="tomorrowPressed:" destination="2" id="vGA-JC-mRK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="map" destination="vhz-hg-Sgv" id="fZ8-nF-ZUz"/>
+                        <outlet property="todayButton" destination="WfC-M0-14R" id="Ys6-jX-COc"/>
+                        <outlet property="tomorrowButton" destination="UvQ-Bu-fSk" id="jgw-Qs-gY6"/>
                     </connections>
                 </viewController>
             </objects>
@@ -37,14 +56,6 @@
     <resources>
         <image name="NA_danger_scale_2010.jpg" width="1334" height="739"/>
     </resources>
-    <classes>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
