@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ForecastEngine.h"
+#import "NetworkEngine.h"
 #import "RegionData.h"
 #import "DataManager.h"
 
@@ -137,7 +137,7 @@
 - (void) updateData: (id)notification {
     NSLog(@"updateData called");
     
-    [self.dataManager refreshForecasts:
+    [self.dataManager loadForecasts:
         ^(NSString * regionId) {
             [self refreshAnnotation:regionId];
         }
@@ -195,10 +195,15 @@
 
         // add it to the map as an overlay (overlay data, not overlay view)
         [self.map addOverlay:regionData];
+        
+        // load the forecast data for the region
+        [self.dataManager loadForecastForRegionId:regionId 
+            onCompletion:^(NSString *regionId)
+            {
+                [self refreshAnnotation:regionId];
+            }
+        ];
     }];
-    
-    // NOTE the updateData: method will be called by the system during the load sequence, which will
-    // initiate a fetch of the forecast data; therefore we don't need to call it explicitly here
     
     // receive app activation notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData:) name:UIApplicationDidBecomeActiveNotification object:nil];

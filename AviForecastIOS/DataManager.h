@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-@class ForecastEngine;
+@class NetworkEngine;
 
 @interface DataManager : NSObject
 
@@ -14,9 +14,10 @@
 typedef void (^DataUpdatedBlock)(NSString * regionId);
 
 @property (strong, nonatomic) NSMutableDictionary * regionsDict;
-@property (strong, nonatomic) ForecastEngine * forecastEngine;
+@property (strong, nonatomic) NetworkEngine * networkEngine;
 
-- (void) loadRegions:(DataUpdatedBlock) dataUpdatedBlock;
-- (void) refreshForecasts:(DataUpdatedBlock) dataUpdatedBlock;
+- (void) loadRegions:(DataUpdatedBlock) regionAddedBlock;
+- (void) loadForecastForRegionId:(NSString *) regionId onCompletion:(DataUpdatedBlock) forecastUpdatedBlock;
+- (void) loadForecasts:(DataUpdatedBlock) forecastUpdatedBlock;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 @class DataManager;
-@class ForecastEngine;
+@class NetworkEngine;
 
 @interface ViewController : UIViewController <MKMapViewDelegate>
 
