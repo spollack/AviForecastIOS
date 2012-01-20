@@ -29,6 +29,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
+                                    <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="vfB-8y-QFt"/>
                                     <barButtonItem title="Today" style="done" id="WfC-M0-14R">
                                         <connections>
                                             <action selector="todayPressed:" destination="2" id="aNh-gY-mMA"/>
@@ -36,9 +37,15 @@
                                     </barButtonItem>
                                     <barButtonItem title="Tomorrow" id="UvQ-Bu-fSk">
                                         <connections>
-                                            <action selector="tomorrowPressed:" destination="2" id="vGA-JC-mRK"/>
+                                            <action selector="tomorrowPressed:" destination="2" id="ZpH-0W-C7n"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="2 Days Out" id="SOj-Ak-p98">
+                                        <connections>
+                                            <action selector="twoDaysOutPressed:" destination="2" id="IKR-m3-M4Y"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="5U1-it-zlY"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -48,6 +55,7 @@
                         <outlet property="map" destination="vhz-hg-Sgv" id="fZ8-nF-ZUz"/>
                         <outlet property="todayButton" destination="WfC-M0-14R" id="Ys6-jX-COc"/>
                         <outlet property="tomorrowButton" destination="UvQ-Bu-fSk" id="jgw-Qs-gY6"/>
+                        <outlet property="twoDaysOutButton" destination="SOj-Ak-p98" id="XBx-st-PMM"/>
                     </connections>
                 </viewController>
             </objects>

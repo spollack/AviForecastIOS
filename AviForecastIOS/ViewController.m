@@ -16,6 +16,7 @@
 @synthesize map = _map;
 @synthesize todayButton = _todayButton;
 @synthesize tomorrowButton = _tomorrowButton;
+@synthesize twoDaysOutButton = _twoDaysOutButton;
 @synthesize dataManager = _dataManager;
 @synthesize annotationsDict = _annotationsDict;
 @synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
@@ -148,22 +149,42 @@
 {
     NSLog(@"todayPressed called");
     
-    self.mode = MODE_TODAY;
-    self.todayButton.style = UIBarButtonItemStyleDone;
-    self.tomorrowButton.style = UIBarButtonItemStyleBordered;
-    
-    [self refreshAnnotations];
+    if (self.mode != MODE_TODAY) {
+        self.mode = MODE_TODAY;
+        self.todayButton.style = UIBarButtonItemStyleDone;
+        self.tomorrowButton.style = UIBarButtonItemStyleBordered;
+        self.twoDaysOutButton.style = UIBarButtonItemStyleBordered;
+        
+        [self refreshAnnotations];
+    }
 }
 
 - (IBAction) tomorrowPressed:(id)sender
 {
     NSLog(@"tomorrowPressed called");
     
-    self.mode = MODE_TOMORROW;
-    self.tomorrowButton.style = UIBarButtonItemStyleDone;
-    self.todayButton.style = UIBarButtonItemStyleBordered;
+    if (self.mode != MODE_TOMORROW) {
+        self.mode = MODE_TOMORROW;
+        self.todayButton.style = UIBarButtonItemStyleBordered;
+        self.tomorrowButton.style = UIBarButtonItemStyleDone;
+        self.twoDaysOutButton.style = UIBarButtonItemStyleBordered;
 
-    [self refreshAnnotations];
+        [self refreshAnnotations];
+    }
+}
+
+- (IBAction)twoDaysOutPressed:(id)sender
+{
+    NSLog(@"twoDaysOutPressed called");
+    
+    if (self.mode != MODE_TWO_DAYS_OUT) {
+        self.mode = MODE_TWO_DAYS_OUT;
+        self.todayButton.style = UIBarButtonItemStyleBordered;
+        self.tomorrowButton.style = UIBarButtonItemStyleBordered;
+        self.twoDaysOutButton.style = UIBarButtonItemStyleDone;
+        
+        [self refreshAnnotations];
+    }
 }
 
 - (void) didReceiveMemoryWarning
@@ -217,6 +238,7 @@
     [self setMap:nil];
     [self setTodayButton:nil];
     [self setTomorrowButton:nil];
+    [self setTwoDaysOutButton:nil];
     [super viewDidUnload];
 }
 

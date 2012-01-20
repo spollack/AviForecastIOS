@@ -94,9 +94,17 @@
 - (int) aviLevelForTomorrow
 {
     NSDate * today = [[NSDate alloc] init];
-    NSTimeInterval secondsPerDay = 24 * 60 * 60;
-    NSDate * tomorrow = [today dateByAddingTimeInterval: secondsPerDay];
+    NSTimeInterval oneDay = 24 * 60 * 60;
+    NSDate * tomorrow = [today dateByAddingTimeInterval: oneDay];
     return [self aviLevelForDateString:[self dateStringForDate:tomorrow]];
+}
+
+- (int) aviLevelForTwoDaysOut
+{
+    NSDate * today = [[NSDate alloc] init];
+    NSTimeInterval twoDays = 2 * 24 * 60 * 60;
+    NSDate * twoDaysOut = [today dateByAddingTimeInterval: twoDays];
+    return [self aviLevelForDateString:[self dateStringForDate:twoDaysOut]];
 }
 
 - (int) aviLevelForMode:(int) mode
@@ -110,6 +118,9 @@
             break;
         case MODE_TOMORROW:
             aviLevel = [self aviLevelForTomorrow];
+            break;
+        case MODE_TWO_DAYS_OUT:
+            aviLevel = [self aviLevelForTwoDaysOut];
             break;
         default:
             break;

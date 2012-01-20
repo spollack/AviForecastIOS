@@ -15,3 +15,4 @@
 
 #define MODE_TODAY 0
 #define MODE_TOMORROW 1
+#define MODE_TWO_DAYS_OUT 2

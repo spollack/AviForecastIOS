@@ -14,11 +14,13 @@
 @property (weak, nonatomic) IBOutlet MKMapView * map;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *todayButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *tomorrowButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *twoDaysOutButton;
 @property (strong, nonatomic) DataManager * dataManager;
 @property (strong, nonatomic) NSMutableDictionary * annotationsDict;
 @property (nonatomic) BOOL haveUpdatedUserLocation;
 @property (nonatomic) int mode; 
 - (IBAction)todayPressed:(id)sender;
 - (IBAction)tomorrowPressed:(id)sender;
+- (IBAction)twoDaysOutPressed:(id)sender;
 
 @end
