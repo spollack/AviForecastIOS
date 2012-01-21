@@ -13,6 +13,7 @@
 
 - (void) loadConfig:(ConfigResponseBlock) completionBlock
 {
+//    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/version/1/config"];
     NSURL * url = [NSURL URLWithString:@"http://falling-lightning-8605.herokuapp.com/version/1/config"];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
@@ -66,6 +67,7 @@
 - (void) forecastForRegionId:(NSString *) regionId 
     onCompletion:(ForecastResponseBlock) completionBlock
 {
+//    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:5000/version/1/region/%@", regionId]];
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://falling-lightning-8605.herokuapp.com/version/1/region/%@", regionId]];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
 
