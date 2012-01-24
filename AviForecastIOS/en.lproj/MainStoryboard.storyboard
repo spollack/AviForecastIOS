@@ -13,12 +13,12 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="legend.png" id="MCn-HF-E6w">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="legend2.png" id="MCn-HF-E6w">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" mapType="standard" showsUserLocation="YES" id="vhz-hg-Sgv">
-                                <rect key="frame" x="0.0" y="55" width="320" height="361"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="356"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="H8g-l0-rHi"/>
@@ -63,7 +63,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="legend.png" width="320" height="55"/>
+        <image name="legend2.png" width="320" height="60"/>
     </resources>
     <classes>
         <class className="ViewController" superclassName="UIViewController">
