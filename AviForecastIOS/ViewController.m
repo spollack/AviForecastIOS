@@ -67,8 +67,8 @@
         } else {
             NSLog(@"updating map position based on user location");
 
-            // default to a 300km x 300km view
-            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 300000, 300000); 
+            // default to a 250km x 250km view
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 250000, 250000); 
             [mapView setRegion:region animated:TRUE];
 
             self.haveUpdatedUserLocation = TRUE; 
