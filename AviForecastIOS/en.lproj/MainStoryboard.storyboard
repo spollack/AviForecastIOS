@@ -24,28 +24,29 @@
                                     <outlet property="delegate" destination="2" id="H8g-l0-rHi"/>
                                 </connections>
                             </mapView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.99999999999999989" contentMode="scaleToFill" id="WrJ-m9-tCb">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.99999999999999989" contentMode="scaleToFill" barStyle="blackTranslucent" id="WrJ-m9-tCb">
                                 <rect key="frame" x="0.0" y="416" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="vfB-8y-QFt"/>
-                                    <barButtonItem title="Today" style="done" id="WfC-M0-14R">
+                                    <barButtonItem width="18" style="plain" systemItem="fixedSpace" id="xeN-aS-rBS"/>
+                                    <barButtonItem title="Today" width="80" style="done" id="WfC-M0-14R">
+                                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <action selector="todayPressed:" destination="2" id="aNh-gY-mMA"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Tomorrow" id="UvQ-Bu-fSk">
+                                    <barButtonItem title="Tomorrow" width="80" id="UvQ-Bu-fSk">
                                         <connections>
                                             <action selector="tomorrowPressed:" destination="2" id="ZpH-0W-C7n"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="2 Days Out" id="SOj-Ak-p98">
+                                    <barButtonItem title="2 Days Out" width="80" id="SOj-Ak-p98">
                                         <connections>
                                             <action selector="twoDaysOutPressed:" destination="2" id="IKR-m3-M4Y"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="5U1-it-zlY"/>
+                                    <barButtonItem width="18" style="plain" systemItem="fixedSpace" id="2pM-Wh-ZxT"/>
                                 </items>
                             </toolbar>
                         </subviews>
