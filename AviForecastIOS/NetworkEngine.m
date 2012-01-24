@@ -13,8 +13,8 @@
 
 - (void) loadRegions:(RegionResponseBlock) completionBlock
 {
-//    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/version/1/config"];
-    NSURL * url = [NSURL URLWithString:@"http://falling-lightning-8605.herokuapp.com/version/1/config"];
+//    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/regions"];
+    NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/regions"];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
@@ -67,8 +67,8 @@
 - (void) forecastForRegionId:(NSString *) regionId 
     onCompletion:(ForecastResponseBlock) completionBlock
 {
-//    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:5000/version/1/region/%@", regionId]];
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://falling-lightning-8605.herokuapp.com/version/1/region/%@", regionId]];
+//    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:5000/v1/region/%@", regionId]];
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://aviforecast.herokuapp.com/v1/region/%@", regionId]];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
 
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
