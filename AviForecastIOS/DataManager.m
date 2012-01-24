@@ -29,13 +29,13 @@
 
 - (void) loadRegions:(DataUpdatedBlock) regionAddedBlock
 {
-    [self.networkEngine loadConfig:
+    [self.networkEngine loadRegions:
         ^(RegionData * regionData)
         {
             // add it to our dictionary
             [self.regionsDict setObject:regionData forKey:regionData.regionId];
 
-            // call the callback
+            // invoke the callback
             regionAddedBlock(regionData.regionId);
         }
      ];

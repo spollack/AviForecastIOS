@@ -11,7 +11,7 @@
 
 @implementation NetworkEngine
 
-- (void) loadConfig:(ConfigResponseBlock) completionBlock
+- (void) loadRegions:(RegionResponseBlock) completionBlock
 {
 //    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/version/1/config"];
     NSURL * url = [NSURL URLWithString:@"http://falling-lightning-8605.herokuapp.com/version/1/config"];
