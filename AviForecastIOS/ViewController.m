@@ -138,6 +138,7 @@
 - (void) updateData: (id)notification {
     NSLog(@"updateData called");
     
+    // load the forecasts, then refresh each annotation as new data arrives
     [self.dataManager loadForecasts:
         ^(NSString * regionId) {
             [self refreshAnnotation:regionId];
