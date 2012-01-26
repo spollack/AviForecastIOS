@@ -3,8 +3,13 @@
 //  AviForecastIOS
 //
 //  Created by Seth Pollack on 1/13/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 SEBNARWARE. All rights reserved.
 //
+
+//
+// application-wide constants
+//
+
 
 #define AVI_LEVEL_UNKNOWN 0
 #define AVI_LEVEL_LOW 1

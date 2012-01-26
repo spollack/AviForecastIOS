@@ -3,7 +3,7 @@
 //  AviForecastIOS
 //
 //  Created by Seth Pollack on 1/12/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 SEBNARWARE. All rights reserved.
 //
 
 #import "NetworkEngine.h"
@@ -15,12 +15,15 @@
 {
 //    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/regions"];
     NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/regions"];
+    
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
         success:^(NSURLRequest * request, NSHTTPURLResponse * response, id JSON)
         {
-            NSLog(@"config file network operation success");
+            NSLog(@"loadRegions network operation success");
+            
+            int numRegions = 0;
             
             if ([JSON isKindOfClass:[NSArray class]]) {
                 
@@ -47,20 +50,21 @@
                         MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:numPts];
                     
                         RegionData * regionData = [[RegionData alloc] initWithRegionId:regionId displayName:displayName URL:URL polygon:polygon];
-                        
+                                                
+                        numRegions++;
                         NSLog(@"created regionData for regionId: %@", regionId);
                         
-                        // invoke the callback for each region read
+                        // invoke the callback for each region read successfully
                         completionBlock(regionData);
-                    } else {
-                        NSLog(@"invalid data in config file");
                     }
                 }
             }
+            
+            NSLog(@"created %i regions", numRegions);
         }
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
-            NSLog(@"config file network operation failure: %@", error);
+            NSLog(@"loadRegions network operation failure; error: %@", error);
         }];
     
     [operation start];
@@ -71,19 +75,20 @@
 {
 //    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:5000/v1/region/%@", regionId]];
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://aviforecast.herokuapp.com/v1/region/%@", regionId]];
+    
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
 
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
         success:^(NSURLRequest * request, NSHTTPURLResponse * response, id JSON)
         {
-            NSLog(@"forecast network operation success");
+            NSLog(@"forecastForRegionId network operation success; regionId: %@", regionId);
                         
             // invoke the callback, returning the data
             completionBlock(regionId, JSON);
         }
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
-            NSLog(@"forecast network operation failure: %@", error);
+            NSLog(@"forecastForRegionId network operation failure; regionId: %@; error: %@", regionId, error);
         }];
     
     [operation start];

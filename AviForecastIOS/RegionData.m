@@ -3,7 +3,7 @@
 //  AviForecastIOS
 //
 //  Created by Seth Pollack on 1/18/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 SEBNARWARE. All rights reserved.
 //
 
 #import "RegionData.h"
@@ -67,6 +67,7 @@
 {
     
     int aviLevel = AVI_LEVEL_UNKNOWN; 
+    BOOL lookupMatch = false; 
 
     if (self.forecastJSON) {
         if ([self.forecastJSON isKindOfClass:[NSArray class]]) {
@@ -77,14 +78,17 @@
                 if ([dateString isEqualToString:[[self.forecastJSON objectAtIndex:i] valueForKeyPath:@"date"]]) {
                     // found a match, grab the aviLevel
                     aviLevel = [[[self.forecastJSON objectAtIndex:i] valueForKeyPath:@"aviLevel"] intValue];
+                    lookupMatch = true;
                     NSLog(@"matching date found; regionId: %@; slot: %i; date: %@; aviLevel: %i", self.regionId, i, dateString, aviLevel);
                     break;
                 }
             }
         }
     }
-
-    NSLog(@"aviLevel: %i", aviLevel);
+    
+    if (!lookupMatch) {
+        NSLog(@"matching date not found in forecast data; regionId: %@; date: %@", self.regionId, dateString);
+    }
     
     return aviLevel;
 }

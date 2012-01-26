@@ -3,7 +3,7 @@
 //  AviForecastIOS
 //
 //  Created by Seth Pollack on 1/12/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 SEBNARWARE. All rights reserved.
 //
 
 #import "MainViewController.h"
@@ -14,6 +14,9 @@
 
 // transparency level for overlays
 #define OVERLAY_ALPHA 0.65
+
+// map region, in meters, horizontally and vertically, to display by default
+#define MAP_VIEW_DEFAULT_METERS 300000
 
 @implementation MainViewController
 
@@ -26,33 +29,6 @@
 @synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
 @synthesize mode = _mode; 
 
-
-- (void) detailsViewControllerDidFinish:(DetailsViewController *)controller
-{
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"showDetails"]) {
-        
-        // tell the sub-view how to call back to this view
-        [[segue destinationViewController] setDelegate:self];
-        
-        // find the URL associated with the selected view
-        NSAssert(sender, @"sender should not be nil!");
-        NSAssert([sender isKindOfClass:[OverlayView class]], @"sender should be of class OverlayView!");
-        OverlayView * overlayView = (OverlayView *)sender;
-        RegionData * regionData = [self.dataManager.regionsDict objectForKey:overlayView.regionId];
-        NSAssert(regionData, @"regionData should not be nil!");
-        NSAssert(regionData.URL, @"regionData.URL should not be nil!");
-                
-        NSURL * URL = [NSURL URLWithString:regionData.URL]; 
-
-        // set the context for the details sub-view
-        [[segue destinationViewController] setURL:URL];
-    }
-}
 
 - (UIColor *) colorForAviLevel:(int)aviLevel
 {
@@ -82,11 +58,8 @@
     return color;
 }
 
-- (void) mapView:(MKMapView *)mapView
-    didUpdateUserLocation:(MKUserLocation *)userLocation
+- (void) mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    NSLog(@"didUpdateUserLocation called");
-
     // once we have the user's actual location, center and zoom in; however, only do this once, 
     // so the map doesn't keep jumping around
     
@@ -95,12 +68,12 @@
         CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
         
         if (location.latitude < 0.1 && location.longitude < 0.1) {
-            NSLog(@"location is near (0,0), not updating");
+            // this can happen if the user does not allow the app to access their location
+            NSLog(@"reported user location is near (0,0), not updating");
         } else {
             NSLog(@"updating map position based on user location");
 
-            // default to a 300km x 300km view
-            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, 300000, 300000); 
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, MAP_VIEW_DEFAULT_METERS, MAP_VIEW_DEFAULT_METERS); 
             [mapView setRegion:region animated:TRUE];
 
             self.haveUpdatedUserLocation = TRUE; 
@@ -110,8 +83,6 @@
 
 - (MKOverlayView *) mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
-    NSLog(@"viewForOverlay called");
-
     OverlayView * overlayView = nil;
 
     if ([overlay isKindOfClass:[RegionData class]]) {
@@ -120,11 +91,11 @@
         overlayView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:OVERLAY_ALPHA];
         overlayView.lineWidth = 2;
 
-        // set the overlay color
+        // set the aviLevel-based overlay color
         int aviLevel = [regionData aviLevelForMode: self.mode];                        
         overlayView.fillColor = [self colorForAviLevel: aviLevel];
         
-        // add it to our dictionary
+        // add it to our dictionary of views
         [self.overlayViewDict setObject:overlayView forKey:regionData.regionId];
     }
         
@@ -153,9 +124,9 @@
     }
 }
 
-- (void) refreshOverlays
+- (void) refreshAllOverlays
 {
-    NSLog(@"refreshOverlays called");
+    NSLog(@"refreshAllOverlays called");
 
     NSArray * allKeys = [self.overlayViewDict allKeys];
     
@@ -165,11 +136,12 @@
     }
 }
 
-- (void) updateData: (id)notification {
-    NSLog(@"updateData called");
+- (void) updateAllForecastData:(id)notification
+{
+    NSLog(@"updateAllForecastData called");
     
     // load the forecasts, then refresh each overlay as new data arrives
-    [self.dataManager loadForecasts:
+    [self.dataManager loadAllForecasts:
         ^(NSString * regionId) {
             [self refreshOverlay:regionId];
         }
@@ -186,7 +158,7 @@
         self.tomorrowButton.style = UIBarButtonItemStyleBordered;
         self.twoDaysOutButton.style = UIBarButtonItemStyleBordered;
         
-        [self refreshOverlays];
+        [self refreshAllOverlays];
     }
 }
 
@@ -200,7 +172,7 @@
         self.tomorrowButton.style = UIBarButtonItemStyleDone;
         self.twoDaysOutButton.style = UIBarButtonItemStyleBordered;
 
-        [self refreshOverlays];
+        [self refreshAllOverlays];
     }
 }
 
@@ -214,8 +186,46 @@
         self.tomorrowButton.style = UIBarButtonItemStyleBordered;
         self.twoDaysOutButton.style = UIBarButtonItemStyleDone;
         
-        [self refreshOverlays];
+        [self refreshAllOverlays];
     }
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // NOTE we leverage segues for the view transition
+    // segues can only exist in the storyboard file, and must be hooked to some initiating action; therefore the segue
+    // is hooked up to an inactive, non-visible button in the storyboard file, and only invoked programmatically
+    
+    if ([[segue identifier] isEqualToString:@"showDetails"]) {
+        
+        // tell the sub-view how to call back to this view
+        [[segue destinationViewController] setDelegate:self];
+        
+        // find the URL associated with the selected view
+        NSAssert(sender, @"sender should not be nil!");
+        NSAssert([sender isKindOfClass:[OverlayView class]], @"sender should be of class OverlayView!");
+        OverlayView * overlayView = (OverlayView *)sender;
+        
+        RegionData * regionData = [self.dataManager.regionsDict objectForKey:overlayView.regionId];
+        NSAssert(regionData, @"regionData should not be nil!");
+        
+        NSAssert(regionData.URL, @"regionData.URL should not be nil!");
+        NSURL * URL = [NSURL URLWithString:regionData.URL]; 
+        
+        // set the context for the details sub-view
+        [[segue destinationViewController] setURL:URL];
+        
+        NSLog(@"about to segue to details view");
+    }
+}
+
+- (void) detailsViewControllerDidFinish:(DetailsViewController *)controller
+{
+    // this method is called by the detail view, when its time for the details view to go away
+    
+    NSLog(@"about to segue back from details view");
+
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer 
@@ -231,7 +241,9 @@
     CLLocationCoordinate2D touchMapCoordinate = [self.map convertPoint:touchPoint toCoordinateFromView:self.map];
     MKMapPoint mapPoint = MKMapPointForCoordinate(touchMapCoordinate);
 
-    // BUGBUG this hit-testing becomes inefficient as the number of regions grows...
+    // do our hit-testing, to see if the user tapped in a region
+    // NOTE this hit-testing will become inefficient as the number of regions grows, as we are doing linear search;
+    // if neccesary, we could do a smarter search (e.g., filter the polygon set to hit-test based on their bounding boxes)
     
     NSArray * allValues = [self.overlayViewDict allValues];
     
@@ -251,23 +263,14 @@
     }
 }
 
-- (void) didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-	// Do any additional setup after loading the view, typically from a nib.
-    
+        
     NSLog(@"MainViewController viewDidLoad called");
 
-    // NOTE local initialization has to happen here, not in the init method, for UIViewController classes
+    // NOTE local initialization has to happen here for UIViewController classes, not in the init method
+    
     self.dataManager = [[DataManager alloc] init];
     self.overlayViewDict = [NSMutableDictionary dictionary];
     self.haveUpdatedUserLocation = FALSE; 
@@ -295,26 +298,28 @@
         ];
     }];
     
-    // receive app activation notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateData:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    // on app activation notifications, update our forecasts
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAllForecastData:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void)viewDidUnload
 {
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    NSLog(@"MainViewController viewDidUnload called");
 
     [self.map setDelegate:nil];
     [self setMap:nil];
     [self setTodayButton:nil];
     [self setTomorrowButton:nil];
     [self setTwoDaysOutButton:nil];
+    [self setDataManager:nil];
+    [self setOverlayViewDict:nil];
+    
     [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+    // the main view only supports portrait
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 

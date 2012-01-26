@@ -3,8 +3,13 @@
 //  AviForecastIOS
 //
 //  Created by Seth Pollack on 1/19/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 SEBNARWARE. All rights reserved.
 //
+
+//
+// manages all region and forecast data
+//
+
 
 @class NetworkEngine;
 
@@ -18,6 +23,6 @@ typedef void (^DataUpdatedBlock)(NSString * regionId);
 
 - (void) loadRegions:(DataUpdatedBlock) regionAddedBlock;
 - (void) loadForecastForRegionId:(NSString *) regionId onCompletion:(DataUpdatedBlock) forecastUpdatedBlock;
-- (void) loadForecasts:(DataUpdatedBlock) forecastUpdatedBlock;
+- (void) loadAllForecasts:(DataUpdatedBlock) forecastUpdatedBlock;
 
 @end
