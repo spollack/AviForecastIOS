@@ -53,11 +53,6 @@
     return self.polygon.coordinate;
 }
 
-- (NSString *) title
-{
-    return self.displayName;
-}
-
 - (NSString *) dateStringForDate:(NSDate *) date
 {
     

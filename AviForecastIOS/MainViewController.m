@@ -11,7 +11,6 @@
 #import "RegionData.h"
 #import "DataManager.h"
 #import "OverlayView.h"
-#import "AnnotationView.h"
 
 // transparency level for overlays
 #define OVERLAY_ALPHA 0.65
@@ -42,9 +41,9 @@
         
         // find the URL associated with the selected view
         NSAssert(sender, @"sender should not be nil!");
-        NSAssert([sender isKindOfClass:[AnnotationView class]], @"sender should be of class AnnotationView!");
-        AnnotationView * annotationView = (AnnotationView *)sender;
-        RegionData * regionData = [self.dataManager.regionsDict objectForKey:annotationView.regionId];
+        NSAssert([sender isKindOfClass:[OverlayView class]], @"sender should be of class OverlayView!");
+        OverlayView * overlayView = (OverlayView *)sender;
+        RegionData * regionData = [self.dataManager.regionsDict objectForKey:overlayView.regionId];
         NSAssert(regionData, @"regionData should not be nil!");
         NSAssert(regionData.URL, @"regionData.URL should not be nil!");
                 
@@ -53,14 +52,6 @@
         // set the context for the details sub-view
         [[segue destinationViewController] setURL:URL];
     }
-}
-
-- (void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
-    NSLog(@"didSelectAnnotationView called");
-    
-    // respond to the selection by segueing to the details view
-    [self performSegueWithIdentifier:@"showDetails" sender:view];     
 }
 
 - (UIColor *) colorForAviLevel:(int)aviLevel
@@ -140,23 +131,7 @@
     return overlayView;
 }
 
-- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation
-{
-    NSLog(@"viewForOverlay called");
-    
-    AnnotationView * annotationView = nil;
-    
-    if ([annotation isKindOfClass:[RegionData class]]) {
-        RegionData * regionData = (RegionData *)annotation; 
-        annotationView = [[AnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:regionData.regionId];
-        annotationView.regionId = regionData.regionId;
-        annotationView.image = nil; 
-    }
-    
-    return annotationView;
-}
-
-- (void) refreshAnnotation:(NSString *)regionId
+- (void) refreshOverlay:(NSString *)regionId
 {
     OverlayView * overlayView = (OverlayView *)[self.overlayViewDict objectForKey:regionId];
 
@@ -167,36 +142,36 @@
         RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
         NSAssert(regionData, @"regionData should not be nil!");
         
-        NSLog(@"refreshing annotation for regionId: %@", regionData.regionId);
+        NSLog(@"refreshing overlay for regionId: %@", regionData.regionId);
 
         // set the aviLevel-based overlay color
         int aviLevel = [regionData aviLevelForMode: self.mode];
         overlayView.fillColor = [self colorForAviLevel: aviLevel];
         
-        // redraw the annotation
+        // redraw the overlay
         [overlayView setNeedsDisplay];
     }
 }
 
-- (void) refreshAnnotations
+- (void) refreshOverlays
 {
-    NSLog(@"refreshAnnotations called");
+    NSLog(@"refreshOverlays called");
 
     NSArray * allKeys = [self.overlayViewDict allKeys];
     
     for (id key in allKeys) {
         NSString * regionId = (NSString *)key;
-        [self refreshAnnotation: regionId];
+        [self refreshOverlay: regionId];
     }
 }
 
 - (void) updateData: (id)notification {
     NSLog(@"updateData called");
     
-    // load the forecasts, then refresh each annotation as new data arrives
+    // load the forecasts, then refresh each overlay as new data arrives
     [self.dataManager loadForecasts:
         ^(NSString * regionId) {
-            [self refreshAnnotation:regionId];
+            [self refreshOverlay:regionId];
         }
     ];
 }
@@ -211,7 +186,7 @@
         self.tomorrowButton.style = UIBarButtonItemStyleBordered;
         self.twoDaysOutButton.style = UIBarButtonItemStyleBordered;
         
-        [self refreshAnnotations];
+        [self refreshOverlays];
     }
 }
 
@@ -225,7 +200,7 @@
         self.tomorrowButton.style = UIBarButtonItemStyleDone;
         self.twoDaysOutButton.style = UIBarButtonItemStyleBordered;
 
-        [self refreshAnnotations];
+        [self refreshOverlays];
     }
 }
 
@@ -239,7 +214,40 @@
         self.tomorrowButton.style = UIBarButtonItemStyleBordered;
         self.twoDaysOutButton.style = UIBarButtonItemStyleDone;
         
-        [self refreshAnnotations];
+        [self refreshOverlays];
+    }
+}
+
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer 
+            shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    // allow our gesture recognition to co-exist with recognition built-in to the map
+    return YES;
+}
+
+- (void)tapGestureHandler:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    CGPoint touchPoint = [tapGestureRecognizer locationInView:self.map];
+    CLLocationCoordinate2D touchMapCoordinate = [self.map convertPoint:touchPoint toCoordinateFromView:self.map];
+    MKMapPoint mapPoint = MKMapPointForCoordinate(touchMapCoordinate);
+
+    // BUGBUG this hit-testing becomes inefficient as the number of regions grows...
+    
+    NSArray * allValues = [self.overlayViewDict allValues];
+    
+    for (id value in allValues) {
+        OverlayView * overlayView = (OverlayView *)value;
+        CGPoint polygonViewPoint = [overlayView pointForMapPoint:mapPoint];
+        BOOL mapCoordinateIsInPolygon = CGPathContainsPoint(overlayView.path, NULL, polygonViewPoint, NO);
+        
+        if (mapCoordinateIsInPolygon) {
+            NSLog(@"tap in overlay detected; regionId: %@", overlayView.regionId);
+            
+            // respond to the selection by segueing to the details view
+            [self performSegueWithIdentifier:@"showDetails" sender:overlayView];     
+
+            break;
+        }
     }
 }
 
@@ -259,11 +267,16 @@
     
     NSLog(@"MainViewController viewDidLoad called");
 
-    // NOTE local initialization has to happen here, not in the init method, for this class
+    // NOTE local initialization has to happen here, not in the init method, for UIViewController classes
     self.dataManager = [[DataManager alloc] init];
     self.overlayViewDict = [NSMutableDictionary dictionary];
     self.haveUpdatedUserLocation = FALSE; 
     self.mode = MODE_TODAY;
+    
+    // set up tap recognition for our overlays on the map
+    UITapGestureRecognizer * tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureHandler:)];
+    tapGestureRecognizer.delegate = self;
+    [self.map addGestureRecognizer:tapGestureRecognizer];
 
     // initialize the data manager with the regions
     [self.dataManager loadRegions:^(NSString * regionId) {
@@ -273,14 +286,11 @@
         // add it to the map as an overlay (overlay data, not overlay view)
         [self.map addOverlay:regionData];
         
-        // also add it as an annotation, so we can accept clicks
-        [self.map addAnnotation:regionData];
-        
         // load the forecast data for the region
         [self.dataManager loadForecastForRegionId:regionId 
             onCompletion:^(NSString *regionId)
             {
-                [self refreshAnnotation:regionId];
+                [self refreshOverlay:regionId];
             }
         ];
     }];

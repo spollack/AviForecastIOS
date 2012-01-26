@@ -11,7 +11,7 @@
 @class DataManager;
 @class NetworkEngine;
 
-@interface MainViewController : UIViewController <MKMapViewDelegate, DetailsViewControllerDelegate>
+@interface MainViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate, DetailsViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView * map;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *todayButton;

@@ -29,7 +29,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <barButtonItem width="18" style="plain" systemItem="fixedSpace" id="xeN-aS-rBS"/>
+                                    <barButtonItem enabled="NO" style="plain" systemItem="flexibleSpace" id="B2b-zg-wjG"/>
                                     <barButtonItem title="Today" width="80" style="done" id="WfC-M0-14R">
                                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
                                         <connections>
@@ -46,24 +46,11 @@
                                             <action selector="twoDaysOutPressed:" destination="2" id="IKR-m3-M4Y"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" id="rfc-t3-mKI">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Fce-w2-ind">
-                                            <rect key="frame" x="300" y="13" width="18" height="19"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal">
-                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="highlighted">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="1bP-KZ-t5h" kind="modal" identifier="showDetails" modalTransitionStyle="flipHorizontal" id="7CK-Nr-0ZG"/>
-                                            </connections>
-                                        </button>
+                                    <barButtonItem enabled="NO" style="plain" systemItem="flexibleSpace" id="f2j-ba-ruU">
+                                        <connections>
+                                            <segue destination="1bP-KZ-t5h" kind="modal" identifier="showDetails" modalTransitionStyle="flipHorizontal" id="EC6-f2-zQN"/>
+                                        </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="18" style="plain" systemItem="fixedSpace" id="2pM-Wh-ZxT"/>
                                 </items>
                             </toolbar>
                         </subviews>

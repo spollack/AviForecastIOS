@@ -42,8 +42,6 @@
 		2EAF251E14C75942005E0410 /* RegionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF251C14C75942005E0410 /* RegionData.m */; };
 		2EB0580C14D0D575004DDD59 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0580B14D0D575004DDD59 /* OverlayView.m */; };
 		2EB0580D14D0D575004DDD59 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0580B14D0D575004DDD59 /* OverlayView.m */; };
-		2EB0581114D0DD04004DDD59 /* AnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0581014D0DD04004DDD59 /* AnnotationView.m */; };
-		2EB0581214D0DD04004DDD59 /* AnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0581014D0DD04004DDD59 /* AnnotationView.m */; };
 		2EC6DC7014BF52FC005D3EC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */; };
 		2EC6DC7214BF52FC005D3EC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */; };
 		2EC6DC7414BF52FC005D3EC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7314BF52FC005D3EC1 /* CoreGraphics.framework */; };
@@ -114,8 +112,6 @@
 		2EAF251C14C75942005E0410 /* RegionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionData.m; sourceTree = "<group>"; };
 		2EB0580A14D0D575004DDD59 /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
 		2EB0580B14D0D575004DDD59 /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
-		2EB0580F14D0DD03004DDD59 /* AnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationView.h; sourceTree = "<group>"; };
-		2EB0581014D0DD04004DDD59 /* AnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationView.m; sourceTree = "<group>"; };
 		2EC6DC6B14BF52FC005D3EC1 /* Avalanche.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avalanche.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -256,8 +252,6 @@
 				2EC6DC8514BF52FC005D3EC1 /* MainViewController.m */,
 				2E5D1DA714D04D7C007AD25A /* DetailsViewController.h */,
 				2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */,
-				2EB0580F14D0DD03004DDD59 /* AnnotationView.h */,
-				2EB0581014D0DD04004DDD59 /* AnnotationView.m */,
 				2EB0580A14D0D575004DDD59 /* OverlayView.h */,
 				2EB0580B14D0D575004DDD59 /* OverlayView.m */,
 				2EAA4E2014C874D500D93E24 /* DataManager.h */,
@@ -445,7 +439,6 @@
 				2EAA4E2214C874D500D93E24 /* DataManager.m in Sources */,
 				2E5D1DA914D04D7C007AD25A /* DetailsViewController.m in Sources */,
 				2EB0580C14D0D575004DDD59 /* OverlayView.m in Sources */,
-				2EB0581114D0DD04004DDD59 /* AnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,7 +462,6 @@
 				2EAA4E2314C874D500D93E24 /* DataManager.m in Sources */,
 				2E5D1DAA14D04D7C007AD25A /* DetailsViewController.m in Sources */,
 				2EB0580D14D0D575004DDD59 /* OverlayView.m in Sources */,
-				2EB0581214D0DD04004DDD59 /* AnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
