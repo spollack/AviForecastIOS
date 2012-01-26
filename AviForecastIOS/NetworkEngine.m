@@ -28,9 +28,11 @@
                 for (int i = 0; i < ((NSArray *)JSON).count; i++) {
                     
                     NSString * regionId = [[JSON objectAtIndex:i] valueForKeyPath:@"regionId"];
+                    NSString * displayName = [[JSON objectAtIndex:i] valueForKeyPath:@"displayName"];
+                    NSString * URL = [[JSON objectAtIndex:i] valueForKeyPath:@"URL"];
                     NSArray * points = [[JSON objectAtIndex:i] valueForKeyPath:@"points"];
 
-                    if (regionId && points && [points isKindOfClass:[NSArray class]] && points.count > 3) {
+                    if (regionId && displayName && URL && points && [points isKindOfClass:[NSArray class]] && points.count > 3) {
                         
                         int numPts = ((NSArray *)points).count;
                         MKMapPoint pts[numPts];
@@ -44,7 +46,7 @@
                         
                         MKPolygon * polygon = [MKPolygon polygonWithPoints:pts count:numPts];
                     
-                        RegionData * regionData = [[RegionData alloc] initWithRegionId:regionId andPolygon:polygon];
+                        RegionData * regionData = [[RegionData alloc] initWithRegionId:regionId displayName:displayName URL:URL polygon:polygon];
                         
                         NSLog(@"created regionData for regionId: %@", regionId);
                         

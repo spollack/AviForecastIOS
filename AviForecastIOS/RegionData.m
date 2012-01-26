@@ -11,20 +11,24 @@
 @implementation RegionData
 
 @synthesize regionId = _regionId;
+@synthesize displayName = _displayName;
+@synthesize URL = _URL;
 @synthesize polygon = _polygon;
 @synthesize forecastJSON = _forecastJSON;
 
 - (id) init
 {
-    return [self initWithRegionId:nil andPolygon:nil];
+    return [self initWithRegionId:nil displayName:nil URL:nil polygon:nil];
 }
 
-- (id) initWithRegionId:(NSString *)regionId andPolygon:(MKPolygon *)polygon
+- (id) initWithRegionId:(NSString *)regionId displayName:(NSString *)displayName URL:(NSString *)URL polygon:(MKPolygon *)polygon
 {
     self = [super init];
     
     if (self) {
         self.regionId = regionId;
+        self.displayName = displayName;
+        self.URL = URL;
         self.polygon = polygon;
         self.forecastJSON = nil;
     }
@@ -47,6 +51,11 @@
 - (CLLocationCoordinate2D) coordinate
 {
     return self.polygon.coordinate;
+}
+
+- (NSString *) title
+{
+    return self.displayName;
 }
 
 - (NSString *) dateStringForDate:(NSDate *) date
