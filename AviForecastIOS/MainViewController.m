@@ -190,40 +190,31 @@
     }
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void) showDetailsView:(NSString *)regionId
 {
-    // NOTE we leverage segues for the view transition
-    // segues can only exist in the storyboard file, and must be hooked to some initiating action; therefore the segue
-    // is hooked up to an inactive, non-visible button in the storyboard file, and only invoked programmatically
+    DetailsViewController * detailsViewController = [[DetailsViewController alloc] initWithNibName:@"DetailsViewController" bundle:nil];
+    detailsViewController.delegate = self;
+    detailsViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+
+
+    // find the URL associated with the selected region, and set it in the view
+    RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
+    NSAssert(regionData, @"regionData should not be nil!");
+    NSAssert(regionData.URL, @"regionData.URL should not be nil!");
+    NSURL * URL = [NSURL URLWithString:regionData.URL]; 
     
-    if ([[segue identifier] isEqualToString:@"showDetails"]) {
-        
-        // tell the sub-view how to call back to this view
-        [[segue destinationViewController] setDelegate:self];
-        
-        // find the URL associated with the selected view
-        NSAssert(sender, @"sender should not be nil!");
-        NSAssert([sender isKindOfClass:[OverlayView class]], @"sender should be of class OverlayView!");
-        OverlayView * overlayView = (OverlayView *)sender;
-        
-        RegionData * regionData = [self.dataManager.regionsDict objectForKey:overlayView.regionId];
-        NSAssert(regionData, @"regionData should not be nil!");
-        
-        NSAssert(regionData.URL, @"regionData.URL should not be nil!");
-        NSURL * URL = [NSURL URLWithString:regionData.URL]; 
-        
-        // set the context for the details sub-view
-        [[segue destinationViewController] setURL:URL];
-        
-        NSLog(@"about to segue to details view");
-    }
+    [detailsViewController setURL:URL];
+    
+    NSLog(@"about to go to details view");
+    
+    [self presentModalViewController:detailsViewController animated:YES];
 }
 
 - (void) detailsViewControllerDidFinish:(DetailsViewController *)controller
 {
     // this method is called by the detail view, when its time for the details view to go away
     
-    NSLog(@"about to segue back from details view");
+    NSLog(@"about to return from details view");
 
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -255,8 +246,8 @@
         if (mapCoordinateIsInPolygon) {
             NSLog(@"tap in overlay detected; regionId: %@", overlayView.regionId);
             
-            // respond to the selection by segueing to the details view
-            [self performSegueWithIdentifier:@"showDetails" sender:overlayView];     
+            // respond to the selection by changing to the details view
+            [self showDetailsView:overlayView.regionId];     
 
             break;
         }

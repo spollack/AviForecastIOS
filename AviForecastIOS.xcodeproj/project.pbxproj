@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E00B54514CCF84E00356991 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E00B54414CCF84E00356991 /* Default.png */; };
 		2E00B54814CCF86000356991 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E00B54714CCF86000356991 /* Default@2x.png */; };
+		2E00EE5914D2F23B00112294 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E00EE5814D2F23B00112294 /* DetailsViewController.xib */; };
 		2E3F9B0414C3276900D2E2C8 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3F9B0314C3276900D2E2C8 /* logo@2x.png */; };
 		2E5D1DA914D04D7C007AD25A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */; };
 		2EA9C9FE14BFC15A008DD986 /* NetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9C9FD14BFC15A008DD986 /* NetworkEngine.m */; };
@@ -25,15 +26,16 @@
 		2EAA4E2214C874D500D93E24 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA4E2114C874D500D93E24 /* DataManager.m */; };
 		2EAA9AB114D1FD0F007AC5A3 /* legend3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */; };
 		2EAA9AB314D1FD19007AC5A3 /* legend3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AB214D1FD19007AC5A3 /* legend3.png */; };
+		2EAA9AE714D2EA60007AC5A3 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AE614D2EA60007AC5A3 /* MainViewController.xib */; };
 		2EAF251D14C75942005E0410 /* RegionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF251C14C75942005E0410 /* RegionData.m */; };
 		2EB0580C14D0D575004DDD59 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0580B14D0D575004DDD59 /* OverlayView.m */; };
+		2EC5226414D34E170083386C /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC5226314D34E170083386C /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2EC6DC7014BF52FC005D3EC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */; };
 		2EC6DC7214BF52FC005D3EC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */; };
 		2EC6DC7414BF52FC005D3EC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DC7314BF52FC005D3EC1 /* CoreGraphics.framework */; };
 		2EC6DC7A14BF52FC005D3EC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6DC7814BF52FC005D3EC1 /* InfoPlist.strings */; };
 		2EC6DC7C14BF52FC005D3EC1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6DC7B14BF52FC005D3EC1 /* main.m */; };
 		2EC6DC8014BF52FC005D3EC1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6DC7F14BF52FC005D3EC1 /* AppDelegate.m */; };
-		2EC6DC8314BF52FC005D3EC1 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6DC8114BF52FC005D3EC1 /* MainStoryboard.storyboard */; };
 		2EC6DC8614BF52FC005D3EC1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6DC8514BF52FC005D3EC1 /* MainViewController.m */; };
 		2EC6DCA514BF549A005D3EC1 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6DCA414BF549A005D3EC1 /* logo.png */; };
 		2EC6DCA714BF54B1005D3EC1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DCA614BF54B1005D3EC1 /* MapKit.framework */; };
@@ -43,6 +45,7 @@
 /* Begin PBXFileReference section */
 		2E00B54414CCF84E00356991 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2E00B54714CCF86000356991 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2E00EE5814D2F23B00112294 /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailsViewController.xib; path = ../DetailsViewController.xib; sourceTree = "<group>"; };
 		2E3F9B0314C3276900D2E2C8 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		2E4E643714C0B03300D11461 /* contants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contants.h; sourceTree = "<group>"; };
 		2E5D1DA714D04D7C007AD25A /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
@@ -78,10 +81,13 @@
 		2EAA4E2114C874D500D93E24 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend3@2x.png"; sourceTree = "<group>"; };
 		2EAA9AB214D1FD19007AC5A3 /* legend3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend3.png; sourceTree = "<group>"; };
+		2EAA9AE614D2EA60007AC5A3 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewController.xib; path = ../MainViewController.xib; sourceTree = "<group>"; };
 		2EAF251B14C75942005E0410 /* RegionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionData.h; sourceTree = "<group>"; };
 		2EAF251C14C75942005E0410 /* RegionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionData.m; sourceTree = "<group>"; };
 		2EB0580A14D0D575004DDD59 /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
 		2EB0580B14D0D575004DDD59 /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
+		2EC5226214D34E170083386C /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		2EC5226314D34E170083386C /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		2EC6DC6B14BF52FC005D3EC1 /* Avalanche.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avalanche.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC6DC6F14BF52FC005D3EC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2EC6DC7114BF52FC005D3EC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -92,13 +98,8 @@
 		2EC6DC7D14BF52FC005D3EC1 /* AviForecastIOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AviForecastIOS-Prefix.pch"; sourceTree = "<group>"; };
 		2EC6DC7E14BF52FC005D3EC1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2EC6DC7F14BF52FC005D3EC1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2EC6DC8214BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2EC6DC8414BF52FC005D3EC1 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		2EC6DC8514BF52FC005D3EC1 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		2EC6DC9514BF52FC005D3EC1 /* AviForecastIOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AviForecastIOSTests-Info.plist"; sourceTree = "<group>"; };
-		2EC6DC9714BF52FC005D3EC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2EC6DC9914BF52FC005D3EC1 /* AviForecastIOSTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AviForecastIOSTests.h; sourceTree = "<group>"; };
-		2EC6DC9A14BF52FC005D3EC1 /* AviForecastIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AviForecastIOSTests.m; sourceTree = "<group>"; };
 		2EC6DCA414BF549A005D3EC1 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2EC6DCA614BF54B1005D3EC1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -162,13 +163,22 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		2EC5226114D34E170083386C /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				2EC5226214D34E170083386C /* JSONKit.h */,
+				2EC5226314D34E170083386C /* JSONKit.m */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
 		2EC6DC6014BF52FC005D3EC1 = {
 			isa = PBXGroup;
 			children = (
 				2EA9CA0614C06921008DD986 /* Resources */,
 				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
-				2EC6DC9314BF52FC005D3EC1 /* AviForecastIOSTests */,
 				2EA9CA7614C075A6008DD986 /* AFNetworking */,
+				2EC5226114D34E170083386C /* JSONKit */,
 				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
 				2EC6DC6C14BF52FC005D3EC1 /* Products */,
 			);
@@ -202,12 +212,13 @@
 			children = (
 				2EC6DC7E14BF52FC005D3EC1 /* AppDelegate.h */,
 				2EC6DC7F14BF52FC005D3EC1 /* AppDelegate.m */,
-				2EC6DC8114BF52FC005D3EC1 /* MainStoryboard.storyboard */,
 				2E4E643714C0B03300D11461 /* contants.h */,
 				2EC6DC8414BF52FC005D3EC1 /* MainViewController.h */,
 				2EC6DC8514BF52FC005D3EC1 /* MainViewController.m */,
+				2EAA9AE614D2EA60007AC5A3 /* MainViewController.xib */,
 				2E5D1DA714D04D7C007AD25A /* DetailsViewController.h */,
 				2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */,
+				2E00EE5814D2F23B00112294 /* DetailsViewController.xib */,
 				2EB0580A14D0D575004DDD59 /* OverlayView.h */,
 				2EB0580B14D0D575004DDD59 /* OverlayView.m */,
 				2EAA4E2014C874D500D93E24 /* DataManager.h */,
@@ -228,25 +239,6 @@
 				2EC6DC7814BF52FC005D3EC1 /* InfoPlist.strings */,
 				2EC6DC7B14BF52FC005D3EC1 /* main.m */,
 				2EC6DC7D14BF52FC005D3EC1 /* AviForecastIOS-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2EC6DC9314BF52FC005D3EC1 /* AviForecastIOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				2EC6DC9914BF52FC005D3EC1 /* AviForecastIOSTests.h */,
-				2EC6DC9A14BF52FC005D3EC1 /* AviForecastIOSTests.m */,
-				2EC6DC9414BF52FC005D3EC1 /* Supporting Files */,
-			);
-			path = AviForecastIOSTests;
-			sourceTree = "<group>";
-		};
-		2EC6DC9414BF52FC005D3EC1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2EC6DC9514BF52FC005D3EC1 /* AviForecastIOSTests-Info.plist */,
-				2EC6DC9614BF52FC005D3EC1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -303,13 +295,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EC6DC7A14BF52FC005D3EC1 /* InfoPlist.strings in Resources */,
-				2EC6DC8314BF52FC005D3EC1 /* MainStoryboard.storyboard in Resources */,
 				2EC6DCA514BF549A005D3EC1 /* logo.png in Resources */,
 				2E3F9B0414C3276900D2E2C8 /* logo@2x.png in Resources */,
 				2E00B54514CCF84E00356991 /* Default.png in Resources */,
 				2E00B54814CCF86000356991 /* Default@2x.png in Resources */,
 				2EAA9AB114D1FD0F007AC5A3 /* legend3@2x.png in Resources */,
 				2EAA9AB314D1FD19007AC5A3 /* legend3.png in Resources */,
+				2EAA9AE714D2EA60007AC5A3 /* MainViewController.xib in Resources */,
+				2E00EE5914D2F23B00112294 /* DetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +347,7 @@
 				2EAA4E2214C874D500D93E24 /* DataManager.m in Sources */,
 				2E5D1DA914D04D7C007AD25A /* DetailsViewController.m in Sources */,
 				2EB0580C14D0D575004DDD59 /* OverlayView.m in Sources */,
+				2EC5226414D34E170083386C /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,22 +358,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2EC6DC7914BF52FC005D3EC1 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		2EC6DC8114BF52FC005D3EC1 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2EC6DC8214BF52FC005D3EC1 /* en */,
-			);
-			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
-		2EC6DC9614BF52FC005D3EC1 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2EC6DC9714BF52FC005D3EC1 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -400,7 +378,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -413,7 +391,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -439,7 +417,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -457,7 +435,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -470,7 +448,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -482,7 +460,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

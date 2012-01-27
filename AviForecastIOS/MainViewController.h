@@ -18,10 +18,12 @@
 
 @interface MainViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate, DetailsViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet MKMapView * map;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *todayButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *tomorrowButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *twoDaysOutButton;
+// NOTE if we drop iOS4.x support, change "unsafe_unretained" to "weak"
+
+@property (unsafe_unretained, nonatomic) IBOutlet MKMapView * map;
+@property (unsafe_unretained, nonatomic) IBOutlet UIBarButtonItem *todayButton;
+@property (unsafe_unretained, nonatomic) IBOutlet UIBarButtonItem *tomorrowButton;
+@property (unsafe_unretained, nonatomic) IBOutlet UIBarButtonItem *twoDaysOutButton;
 @property (strong, nonatomic) DataManager * dataManager;
 @property (strong, nonatomic) NSMutableDictionary * overlayViewDict;
 @property (nonatomic) BOOL haveUpdatedUserLocation;
