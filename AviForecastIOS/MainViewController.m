@@ -289,8 +289,8 @@
         ];
     }];
     
-    // on app activation notifications, update our forecasts
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAllForecastData:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    // register so that on app re-entering the foreground, we update our forecasts
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAllForecastData:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)viewDidUnload
