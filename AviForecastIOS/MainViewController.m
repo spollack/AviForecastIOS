@@ -261,12 +261,16 @@
     NSLog(@"MainViewController viewDidLoad called");
 
     // NOTE local initialization has to happen here for UIViewController classes, not in the init method
-    
     self.dataManager = [[DataManager alloc] init];
     self.overlayViewDict = [NSMutableDictionary dictionary];
     self.haveUpdatedUserLocation = FALSE; 
     self.mode = MODE_TODAY;
     
+    // NOTE set our user agent string to something benign and non-mobile looking, to work around website
+    // popups (from nwac.us) asking if you would like to be redirected to the mobile version of the site
+    NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0", @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];  
+
     // set up tap recognition for our overlays on the map
     UITapGestureRecognizer * tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureHandler:)];
     tapGestureRecognizer.delegate = self;
@@ -274,17 +278,16 @@
 
     // initialize the data manager with the regions
     [self.dataManager loadRegions:^(NSString * regionId) {
-        RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
-        NSAssert(regionData, @"regionData should not be nil!");
-
-        // add it to the map as an overlay (overlay data, not overlay view)
-        [self.map addOverlay:regionData];
         
         // load the forecast data for the region
         [self.dataManager loadForecastForRegionId:regionId 
             onCompletion:^(NSString *regionId)
             {
-                [self refreshOverlay:regionId];
+                RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
+                NSAssert(regionData, @"regionData should not be nil!");
+                
+                // add the region to the map as an overlay (overlay data, not overlay view)
+                [self.map addOverlay:regionData];
             }
         ];
     }];
