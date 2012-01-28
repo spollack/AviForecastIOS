@@ -11,6 +11,14 @@
 #import "FlurryAnalytics.h"
 
 
+// NOTE on iOS4 support
+//
+// if or when we drop iOS4/iPhone 3G support, we can make the following changes:
+// 1) for all properties, change "unsafe_unretained" to "weak" (ARC)
+// 2) no longer need the JSONKit library (AFNetworking will use NSJSONSerialization instead)
+// 3) remove armv6 from build settings / architecture (was needed for iPhone 3G hardware)
+
+
 @implementation AppDelegate
 
 @synthesize window = _window;
