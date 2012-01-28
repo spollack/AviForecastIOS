@@ -23,6 +23,7 @@
 		2EA9CA9B14C075A6008DD986 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9CA8814C075A6008DD986 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2EA9CA9D14C075A6008DD986 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9CA8A14C075A6008DD986 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2EA9CA9F14C075A6008DD986 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9CA8C14C075A6008DD986 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2EA9FB0D14D375AB001633E1 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA9FB0C14D375AB001633E1 /* libFlurryAnalytics.a */; };
 		2EAA4E2214C874D500D93E24 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA4E2114C874D500D93E24 /* DataManager.m */; };
 		2EAA9AB114D1FD0F007AC5A3 /* legend3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */; };
 		2EAA9AB314D1FD19007AC5A3 /* legend3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AB214D1FD19007AC5A3 /* legend3.png */; };
@@ -77,6 +78,8 @@
 		2EA9CA8A14C075A6008DD986 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		2EA9CA8B14C075A6008DD986 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		2EA9CA8C14C075A6008DD986 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		2EA9FB0B14D375AB001633E1 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		2EA9FB0C14D375AB001633E1 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		2EAA4E2014C874D500D93E24 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		2EAA4E2114C874D500D93E24 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend3@2x.png"; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 				2EC6DC7014BF52FC005D3EC1 /* UIKit.framework in Frameworks */,
 				2EC6DC7214BF52FC005D3EC1 /* Foundation.framework in Frameworks */,
 				2EC6DC7414BF52FC005D3EC1 /* CoreGraphics.framework in Frameworks */,
+				2EA9FB0D14D375AB001633E1 /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +167,15 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		2EA9FB0A14D375AB001633E1 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				2EA9FB0B14D375AB001633E1 /* FlurryAnalytics.h */,
+				2EA9FB0C14D375AB001633E1 /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
 		2EC5226114D34E170083386C /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +192,7 @@
 				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
 				2EA9CA7614C075A6008DD986 /* AFNetworking */,
 				2EC5226114D34E170083386C /* JSONKit */,
+				2EA9FB0A14D375AB001633E1 /* FlurryAnalytics */,
 				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
 				2EC6DC6C14BF52FC005D3EC1 /* Products */,
 			);
@@ -395,6 +409,10 @@
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -458,6 +476,10 @@
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -470,6 +492,10 @@
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

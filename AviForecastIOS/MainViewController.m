@@ -11,6 +11,8 @@
 #import "RegionData.h"
 #import "DataManager.h"
 #import "OverlayView.h"
+#import "FlurryAnalytics.h"
+
 
 // transparency level for overlays
 #define OVERLAY_ALPHA 0.65
@@ -75,6 +77,12 @@
 
             MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, MAP_VIEW_DEFAULT_METERS, MAP_VIEW_DEFAULT_METERS); 
             [mapView setRegion:region animated:TRUE];
+            
+            // record an event
+            [FlurryAnalytics setLatitude:userLocation.location.coordinate.latitude
+                      longitude:userLocation.location.coordinate.longitude
+                      horizontalAccuracy:userLocation.location.horizontalAccuracy
+                      verticalAccuracy:userLocation.location.verticalAccuracy]; 
 
             self.haveUpdatedUserLocation = TRUE; 
         }
@@ -206,6 +214,10 @@
     [detailsViewController setURL:URL];
     
     NSLog(@"about to go to details view");
+    
+    // log an event
+    [FlurryAnalytics logEvent:@"OPEN_DETAILS_VIEW" 
+               withParameters:[NSDictionary dictionaryWithObjectsAndKeys:regionId, @"regionId", nil]];
     
     [self presentModalViewController:detailsViewController animated:YES];
 }

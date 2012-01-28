@@ -8,15 +8,29 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "FlurryAnalytics.h"
+
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize mainViewController = _mainViewController;
 
+void uncaughtExceptionHandler(NSException * exception)
+{
+    NSLog(@"uncaught exception: %@", exception);
+    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // set up uncaught exception handler
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+
+    // begin statistics tracking
+    [FlurryAnalytics startSession:@"9VCKPEJWLABZVBVJ2JS3"];
+    
+    // initialize main view
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
     self.window.rootViewController = self.mainViewController;

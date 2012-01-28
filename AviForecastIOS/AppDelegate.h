@@ -11,6 +11,8 @@
 //
 
 
+void uncaughtExceptionHandler(NSException * exception);
+
 @class MainViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
