@@ -13,8 +13,8 @@
 
 - (void) loadRegions:(RegionResponseBlock) completionBlock
 {
-//    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/regions"];
-    NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/regions"];
+//    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/regions.json"];
+    NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/regions.json"];
     
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
