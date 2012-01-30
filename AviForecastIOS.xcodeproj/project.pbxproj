@@ -24,6 +24,7 @@
 		2EA9CA9D14C075A6008DD986 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9CA8A14C075A6008DD986 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2EA9CA9F14C075A6008DD986 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9CA8C14C075A6008DD986 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2EA9FB0D14D375AB001633E1 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA9FB0C14D375AB001633E1 /* libFlurryAnalytics.a */; };
+		2EA9FB1114D624BB001633E1 /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9FB1014D624BB001633E1 /* SDURLCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2EAA4E2214C874D500D93E24 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA4E2114C874D500D93E24 /* DataManager.m */; };
 		2EAA9AB114D1FD0F007AC5A3 /* legend3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */; };
 		2EAA9AB314D1FD19007AC5A3 /* legend3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AB214D1FD19007AC5A3 /* legend3.png */; };
@@ -80,6 +81,8 @@
 		2EA9CA8C14C075A6008DD986 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		2EA9FB0B14D375AB001633E1 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		2EA9FB0C14D375AB001633E1 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
+		2EA9FB0F14D624BB001633E1 /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDURLCache.h; sourceTree = "<group>"; };
+		2EA9FB1014D624BB001633E1 /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDURLCache.m; sourceTree = "<group>"; };
 		2EAA4E2014C874D500D93E24 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		2EAA4E2114C874D500D93E24 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend3@2x.png"; sourceTree = "<group>"; };
@@ -176,6 +179,15 @@
 			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
+		2EA9FB0E14D624BB001633E1 /* steipete-SDURLCache */ = {
+			isa = PBXGroup;
+			children = (
+				2EA9FB0F14D624BB001633E1 /* SDURLCache.h */,
+				2EA9FB1014D624BB001633E1 /* SDURLCache.m */,
+			);
+			path = "steipete-SDURLCache";
+			sourceTree = "<group>";
+		};
 		2EC5226114D34E170083386C /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +203,7 @@
 				2EA9CA0614C06921008DD986 /* Resources */,
 				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
 				2EA9CA7614C075A6008DD986 /* AFNetworking */,
+				2EA9FB0E14D624BB001633E1 /* steipete-SDURLCache */,
 				2EC5226114D34E170083386C /* JSONKit */,
 				2EA9FB0A14D375AB001633E1 /* FlurryAnalytics */,
 				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
@@ -362,6 +375,7 @@
 				2E5D1DA914D04D7C007AD25A /* DetailsViewController.m in Sources */,
 				2EB0580C14D0D575004DDD59 /* OverlayView.m in Sources */,
 				2EC5226414D34E170083386C /* JSONKit.m in Sources */,
+				2EA9FB1114D624BB001633E1 /* SDURLCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "FlurryAnalytics.h"
+#import "SDURLCache.h"
 
 
 // NOTE on iOS4 support
@@ -37,6 +38,13 @@ void uncaughtExceptionHandler(NSException * exception)
 
     // begin statistics tracking
     [FlurryAnalytics startSession:@"9VCKPEJWLABZVBVJ2JS3"];
+    
+    // set up persistent URL caching
+    SDURLCache * urlCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
+                                                          diskCapacity:1024*1024*5 // 5MB disk cache
+                                                              diskPath:[SDURLCache defaultCachePath]];
+    urlCache.minCacheInterval = 60; // 60 seconds
+    [NSURLCache setSharedURLCache:urlCache];
     
     // initialize main view
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
