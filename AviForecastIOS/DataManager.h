@@ -11,7 +11,7 @@
 //
 
 
-@class NetworkEngine;
+#import "NetworkEngine.h"
 
 @interface DataManager : NSObject
 
@@ -21,7 +21,7 @@ typedef void (^DataUpdatedBlock)(NSString * regionId);
 @property (strong, nonatomic) NSMutableDictionary * regionsDict;
 @property (strong, nonatomic) NetworkEngine * networkEngine;
 
-- (void) loadRegions:(DataUpdatedBlock) regionAddedBlock;
+- (void) loadRegions:(DataUpdatedBlock) regionAddedBlock failure:(FailureResponseBlock) failureBlock;
 - (void) loadForecastForRegionId:(NSString *) regionId onCompletion:(DataUpdatedBlock) forecastUpdatedBlock;
 - (void) loadAllForecasts:(DataUpdatedBlock) forecastUpdatedBlock;
 

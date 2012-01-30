@@ -16,7 +16,7 @@
 @class DataManager;
 @class NetworkEngine;
 
-@interface MainViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate, DetailsViewControllerDelegate>
+@interface MainViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate, DetailsViewControllerDelegate, UIAlertViewDelegate>
 
 // NOTE if we drop iOS4.x support, change "unsafe_unretained" to "weak"
 

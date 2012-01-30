@@ -266,12 +266,38 @@
     }
 }
 
+- (void)loadData
+{
+    [self.dataManager loadRegions:
+        ^(NSString * regionId) {
+            
+            RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
+            NSAssert(regionData, @"regionData should not be nil!");
+            
+            // add the region to the map as an overlay (overlay data, not overlay view)
+            [self.map addOverlay:regionData];
+        }
+        failure:^() {
+            [FlurryAnalytics logEvent:@"Could not load regions data"];
+            
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Could not load forecast regions; do you have internet access?" delegate:self cancelButtonTitle:@"Try Again" otherButtonTitles:nil];
+            [alertView show];
+        }
+    ];
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    // try again
+    [self loadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    
     NSLog(@"MainViewController viewDidLoad called");
-
+    
     // NOTE local initialization has to happen here for UIViewController classes, not in the init method
     self.dataManager = [[DataManager alloc] init];
     self.overlayViewDict = [NSMutableDictionary dictionary];
@@ -282,27 +308,14 @@
     // popups (from nwac.us) asking if you would like to be redirected to the mobile version of the site
     NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0", @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];  
-
+    
     // set up tap recognition for our overlays on the map
     UITapGestureRecognizer * tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureHandler:)];
     tapGestureRecognizer.delegate = self;
     [self.map addGestureRecognizer:tapGestureRecognizer];
-
-    // initialize the data manager with the regions
-    [self.dataManager loadRegions:^(NSString * regionId) {
-        
-        // load the forecast data for the region
-        [self.dataManager loadForecastForRegionId:regionId 
-            onCompletion:^(NSString *regionId)
-            {
-                RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
-                NSAssert(regionData, @"regionData should not be nil!");
-                
-                // add the region to the map as an overlay (overlay data, not overlay view)
-                [self.map addOverlay:regionData];
-            }
-        ];
-    }];
+    
+    // load the regions and forecasts
+    [self loadData];
     
     // register so that on app re-entering the foreground, we update our forecasts
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAllForecastData:) name:UIApplicationWillEnterForegroundNotification object:nil];

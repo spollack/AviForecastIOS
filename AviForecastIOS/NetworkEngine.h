@@ -15,10 +15,13 @@
 
 @interface NetworkEngine : NSObject
 
-// callback for returning configuration data
+// callback for errors
+typedef void (^FailureResponseBlock)();
+
+// callback for returning region data
 typedef void (^RegionResponseBlock)(RegionData * regionData);
 
-- (void) loadRegions:(RegionResponseBlock) completionBlock;
+- (void) loadRegions:(RegionResponseBlock) completionBlock failure:(FailureResponseBlock) failureBlock;
 
 // callback for returning forecast data
 typedef void (^ForecastResponseBlock)(NSString * regionId, id forecastJSON);

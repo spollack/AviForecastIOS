@@ -11,7 +11,7 @@
 
 @implementation NetworkEngine
 
-- (void) loadRegions:(RegionResponseBlock) completionBlock
+- (void) loadRegions:(RegionResponseBlock) completionBlock failure:(FailureResponseBlock) failureBlock
 {
 //    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/regions.json"];
     NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/regions.json"];
@@ -65,6 +65,8 @@
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
             NSLog(@"loadRegions network operation failure; error: %@", error);
+            
+            failureBlock();
         }];
     
     [operation start];
@@ -83,12 +85,15 @@
         {
             NSLog(@"forecastForRegionId network operation success; regionId: %@", regionId);
                         
-            // invoke the callback, returning the data
+            // invoke the callback, returning the new forecast data
             completionBlock(regionId, JSON);
         }
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
             NSLog(@"forecastForRegionId network operation failure; regionId: %@; error: %@", regionId, error);
+            
+            // invoke the callback, returning nil for the forecast data
+            completionBlock(regionId, nil);
         }];
     
     [operation start];

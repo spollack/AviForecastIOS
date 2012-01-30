@@ -7,7 +7,6 @@
 //
 
 #import "DataManager.h"
-#import "NetworkEngine.h"
 #import "RegionData.h"
 
 @implementation DataManager
@@ -27,18 +26,24 @@
     return self;
 }
 
-- (void) loadRegions:(DataUpdatedBlock) regionAddedBlock
+- (void) loadRegions:(DataUpdatedBlock) regionAddedBlock failure:(FailureResponseBlock) failureBlock
 {
+    // load the regions data file, and then load the forecast data for each region that has been read
+    
     [self.networkEngine loadRegions:
         ^(RegionData * regionData)
         {
             // add it to our dictionary
             [self.regionsDict setObject:regionData forKey:regionData.regionId];
 
-            // invoke the callback
-            regionAddedBlock(regionData.regionId);
+            // load the forecast for this region
+            [self loadForecastForRegionId:regionData.regionId onCompletion:regionAddedBlock];
         }
-     ];
+        failure:^()
+        {
+            failureBlock();
+        }
+    ];
 }
 
 - (void) loadForecastForRegionId:(NSString *) regionId onCompletion:(DataUpdatedBlock) forecastUpdatedBlock
@@ -47,9 +52,9 @@
         onCompletion:^(NSString * regionId, id forecastJSON)
         {
             RegionData * regionData = [self.regionsDict objectForKey:regionId];
-            NSAssert(regionData,@"regionData should not be nil!");
+            NSAssert(regionData, @"regionData should not be nil!");
 
-            // save the new data
+            // save the new forecast data
             regionData.forecastJSON = forecastJSON;
             
             // invoke the callback
