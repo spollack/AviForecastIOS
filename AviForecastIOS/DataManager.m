@@ -16,14 +16,36 @@
 
 - (id) init
 {
+    return [self initWithNetworkActivityBlock:nil];
+}
+
+- (id) initWithNetworkActivityBlock:(NetworkActivityBlock)networkActivityBlock
+{
     self = [super init];
     
     if (self) {
         self.regionsDict = [NSMutableDictionary dictionary];
-        self.networkEngine = [[NetworkEngine alloc] init];
+        self.networkEngine = [[NetworkEngine alloc] initWithNetworkActivityBlock:networkActivityBlock];
     }
     
     return self;
+}
+
+- (void) loadForecastForRegionId:(NSString *) regionId onCompletion:(DataUpdatedBlock) forecastUpdatedBlock
+{
+    [self.networkEngine forecastForRegionId:regionId
+        onCompletion:^(NSString * regionId, id forecastJSON)
+        {
+            RegionData * regionData = [self.regionsDict objectForKey:regionId];
+            NSAssert(regionData, @"regionData should not be nil!");
+
+            // save the new forecast data
+            regionData.forecastJSON = forecastJSON;
+
+            // invoke the callback
+            forecastUpdatedBlock(regionId);
+        }
+    ];
 }
 
 - (void) loadRegions:(DataUpdatedBlock) regionAddedBlock failure:(FailureResponseBlock) failureBlock
@@ -46,24 +68,7 @@
     ];
 }
 
-- (void) loadForecastForRegionId:(NSString *) regionId onCompletion:(DataUpdatedBlock) forecastUpdatedBlock
-{
-    [self.networkEngine forecastForRegionId:regionId
-        onCompletion:^(NSString * regionId, id forecastJSON)
-        {
-            RegionData * regionData = [self.regionsDict objectForKey:regionId];
-            NSAssert(regionData, @"regionData should not be nil!");
-
-            // save the new forecast data
-            regionData.forecastJSON = forecastJSON;
-            
-            // invoke the callback
-            forecastUpdatedBlock(regionId);
-        }
-    ];
-}
-
-- (void) loadAllForecasts:(DataUpdatedBlock) forecastUpdatedBlock
+- (void) reloadForecasts:(DataUpdatedBlock) forecastUpdatedBlock
 {
     NSArray * allKeys = [self.regionsDict allKeys]; 
     

@@ -7,12 +7,29 @@
 //
 
 #import "DetailsViewController.h"
+#import "UIApplication+NetworkActivity.h"
+
 
 @implementation DetailsViewController
 
 @synthesize URL = _URL;
 @synthesize delegate = _delegate;
 @synthesize webView = _webView;
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [[UIApplication sharedApplication] toggleNetworkActivityIndicatorVisible:TRUE];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [[UIApplication sharedApplication] toggleNetworkActivityIndicatorVisible:FALSE];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [[UIApplication sharedApplication] toggleNetworkActivityIndicatorVisible:FALSE];
+}
 
 - (void)viewDidLoad
 {
@@ -28,6 +45,7 @@
 - (void)viewDidUnload
 {
     [self setDelegate:nil];
+    [self.webView setDelegate:nil];
     [self setWebView:nil];
     [self setURL:nil];
     
@@ -42,6 +60,9 @@
 
 - (IBAction)donePressed:(id)sender
 {
+    // cancel any loading that may be in progress
+    [self.webView stopLoading];
+    
     // tell our delegate that we are done
     [self.delegate detailsViewControllerDidFinish:self];
 }

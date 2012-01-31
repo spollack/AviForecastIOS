@@ -11,12 +11,32 @@
 
 @implementation NetworkEngine
 
+@synthesize networkActivityBlock = _networkActivityBlock;
+
+- (id) init
+{
+    return [self initWithNetworkActivityBlock:nil]; 
+}
+
+- (id) initWithNetworkActivityBlock:(NetworkActivityBlock) networkActivityBlock
+{
+    self = [super init];
+    
+    if (self) {
+        self.networkActivityBlock = networkActivityBlock;
+    }
+    
+    return self;
+}
+
 - (void) loadRegions:(RegionResponseBlock) completionBlock failure:(FailureResponseBlock) failureBlock
 {
 //    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/regions.json"];
     NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/regions.json"];
     
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    
+    self.networkActivityBlock(TRUE);
     
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
         success:^(NSURLRequest * request, NSHTTPURLResponse * response, id JSON)
@@ -61,10 +81,14 @@
             }
             
             NSLog(@"created %i regions", numRegions);
+            
+            self.networkActivityBlock(FALSE);
         }
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
             NSLog(@"loadRegions network operation failure; error: %@", error);
+            
+            self.networkActivityBlock(FALSE);
             
             failureBlock();
         }];
@@ -79,11 +103,15 @@
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://aviforecast.herokuapp.com/v1/region/%@", regionId]];
     
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    
+    self.networkActivityBlock(TRUE);
 
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
         success:^(NSURLRequest * request, NSHTTPURLResponse * response, id JSON)
         {
             NSLog(@"forecastForRegionId network operation success; regionId: %@", regionId);
+            
+            self.networkActivityBlock(FALSE);
                         
             // invoke the callback, returning the new forecast data
             completionBlock(regionId, JSON);
@@ -91,6 +119,8 @@
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
             NSLog(@"forecastForRegionId network operation failure; regionId: %@; error: %@", regionId, error);
+            
+            self.networkActivityBlock(FALSE);
             
             // invoke the callback, returning nil for the forecast data
             completionBlock(regionId, nil);

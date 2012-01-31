@@ -21,8 +21,8 @@ typedef void (^DataUpdatedBlock)(NSString * regionId);
 @property (strong, nonatomic) NSMutableDictionary * regionsDict;
 @property (strong, nonatomic) NetworkEngine * networkEngine;
 
+- (id) initWithNetworkActivityBlock:(NetworkActivityBlock) networkActivityBlock;
 - (void) loadRegions:(DataUpdatedBlock) regionAddedBlock failure:(FailureResponseBlock) failureBlock;
-- (void) loadForecastForRegionId:(NSString *) regionId onCompletion:(DataUpdatedBlock) forecastUpdatedBlock;
-- (void) loadAllForecasts:(DataUpdatedBlock) forecastUpdatedBlock;
+- (void) reloadForecasts:(DataUpdatedBlock) forecastUpdatedBlock;
 
 @end

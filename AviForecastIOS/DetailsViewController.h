@@ -17,7 +17,7 @@
 - (void) detailsViewControllerDidFinish: (DetailsViewController *) controller;
 @end
 
-@interface DetailsViewController : UIViewController
+@interface DetailsViewController : UIViewController <UIWebViewDelegate>
 
 // NOTE if we drop iOS4.x support, change "unsafe_unretained" to "weak"
 

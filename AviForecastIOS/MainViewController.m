@@ -12,6 +12,7 @@
 #import "DataManager.h"
 #import "OverlayView.h"
 #import "FlurryAnalytics.h"
+#import "UIApplication+NetworkActivity.h"
 
 
 // transparency level for overlays
@@ -144,18 +145,6 @@
     }
 }
 
-- (void) updateAllForecastData:(id)notification
-{
-    NSLog(@"updateAllForecastData called");
-    
-    // load the forecasts, then refresh each overlay as new data arrives
-    [self.dataManager loadAllForecasts:
-        ^(NSString * regionId) {
-            [self refreshOverlay:regionId];
-        }
-    ];
-}
-
 - (IBAction) todayPressed:(id)sender
 {
     NSLog(@"todayPressed called");
@@ -266,6 +255,18 @@
     }
 }
 
+- (void) updateAllForecastData:(id)notification
+{
+    NSLog(@"updateAllForecastData called");
+    
+    // load the forecasts, then refresh each overlay as new data arrives
+    [self.dataManager reloadForecasts:
+        ^(NSString * regionId) {
+            [self refreshOverlay:regionId];
+        }
+    ];
+}
+
 - (void)loadData
 {
     [self.dataManager loadRegions:
@@ -299,7 +300,9 @@
     NSLog(@"MainViewController viewDidLoad called");
     
     // NOTE local initialization has to happen here for UIViewController classes, not in the init method
-    self.dataManager = [[DataManager alloc] init];
+    self.dataManager = [[DataManager alloc] initWithNetworkActivityBlock:^(BOOL startOrStop) {
+        [[UIApplication sharedApplication] toggleNetworkActivityIndicatorVisible:startOrStop];
+    }];
     self.overlayViewDict = [NSMutableDictionary dictionary];
     self.haveUpdatedUserLocation = FALSE; 
     self.mode = MODE_TODAY;
