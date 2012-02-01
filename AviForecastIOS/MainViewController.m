@@ -202,11 +202,11 @@
     
     [detailsViewController setURL:URL];
     
-    NSLog(@"about to go to details view");
+    NSLog(@"starting details view");
     
-    // log an event
-    [FlurryAnalytics logEvent:@"OPEN_DETAILS_VIEW" 
-               withParameters:[NSDictionary dictionaryWithObjectsAndKeys:regionId, @"regionId", nil]];
+    // log a timed event
+    [FlurryAnalytics logEvent:@"DETAILS_VIEW" 
+               withParameters:[NSDictionary dictionaryWithObjectsAndKeys:regionId, @"regionId", nil] timed:YES];
     
     [self presentModalViewController:detailsViewController animated:YES];
 }
@@ -215,7 +215,10 @@
 {
     // this method is called by the detail view, when its time for the details view to go away
     
-    NSLog(@"about to return from details view");
+    NSLog(@"finished details view");
+    
+    // close the timed event
+    [FlurryAnalytics endTimedEvent:@"DETAILS_VIEW" withParameters:nil];
 
     [self dismissModalViewControllerAnimated:YES];
 }

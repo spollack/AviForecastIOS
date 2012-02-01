@@ -45,6 +45,7 @@
 		2EC6DCA714BF54B1005D3EC1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DCA614BF54B1005D3EC1 /* MapKit.framework */; };
 		2EC6DCA914BF54B7005D3EC1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */; };
 		2EF429C614D74D0400045893 /* UIApplication+NetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EF429C514D74D0400045893 /* UIApplication+NetworkActivity.m */; };
+		2EF429CD14D9A47100045893 /* Counter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EF429CC14D9A47100045893 /* Counter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,8 @@
 		2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2EF429C414D74D0400045893 /* UIApplication+NetworkActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+NetworkActivity.h"; sourceTree = SOURCE_ROOT; };
 		2EF429C514D74D0400045893 /* UIApplication+NetworkActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+NetworkActivity.m"; sourceTree = SOURCE_ROOT; };
+		2EF429CB14D9A47100045893 /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Counter.h; path = ../Counter.h; sourceTree = "<group>"; };
+		2EF429CC14D9A47100045893 /* Counter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Counter.m; path = ../Counter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				2E4E643714C0B03300D11461 /* contants.h */,
+				2EF429CB14D9A47100045893 /* Counter.h */,
+				2EF429CC14D9A47100045893 /* Counter.m */,
 				2EF429C414D74D0400045893 /* UIApplication+NetworkActivity.h */,
 				2EF429C514D74D0400045893 /* UIApplication+NetworkActivity.m */,
 				2EC6DC7E14BF52FC005D3EC1 /* AppDelegate.h */,
@@ -394,6 +399,7 @@
 				2E5E4C6F14D73CE800CAA36C /* RNCachingURLProtocol.m in Sources */,
 				2E5E4C7814D7437C00CAA36C /* Reachability.m in Sources */,
 				2EF429C614D74D0400045893 /* UIApplication+NetworkActivity.m in Sources */,
+				2EF429CD14D9A47100045893 /* Counter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
