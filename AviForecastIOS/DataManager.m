@@ -19,16 +19,11 @@
 
 - (id) init
 {
-    return [self initWithNetworkActivityBlock:nil];
-}
-
-- (id) initWithNetworkActivityBlock:(NetworkActivityBlock)networkActivityBlock
-{
     self = [super init];
     
     if (self) {
         self.regionsDict = [NSMutableDictionary dictionary];
-        self.networkEngine = [[NetworkEngine alloc] initWithNetworkActivityBlock:networkActivityBlock];
+        self.networkEngine = [[NetworkEngine alloc] init];
     }
     
     return self;

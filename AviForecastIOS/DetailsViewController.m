@@ -7,7 +7,7 @@
 //
 
 #import "DetailsViewController.h"
-#import "UIApplication+NetworkActivity.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 
 @implementation DetailsViewController
@@ -18,17 +18,17 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [[UIApplication sharedApplication] toggleNetworkActivityIndicatorVisible:TRUE];
+    [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [[UIApplication sharedApplication] toggleNetworkActivityIndicatorVisible:FALSE];
+    [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [[UIApplication sharedApplication] toggleNetworkActivityIndicatorVisible:FALSE];
+    [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
 }
 
 - (void)viewDidLoad

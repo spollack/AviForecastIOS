@@ -12,7 +12,6 @@
 #import "DataManager.h"
 #import "OverlayView.h"
 #import "FlurryAnalytics.h"
-#import "UIApplication+NetworkActivity.h"
 
 
 // transparency level for overlays
@@ -303,9 +302,7 @@
     NSLog(@"MainViewController viewDidLoad called");
     
     // NOTE local initialization has to happen here for UIViewController classes, not in the init method
-    self.dataManager = [[DataManager alloc] initWithNetworkActivityBlock:^(BOOL startOrStop) {
-        [[UIApplication sharedApplication] toggleNetworkActivityIndicatorVisible:startOrStop];
-    }];
+    self.dataManager = [[DataManager alloc] init];
     self.overlayViewDict = [NSMutableDictionary dictionary];
     self.haveUpdatedUserLocation = FALSE; 
     self.mode = MODE_TODAY;

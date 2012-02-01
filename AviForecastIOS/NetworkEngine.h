@@ -15,9 +15,6 @@
 
 @interface NetworkEngine : NSObject
 
-// callback for network activity
-typedef void (^NetworkActivityBlock)(BOOL startOrStop);
-
 // callback for returning region data
 typedef void (^RegionResponseBlock)(RegionData * regionData);
 
@@ -26,10 +23,6 @@ typedef void (^FailureResponseBlock)();
 
 // callback for returning forecast data
 typedef void (^ForecastResponseBlock)(NSString * regionId, id forecastJSON);
-
-@property(strong, nonatomic) NetworkActivityBlock networkActivityBlock;
-
-- (id) initWithNetworkActivityBlock:(NetworkActivityBlock) networkActivityBlock;
 
 - (void) loadRegions:(RegionResponseBlock) completionBlock failure:(FailureResponseBlock) failureBlock;
  
