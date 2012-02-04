@@ -291,7 +291,7 @@
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    // try again
+    // since we are dismissing the "Network Error" alert becuase the regions wouldn't load, try loading the data again
     [self loadData];
 }
 
