@@ -7,9 +7,9 @@
 //
 
 #import "DataManager.h"
+#import "NetworkEngine.h"
 #import "RegionData.h"
 #import "FlurryAnalytics.h"
-#import "Counter.h"
 
 
 @implementation DataManager
@@ -29,29 +29,16 @@
     return self;
 }
 
-- (void) loadForecastForRegionId:(NSString *) regionId onCompletion:(DataUpdatedBlock) forecastUpdatedBlock
+- (void) loadRegions:(DataUpdatedBlock)dataUpdatedBlock success:(SuccessCompletionBlock)successBlock failure:(FailureCompletionBlock)failureBlock
 {
-    [self.networkEngine forecastForRegionId:regionId
-        onCompletion:^(NSString * regionId, id forecastJSON)
-        {
-            RegionData * regionData = [self.regionsDict objectForKey:regionId];
-            NSAssert(regionData, @"regionData should not be nil!");
-
-            // save the new forecast data
-            regionData.forecastJSON = forecastJSON;
-
-            // invoke the callback
-            forecastUpdatedBlock(regionId);
-        }
-    ];
-}
-
-- (void) loadRegions:(DataUpdatedBlock) regionAddedBlock failure:(FailureResponseBlock) failureBlock
-{
-    // load the regions data file, and then load the forecast data for each region that has been read
+    // load the regions data, and then load the forecasts data
+    // NOTE the dataUpdatedBlock callback will only be called once the forecast data is loaded
     
-    // start a counted, timed event
-    Counter * counter = [[Counter alloc] initWithCount:0];
+    // start timed events
+    NSLog(@"starting initial data load");
+    [FlurryAnalytics logEvent:@"INITIAL_DATA_LOAD" 
+               withParameters:nil 
+                        timed:YES];
     NSLog(@"starting load regions");
     [FlurryAnalytics logEvent:@"LOAD_REGIONS" 
                withParameters:nil 
@@ -60,29 +47,38 @@
     [self.networkEngine loadRegions:
         ^(RegionData * regionData)
         {
-            // increment the count for each region loaded
-            [counter incrementCount];
-            
             // add it to our dictionary
             [self.regionsDict setObject:regionData forKey:regionData.regionId];
-
-            // load the forecast for this region
-            [self loadForecastForRegionId:regionData.regionId onCompletion:^(NSString * regionId) {
-
-                // invoke the callback
-                regionAddedBlock(regionId);
-
-                // see if we have finished loading all the forecasts
-                if ([counter decrementCount] == 0) {
-                    NSLog(@"finished load regions");
-                    [FlurryAnalytics endTimedEvent:@"LOAD_REGIONS" withParameters:nil];                
+        }
+        success:^()
+        {
+            NSLog(@"finished load regions");
+            [FlurryAnalytics endTimedEvent:@"LOAD_REGIONS" withParameters:nil];
+            
+            // now that we have the regions, load the forecasts
+            [self loadForecasts:dataUpdatedBlock
+                success:^()
+                {
+                    NSLog(@"finished initial data load");
+                    [FlurryAnalytics endTimedEvent:@"INITIAL_DATA_LOAD" withParameters:nil];
                 }
-            }];
+                failure:^()
+                {
+                    NSLog(@"initial data load failed");
+                    [FlurryAnalytics endTimedEvent:@"INITIAL_DATA_LOAD" 
+                                    withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"failed", nil]];
+                }
+            ];
+            
+            successBlock();
         }
         failure:^()
         {
             NSLog(@"load regions failed");
             [FlurryAnalytics endTimedEvent:@"LOAD_REGIONS" 
+                            withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"failed", nil]];
+            NSLog(@"initial data load failed");
+            [FlurryAnalytics endTimedEvent:@"INITIAL_DATA_LOAD" 
                             withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"failed", nil]];
 
             failureBlock();
@@ -90,31 +86,42 @@
     ];
 }
 
-- (void) reloadForecasts:(DataUpdatedBlock) forecastUpdatedBlock
+- (void) loadForecasts:(DataUpdatedBlock)dataUpdatedBlock success:(SuccessCompletionBlock)successBlock failure:(FailureCompletionBlock)failureBlock
 {
-    NSArray * allKeys = [self.regionsDict allKeys]; 
-        
-    // start a counted, timed event
-    Counter * counter = [[Counter alloc] initWithCount:allKeys.count];
-    NSLog(@"starting reload forecasts");
-    [FlurryAnalytics logEvent:@"RELOAD_FORECASTS" 
-               withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%i",counter.count], @"region count", nil] 
+    // start timed event
+    NSLog(@"starting load forecasts");
+    [FlurryAnalytics logEvent:@"LOAD_FORECASTS" 
+               withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%i",self.regionsDict.count], @"region count", nil] 
                         timed:YES];
     
-    for (id key in allKeys) {
-        NSString * regionId = (NSString *)key; 
-        [self loadForecastForRegionId:regionId onCompletion:^(NSString * regionId) {
+    [self.networkEngine loadForecasts:
+        ^(NSString * regionId, id forecastJSON)
+        {
+            RegionData * regionData = [self.regionsDict objectForKey:regionId];
+            NSAssert(regionData, @"regionData should not be nil!");
+            
+            // save the new forecast data
+            regionData.forecastJSON = forecastJSON;
             
             // invoke the callback
-            forecastUpdatedBlock(regionId);
+            dataUpdatedBlock(regionId);
+        }
+        success:^()
+        {
+            NSLog(@"finished load forecasts");
+            [FlurryAnalytics endTimedEvent:@"LOAD_FORECASTS" withParameters:nil];
             
-            // see if we have finished reloading all the forecasts
-            if ([counter decrementCount] == 0) {
-                NSLog(@"finished reload forecasts");
-                [FlurryAnalytics endTimedEvent:@"RELOAD_FORECASTS" withParameters:nil];                
-            }
-        }];
-    }
+            successBlock();
+        }
+        failure:^()
+        {
+            NSLog(@"load forecasts failed");
+            [FlurryAnalytics endTimedEvent:@"LOAD_FORECASTS" 
+                            withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"failed", nil]];
+            
+            failureBlock();
+        }
+    ];
 }
 
 @end

@@ -22,7 +22,7 @@
     return self;
 }
 
-- (void) loadRegions:(RegionResponseBlock) completionBlock failure:(FailureResponseBlock) failureBlock
+- (void) loadRegions:(RegionResponseBlock)dataBlock success:(SuccessCompletionBlock)successBlock failure:(FailureCompletionBlock)failureBlock
 {
 //    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/regions.json"];
     NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/regions.json"];
@@ -66,12 +66,14 @@
                         NSLog(@"created regionData for regionId: %@", regionId);
                         
                         // invoke the callback for each region read successfully
-                        completionBlock(regionData);
+                        dataBlock(regionData);
                     }
                 }
             }
             
             NSLog(@"created %i regions", numRegions);
+            
+            successBlock();
         }
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
@@ -83,28 +85,48 @@
     [operation start];
 }
 
-- (void) forecastForRegionId:(NSString *) regionId 
-    onCompletion:(ForecastResponseBlock) completionBlock
+- (void) loadForecasts:(ForecastResponseBlock)dataBlock success:(SuccessCompletionBlock)successBlock failure:(FailureCompletionBlock)failureBlock
 {
-//    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:5000/v1/region/%@", regionId]];
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://aviforecast.herokuapp.com/v1/region/%@", regionId]];
+//    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/forecasts.json"];
+    NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/forecasts.json"];
     
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
 
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
         success:^(NSURLRequest * request, NSHTTPURLResponse * response, id JSON)
         {
-            NSLog(@"forecastForRegionId network operation success; regionId: %@", regionId);
+            NSLog(@"loadForecasts network operation success");
+
+            int numRegions = 0;
+            
+            if ([JSON isKindOfClass:[NSArray class]]) {
+                
+                // parse out each region
+                for (int i = 0; i < ((NSArray *)JSON).count; i++) {
+                    
+                    NSString * regionId = [[JSON objectAtIndex:i] valueForKeyPath:@"regionId"];
+                    NSArray * forecast = [[JSON objectAtIndex:i] valueForKeyPath:@"forecast"];
+                    
+                    if (regionId && forecast && [forecast isKindOfClass:[NSArray class]]) {
+                                                
+                        numRegions++;
+                        NSLog(@"loaded forecast for regionId: %@", regionId);
                         
-            // invoke the callback, returning the new forecast data
-            completionBlock(regionId, JSON);
+                        // invoke the callback for each region read successfully
+                        dataBlock(regionId, forecast);
+                    }
+                }
+            }
+            
+            NSLog(@"read forecasts for %i regions", numRegions);
+            
+            successBlock();
         }
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
-            NSLog(@"forecastForRegionId network operation failure; regionId: %@; error: %@", regionId, error);
+            NSLog(@"loadForecasts network operation failure; error: %@", error);
             
-            // invoke the callback, returning nil for the forecast data
-            completionBlock(regionId, nil);
+            failureBlock();
         }];
     
     [operation start];

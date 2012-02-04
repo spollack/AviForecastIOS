@@ -262,10 +262,12 @@
     NSLog(@"updateAllForecastData called");
     
     // load the forecasts, then refresh each overlay as new data arrives
-    [self.dataManager reloadForecasts:
+    [self.dataManager loadForecasts:
         ^(NSString * regionId) {
             [self refreshOverlay:regionId];
         }
+        success:^() {}
+        failure:^() {}
     ];
 }
 
@@ -280,6 +282,7 @@
             // add the region to the map as an overlay (overlay data, not overlay view)
             [self.map addOverlay:regionData];
         }
+        success:^() {}
         failure:^() {
             [FlurryAnalytics logEvent:@"Could not load regions data"];
             
