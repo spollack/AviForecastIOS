@@ -98,13 +98,15 @@
         ^(NSString * regionId, id forecastJSON)
         {
             RegionData * regionData = [self.regionsDict objectForKey:regionId];
-            NSAssert(regionData, @"regionData should not be nil!");
             
-            // save the new forecast data
-            regionData.forecastJSON = forecastJSON;
-            
-            // invoke the callback
-            dataUpdatedBlock(regionId);
+            // regionData could be null, if we are serving forecasts for regions that this client isn't aware of yet
+            if (regionData) {
+                // save the new forecast data
+                regionData.forecastJSON = forecastJSON;
+                
+                // invoke the callback
+                dataUpdatedBlock(regionId);                
+            }
         }
         success:^()
         {
