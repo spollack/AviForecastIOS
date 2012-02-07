@@ -23,10 +23,12 @@
 
 @property (unsafe_unretained, nonatomic) IBOutlet MKMapView * map;
 @property (unsafe_unretained, nonatomic) IBOutlet UISegmentedControl * dayControl;
+@property (strong, nonatomic) NSMutableDictionary * settings;
 @property (strong, nonatomic) DataManager * dataManager;
 @property (strong, nonatomic) NSMutableDictionary * overlayViewDict;
 @property (nonatomic) BOOL haveUpdatedUserLocation;
 @property (nonatomic) int mode; 
+
 - (IBAction)dayPressed;
 - (IBAction)legendPressed:(id)sender;
 

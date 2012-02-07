@@ -20,10 +20,20 @@
 // map region, in meters, horizontally and vertically, to display by default
 #define MAP_VIEW_DEFAULT_METERS 300000
 
+// alert titles
+#define DISCLAIMER_ALERT @"Disclaimer"
+#define NETWORK_ERROR_ALERT @"Network Error"
+
+// settings
+#define SETTINGS_FILE_NAME @"settings.plist"
+#define ACCEPTED_DISCLAIMER_KEY @"AcceptedDisclaimer"
+
+
 @implementation MainViewController
 
 @synthesize map = _map;
 @synthesize dayControl = _dayControl;
+@synthesize settings = _settings;
 @synthesize dataManager = _dataManager;
 @synthesize overlayViewDict = _overlayViewDict;
 @synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
@@ -279,34 +289,59 @@
         failure:^() {
             [FlurryAnalytics logEvent:@"Could not load regions data"];
             
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Could not load forecast regions; do you have internet access?" delegate:self cancelButtonTitle:@"Try Again" otherButtonTitles:nil];
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:NETWORK_ERROR_ALERT message:@"Could not load forecast regions; do you have internet access?" delegate:self cancelButtonTitle:@"Try Again" otherButtonTitles:nil];
             [alertView show];
         }
     ];
 }
 
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)showDisclaimerIfNeeded
 {
-    // since we are dismissing the "Network Error" alert becuase the regions wouldn't load, try loading the data again
-    [self loadData];
+    if (![self.settings objectForKey:ACCEPTED_DISCLAIMER_KEY])
+    {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:DISCLAIMER_ALERT message:@"This information is provided 'as is'; accuracy or reliability is not guaranteed or warranted in any way. In no event shall the providers be liable for any damages (including, without limitation, injury or death) arising out of the use of, or inability to use, the information." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
-- (void)viewDidLoad
+- (void)loadSettings
 {
-    [super viewDidLoad];
-    
-    NSLog(@"MainViewController viewDidLoad called");
-    
-    // NOTE local initialization has to happen here for UIViewController classes, not in the init method
+    // load the settings
+    NSString * rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString * plistPath = [rootPath stringByAppendingPathComponent:SETTINGS_FILE_NAME];
+    self.settings = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    if (!self.settings) {
+        self.settings = [NSMutableDictionary dictionary];
+    }
+}
+
+- (void)saveSettings
+{
+    // save the settings
+    NSString * rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString * plistPath = [rootPath stringByAppendingPathComponent:SETTINGS_FILE_NAME];
+    [self.settings writeToFile:plistPath atomically:YES];
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (alertView.title == DISCLAIMER_ALERT) {
+        // update the settings to show disclaimer has been accepted
+        [self.settings setObject:@"yes" forKey:ACCEPTED_DISCLAIMER_KEY];
+        [self saveSettings];
+    } 
+    else if (alertView.title == NETWORK_ERROR_ALERT) {
+        // try loading the data again
+        [self loadData];
+    }
+}
+
+- (void)completeInitialization
+{
     self.dataManager = [[DataManager alloc] init];
     self.overlayViewDict = [NSMutableDictionary dictionary];
     self.haveUpdatedUserLocation = FALSE; 
     self.mode = MODE_TODAY;
-    
-    // NOTE set our user agent string to something benign and non-mobile looking, to work around website
-    // popups (from nwac.us) asking if you would like to be redirected to the mobile version of the site
-    NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0", @"UserAgent", nil];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];  
     
     // set up tap recognition for our overlays on the map
     UITapGestureRecognizer * tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureHandler:)];
@@ -316,8 +351,28 @@
     // load the regions and forecasts
     [self loadData];
     
+    // NOTE set our user agent string to something benign and non-mobile looking, to work around website
+    // popups (from nwac.us) asking if you would like to be redirected to the mobile version of the site
+    NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0", @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];  
+    
     // register so that on app re-entering the foreground, we update our forecasts
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAllForecastData:) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    NSLog(@"MainViewController viewDidLoad called");
+    
+    // NOTE local initialization has to happen here for UIViewController classes, not in the init method
+    
+    [self loadSettings];
+    
+    [self showDisclaimerIfNeeded];
+    
+    [self completeInitialization];
 }
 
 - (void)viewDidUnload
@@ -327,6 +382,7 @@
     [self.map setDelegate:nil];
     [self setMap:nil];
     [self setDayControl:nil];
+    [self setSettings:nil];
     [self setDataManager:nil];
     [self setOverlayViewDict:nil];
     
