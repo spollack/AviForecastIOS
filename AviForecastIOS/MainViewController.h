@@ -12,11 +12,12 @@
 
 
 #import "DetailsViewController.h"
+#import "DangerScaleViewController.h"
 
 @class DataManager;
 @class NetworkEngine;
 
-@interface MainViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate, DetailsViewControllerDelegate, UIAlertViewDelegate>
+@interface MainViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate, DetailsViewControllerDelegate, DangerScaleViewControllerDelegate, UIAlertViewDelegate>
 
 // NOTE if we drop iOS4.x support, change "unsafe_unretained" to "weak"
 
@@ -31,5 +32,6 @@
 - (IBAction)todayPressed:(id)sender;
 - (IBAction)tomorrowPressed:(id)sender;
 - (IBAction)twoDaysOutPressed:(id)sender;
+- (IBAction)legendPressed:(id)sender;
 
 @end

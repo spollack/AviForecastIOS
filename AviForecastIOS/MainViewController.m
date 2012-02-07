@@ -186,6 +186,30 @@
     }
 }
 
+- (void) showDangerScaleView
+{
+    DangerScaleViewController * dangerScaleViewController = [[DangerScaleViewController alloc] initWithNibName:@"DangerScaleViewController" bundle:nil];
+    dangerScaleViewController.delegate = self;
+    dangerScaleViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+    NSLog(@"starting danger scale view");
+    
+    [self presentModalViewController:dangerScaleViewController animated:YES];
+}
+
+- (void) dangerScaleViewControllerDidFinish:(DangerScaleViewController *)controller
+{
+    // this method is called by the danger scale view, when its time for that view to go away
+    
+    NSLog(@"finished danger scale view");
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)legendPressed:(id)sender {
+    [self showDangerScaleView];
+}
+
 - (void) showDetailsView:(NSString *)regionId
 {
     DetailsViewController * detailsViewController = [[DetailsViewController alloc] initWithNibName:@"DetailsViewController" bundle:nil];
@@ -212,7 +236,7 @@
 
 - (void) detailsViewControllerDidFinish:(DetailsViewController *)controller
 {
-    // this method is called by the detail view, when its time for the details view to go away
+    // this method is called by the detail view, when its time for that view to go away
     
     NSLog(@"finished details view");
     
@@ -344,7 +368,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // the main view only supports portrait
+    // this view only supports portrait
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 

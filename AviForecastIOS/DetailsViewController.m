@@ -31,6 +31,15 @@
     [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
 }
 
+- (IBAction)donePressed:(id)sender
+{
+    // cancel any loading that may be in progress
+    [self.webView stopLoading];
+    
+    // tell our delegate that we are done
+    [self.delegate detailsViewControllerDidFinish:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,7 +48,6 @@
         NSURLRequest * request = [[NSURLRequest alloc] initWithURL:self.URL];
         [self.webView loadRequest:request];
     }
-
 }
 
 - (void)viewDidUnload
@@ -54,17 +62,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // we allow this view to be flipped to either landscape
+    // we allow this view to be flipped to either landscape, plus portrait
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
-
-- (IBAction)donePressed:(id)sender
-{
-    // cancel any loading that may be in progress
-    [self.webView stopLoading];
-    
-    // tell our delegate that we are done
-    [self.delegate detailsViewControllerDidFinish:self];
 }
 
 @end

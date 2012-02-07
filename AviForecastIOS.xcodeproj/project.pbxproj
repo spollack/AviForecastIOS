@@ -12,6 +12,10 @@
 		2E47CB7B14E0BA03004CE9EA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB7A14E0BA03004CE9EA /* logo.png */; };
 		2E47CB8114E0C0D3004CE9EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB8014E0C0D3004CE9EA /* Default.png */; };
 		2E47CB8314E0C0DC004CE9EA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB8214E0C0DC004CE9EA /* Default@2x.png */; };
+		2E47CB8914E15B31004CE9EA /* DangerScaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB8814E15B31004CE9EA /* DangerScaleViewController.xib */; };
+		2E47CB8C14E15D57004CE9EA /* DangerScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47CB8B14E15D57004CE9EA /* DangerScaleViewController.m */; };
+		2E47CB9214E16F70004CE9EA /* dangerScaleFront@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB9114E16F70004CE9EA /* dangerScaleFront@2x.jpg */; };
+		2E47CB9414E16F77004CE9EA /* dangerScaleFront.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB9314E16F77004CE9EA /* dangerScaleFront.jpg */; };
 		2E5D1DA914D04D7C007AD25A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */; };
 		2E5E4C6F14D73CE800CAA36C /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E4C6D14D73CE800CAA36C /* RNCachingURLProtocol.m */; };
 		2E5E4C7414D73F3400CAA36C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */; };
@@ -52,6 +56,11 @@
 		2E47CB7A14E0BA03004CE9EA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2E47CB8014E0C0D3004CE9EA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2E47CB8214E0C0DC004CE9EA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2E47CB8814E15B31004CE9EA /* DangerScaleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DangerScaleViewController.xib; sourceTree = "<group>"; };
+		2E47CB8A14E15D57004CE9EA /* DangerScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DangerScaleViewController.h; sourceTree = "<group>"; };
+		2E47CB8B14E15D57004CE9EA /* DangerScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DangerScaleViewController.m; sourceTree = "<group>"; };
+		2E47CB9114E16F70004CE9EA /* dangerScaleFront@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dangerScaleFront@2x.jpg"; sourceTree = "<group>"; };
+		2E47CB9314E16F77004CE9EA /* dangerScaleFront.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dangerScaleFront.jpg; sourceTree = "<group>"; };
 		2E4E643714C0B03300D11461 /* contants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contants.h; sourceTree = "<group>"; };
 		2E5D1DA714D04D7C007AD25A /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
@@ -158,6 +167,8 @@
 				2E47CB8014E0C0D3004CE9EA /* Default.png */,
 				2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */,
 				2EAA9AB214D1FD19007AC5A3 /* legend3.png */,
+				2E47CB9114E16F70004CE9EA /* dangerScaleFront@2x.jpg */,
+				2E47CB9314E16F77004CE9EA /* dangerScaleFront.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -257,6 +268,9 @@
 				2E5D1DA714D04D7C007AD25A /* DetailsViewController.h */,
 				2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */,
 				2E00EE5814D2F23B00112294 /* DetailsViewController.xib */,
+				2E47CB8A14E15D57004CE9EA /* DangerScaleViewController.h */,
+				2E47CB8B14E15D57004CE9EA /* DangerScaleViewController.m */,
+				2E47CB8814E15B31004CE9EA /* DangerScaleViewController.xib */,
 				2EB0580A14D0D575004DDD59 /* OverlayView.h */,
 				2EB0580B14D0D575004DDD59 /* OverlayView.m */,
 				2EAA4E2014C874D500D93E24 /* DataManager.h */,
@@ -341,6 +355,9 @@
 				2E47CB7B14E0BA03004CE9EA /* logo.png in Resources */,
 				2E47CB8114E0C0D3004CE9EA /* Default.png in Resources */,
 				2E47CB8314E0C0DC004CE9EA /* Default@2x.png in Resources */,
+				2E47CB8914E15B31004CE9EA /* DangerScaleViewController.xib in Resources */,
+				2E47CB9214E16F70004CE9EA /* dangerScaleFront@2x.jpg in Resources */,
+				2E47CB9414E16F77004CE9EA /* dangerScaleFront.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +405,7 @@
 				2EC5226414D34E170083386C /* JSONKit.m in Sources */,
 				2E5E4C6F14D73CE800CAA36C /* RNCachingURLProtocol.m in Sources */,
 				2E5E4C7814D7437C00CAA36C /* Reachability.m in Sources */,
+				2E47CB8C14E15D57004CE9EA /* DangerScaleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
