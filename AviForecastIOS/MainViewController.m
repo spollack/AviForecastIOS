@@ -23,9 +23,7 @@
 @implementation MainViewController
 
 @synthesize map = _map;
-@synthesize todayButton = _todayButton;
-@synthesize tomorrowButton = _tomorrowButton;
-@synthesize twoDaysOutButton = _twoDaysOutButton;
+@synthesize dayControl = _dayControl;
 @synthesize dataManager = _dataManager;
 @synthesize overlayViewDict = _overlayViewDict;
 @synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
@@ -144,43 +142,14 @@
     }
 }
 
-- (IBAction) todayPressed:(id)sender
+- (IBAction) dayPressed
 {
-    NSLog(@"todayPressed called");
-    
-    if (self.mode != MODE_TODAY) {
-        self.mode = MODE_TODAY;
-        self.todayButton.style = UIBarButtonItemStyleDone;
-        self.tomorrowButton.style = UIBarButtonItemStyleBordered;
-        self.twoDaysOutButton.style = UIBarButtonItemStyleBordered;
-        
-        [self refreshAllOverlays];
-    }
-}
+    int newMode = self.dayControl.selectedSegmentIndex; 
 
-- (IBAction) tomorrowPressed:(id)sender
-{
-    NSLog(@"tomorrowPressed called");
-    
-    if (self.mode != MODE_TOMORROW) {
-        self.mode = MODE_TOMORROW;
-        self.todayButton.style = UIBarButtonItemStyleBordered;
-        self.tomorrowButton.style = UIBarButtonItemStyleDone;
-        self.twoDaysOutButton.style = UIBarButtonItemStyleBordered;
+    NSLog(@"dayPressed called, new mode is: %i", newMode);
 
-        [self refreshAllOverlays];
-    }
-}
-
-- (IBAction)twoDaysOutPressed:(id)sender
-{
-    NSLog(@"twoDaysOutPressed called");
-    
-    if (self.mode != MODE_TWO_DAYS_OUT) {
-        self.mode = MODE_TWO_DAYS_OUT;
-        self.todayButton.style = UIBarButtonItemStyleBordered;
-        self.tomorrowButton.style = UIBarButtonItemStyleBordered;
-        self.twoDaysOutButton.style = UIBarButtonItemStyleDone;
+    if (newMode != self.mode) {
+        self.mode = self.mode;
         
         [self refreshAllOverlays];
     }
@@ -357,9 +326,7 @@
 
     [self.map setDelegate:nil];
     [self setMap:nil];
-    [self setTodayButton:nil];
-    [self setTomorrowButton:nil];
-    [self setTwoDaysOutButton:nil];
+    [self setDayControl:nil];
     [self setDataManager:nil];
     [self setOverlayViewDict:nil];
     

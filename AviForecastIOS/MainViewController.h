@@ -22,16 +22,12 @@
 // NOTE if we drop iOS4.x support, change "unsafe_unretained" to "weak"
 
 @property (unsafe_unretained, nonatomic) IBOutlet MKMapView * map;
-@property (unsafe_unretained, nonatomic) IBOutlet UIBarButtonItem *todayButton;
-@property (unsafe_unretained, nonatomic) IBOutlet UIBarButtonItem *tomorrowButton;
-@property (unsafe_unretained, nonatomic) IBOutlet UIBarButtonItem *twoDaysOutButton;
+@property (unsafe_unretained, nonatomic) IBOutlet UISegmentedControl * dayControl;
 @property (strong, nonatomic) DataManager * dataManager;
 @property (strong, nonatomic) NSMutableDictionary * overlayViewDict;
 @property (nonatomic) BOOL haveUpdatedUserLocation;
 @property (nonatomic) int mode; 
-- (IBAction)todayPressed:(id)sender;
-- (IBAction)tomorrowPressed:(id)sender;
-- (IBAction)twoDaysOutPressed:(id)sender;
+- (IBAction)dayPressed;
 - (IBAction)legendPressed:(id)sender;
 
 @end
