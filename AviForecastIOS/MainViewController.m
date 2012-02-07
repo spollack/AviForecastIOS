@@ -343,6 +343,8 @@
     self.haveUpdatedUserLocation = FALSE; 
     self.mode = MODE_TODAY;
     
+    [self loadSettings];
+
     // set up tap recognition for our overlays on the map
     UITapGestureRecognizer * tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureHandler:)];
     tapGestureRecognizer.delegate = self;
@@ -366,13 +368,10 @@
     
     NSLog(@"MainViewController viewDidLoad called");
     
-    // NOTE local initialization has to happen here for UIViewController classes, not in the init method
-    
-    [self loadSettings];
+    // NOTE local initialization has to happen here for UIViewController sub-classes, not in the init method
+    [self completeInitialization];
     
     [self showDisclaimerIfNeeded];
-    
-    [self completeInitialization];
 }
 
 - (void)viewDidUnload
