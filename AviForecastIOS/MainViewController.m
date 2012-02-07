@@ -21,7 +21,7 @@
 #define MAP_VIEW_DEFAULT_METERS 300000
 
 // alert titles
-#define DISCLAIMER_ALERT @"Disclaimer"
+#define DISCLAIMER_ALERT @"Warranty Disclaimer"
 #define NETWORK_ERROR_ALERT @"Network Error"
 
 // settings
@@ -299,7 +299,7 @@
 {
     if (![self.settings objectForKey:ACCEPTED_DISCLAIMER_KEY])
     {
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:DISCLAIMER_ALERT message:@"This information is provided 'as is'; accuracy or reliability is not guaranteed or warranted in any way. In no event shall the providers be liable for any damages (including, without limitation, injury or death) arising out of the use of, or inability to use, the information." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:nil];
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:DISCLAIMER_ALERT message:@"This product, including all information provided therein, is provided 'as is'. SEBNARWARE makes no warranty nor representation of any kind. SEBNARWARE does not warrant that the product or information is error free, nor that service will be uninterrupted. In no event shall SEBNARWARE be liable for any damages (including, without limitation, injury or death)." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:nil];
         [alertView show];
     }
 }
