@@ -300,7 +300,7 @@
 {
     if (![self.settings objectForKey:ACCEPTED_DISCLAIMER_KEY])
     {
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:DISCLAIMER_ALERT message:@"This product, including all information shown, is provided 'as is'. SEBNARWARE makes no warranty or representation of any kind. SEBNARWARE does not warrant that the product or information is error free, nor that service will be uninterrupted. In no event shall SEBNARWARE be liable for any damages (including without limitation, where use of the product could lead to death or personal injury)." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:nil];
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:DISCLAIMER_ALERT message:@"This product, including all information shown, is provided 'as is'. Sebnarware makes no warranty or representation of any kind. Sebnarware does not warrant that the product or information is error free, nor that service will be uninterrupted. In no event shall Sebnarware be liable for any damages (including without limitation, where use of the product could lead to death or personal injury)." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:nil];
         [alertView show];
     }
 }
