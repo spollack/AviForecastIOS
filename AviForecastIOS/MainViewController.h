@@ -30,6 +30,7 @@
 @property (nonatomic) int mode; 
 
 - (IBAction)dayPressed;
-- (IBAction)legendPressed:(id)sender;
+- (IBAction)legendPressed;
+- (IBAction)infoPressed;
 
 @end

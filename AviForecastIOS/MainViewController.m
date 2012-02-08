@@ -23,6 +23,7 @@
 // alert titles
 #define DISCLAIMER_ALERT @"Warranty Disclaimer"
 #define NETWORK_ERROR_ALERT @"Network Error"
+#define HOW_TO_USE_ALERT @"How To Use"
 
 // settings
 #define SETTINGS_FILE_NAME @"settings.plist"
@@ -185,7 +186,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)legendPressed:(id)sender {
+- (IBAction)legendPressed {
     [self showDangerScaleView];
 }
 
@@ -299,7 +300,7 @@
 {
     if (![self.settings objectForKey:ACCEPTED_DISCLAIMER_KEY])
     {
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:DISCLAIMER_ALERT message:@"This product, including all information provided therein, is provided 'as is'. SEBNARWARE makes no warranty or representation of any kind. SEBNARWARE does not warrant that the product or information is error free, nor that service will be uninterrupted. In no event shall SEBNARWARE be liable for any damages (including without limitation, where use of the product could lead to death or personal injury)." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:nil];
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:DISCLAIMER_ALERT message:@"This product, including all information shown, is provided 'as is'. SEBNARWARE makes no warranty or representation of any kind. SEBNARWARE does not warrant that the product or information is error free, nor that service will be uninterrupted. In no event shall SEBNARWARE be liable for any damages (including without limitation, where use of the product could lead to death or personal injury)." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:nil];
         [alertView show];
     }
 }
@@ -323,6 +324,11 @@
     [self.settings writeToFile:plistPath atomically:YES];
 }
 
+- (IBAction)infoPressed {
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:HOW_TO_USE_ALERT message:@"* The map displays avalanche forecast regions, colored based on the overall danger level\n* Use the buttons at the bottom to select the forecast timeframe\n* Tap the top legend to see descriptions of the danger levels\n* Click a region on the map to go to the detailed avalanche forecast" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alertView show];
+}
+
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (alertView.title == DISCLAIMER_ALERT) {
@@ -333,6 +339,9 @@
     else if (alertView.title == NETWORK_ERROR_ALERT) {
         // try loading the data again
         [self loadData];
+    }
+    else if (alertView.title == HOW_TO_USE_ALERT) {
+        // do nothing
     }
 }
 
