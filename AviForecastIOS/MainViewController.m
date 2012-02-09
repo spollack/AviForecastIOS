@@ -20,14 +20,22 @@
 // map region, in meters, horizontally and vertically, to display by default
 #define MAP_VIEW_DEFAULT_METERS 300000
 
-// alert titles
-#define DISCLAIMER_ALERT @"Warranty Disclaimer"
-#define NETWORK_ERROR_ALERT @"Network Error"
-#define HOW_TO_USE_ALERT @"How To Use"
-
-// settings
+// application persistent settings management
 #define SETTINGS_FILE_NAME @"settings.plist"
 #define ACCEPTED_DISCLAIMER_KEY @"AcceptedDisclaimer"
+
+// alerts
+#define DISCLAIMER_ALERT_TITLE @"Warranty Disclaimer"
+#define DISCLAIMER_ALERT_TEXT @"This product, including all information shown, is provided 'as is'. Sebnarware makes no warranty or representation of any kind. Sebnarware does not warrant that the product or information is error free, nor that service will be uninterrupted. In no event shall Sebnarware be liable for any damages (including without limitation, where use of the product could lead to death or personal injury)."
+#define DISCLAIMER_ALERT_BUTTON_TITLE @"I Agree"
+
+#define HOW_TO_USE_ALERT_TITLE @"How To Use"
+#define HOW_TO_USE_ALERT_TEXT @"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Click a region on the map to go to the detailed avalanche forecast"
+#define HOW_TO_USE_ALERT_BUTTON_TITLE @"Ok"
+
+#define NETWORK_ERROR_ALERT_TITLE @"Network Error"
+#define NETWORK_ERROR_ALERT_TEXT @"Could not load forecast regions; do you have internet access?"
+#define NETWORK_ERROR_ALERT_BUTTON_TITLE @"Try Again"
 
 
 @implementation MainViewController
@@ -45,6 +53,7 @@
 {
     UIColor * color = nil;
     
+    // colors are from the North American Public Avalanche Danger Scale color specification
     switch (aviLevel) {
         case AVI_LEVEL_LOW: 
             color = [UIColor colorWithRed:(80/255.0) green:(184/255.0) blue:(72/255.0) alpha:OVERLAY_ALPHA];
@@ -72,7 +81,7 @@
 - (void) mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     // once we have the user's actual location, center and zoom in; however, only do this once, 
-    // so the map doesn't keep jumping around
+    // so the map doesn't keep jumping around as location update events occur
     
     if (!self.haveUpdatedUserLocation) {
         
@@ -290,7 +299,7 @@
         failure:^() {
             [FlurryAnalytics logEvent:@"Could not load regions data"];
             
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:NETWORK_ERROR_ALERT message:@"Could not load forecast regions; do you have internet access?" delegate:self cancelButtonTitle:@"Try Again" otherButtonTitles:nil];
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:NETWORK_ERROR_ALERT_TITLE message:NETWORK_ERROR_ALERT_TEXT delegate:self cancelButtonTitle:NETWORK_ERROR_ALERT_BUTTON_TITLE otherButtonTitles:nil];
             [alertView show];
         }
     ];
@@ -300,7 +309,7 @@
 {
     if (![self.settings objectForKey:ACCEPTED_DISCLAIMER_KEY])
     {
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:DISCLAIMER_ALERT message:@"This product, including all information shown, is provided 'as is'. Sebnarware makes no warranty or representation of any kind. Sebnarware does not warrant that the product or information is error free, nor that service will be uninterrupted. In no event shall Sebnarware be liable for any damages (including without limitation, where use of the product could lead to death or personal injury)." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:nil];
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:DISCLAIMER_ALERT_TITLE message:DISCLAIMER_ALERT_TEXT delegate:self cancelButtonTitle:DISCLAIMER_ALERT_BUTTON_TITLE otherButtonTitles:nil];
         [alertView show];
     }
 }
@@ -325,22 +334,22 @@
 }
 
 - (IBAction)infoPressed {
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:HOW_TO_USE_ALERT message:@"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Click a region on the map to go to the detailed avalanche forecast" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:HOW_TO_USE_ALERT_TITLE message:HOW_TO_USE_ALERT_TEXT delegate:self cancelButtonTitle:HOW_TO_USE_ALERT_BUTTON_TITLE otherButtonTitles:nil];
     [alertView show];
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (alertView.title == DISCLAIMER_ALERT) {
+    if (alertView.title == DISCLAIMER_ALERT_TITLE) {
         // update the settings to show disclaimer has been accepted
         [self.settings setObject:@"yes" forKey:ACCEPTED_DISCLAIMER_KEY];
         [self saveSettings];
     } 
-    else if (alertView.title == NETWORK_ERROR_ALERT) {
+    else if (alertView.title == NETWORK_ERROR_ALERT_TITLE) {
         // try loading the data again
         [self loadData];
     }
-    else if (alertView.title == HOW_TO_USE_ALERT) {
+    else if (alertView.title == HOW_TO_USE_ALERT_TITLE) {
         // do nothing
     }
 }
@@ -363,7 +372,7 @@
     [self loadData];
     
     // NOTE set our user agent string to something benign and non-mobile looking, to work around website
-    // popups (from nwac.us) asking if you would like to be redirected to the mobile version of the site
+    // popups from nwac.us asking if you would like to be redirected to the mobile version of the site
     NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0", @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];  
     
