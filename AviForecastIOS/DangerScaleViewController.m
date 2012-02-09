@@ -3,7 +3,7 @@
 //  AviForecastIOS
 //
 //  Created by Seth Pollack on 2/7/12.
-//  Copyright (c) 2012 SEBNARWARE. All rights reserved.
+//  Copyright (c) 2012 Sebnarware. All rights reserved.
 //
 
 #import "DangerScaleViewController.h"

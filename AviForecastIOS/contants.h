@@ -3,7 +3,7 @@
 //  AviForecastIOS
 //
 //  Created by Seth Pollack on 1/13/12.
-//  Copyright (c) 2012 SEBNARWARE. All rights reserved.
+//  Copyright (c) 2012 Sebnarware. All rights reserved.
 //
 
 //
@@ -23,7 +23,7 @@
 
 
 //
-// callbacks for completion, success or failure
+// generic callbacks for completion
 //
 
 typedef void (^SuccessCompletionBlock)();
