@@ -77,10 +77,13 @@
                 // look for a matching date
                 if ([dateString isEqualToString:[[self.forecastJSON objectAtIndex:i] valueForKeyPath:@"date"]]) {
                     // found a match, grab the aviLevel
-                    aviLevel = [[[self.forecastJSON objectAtIndex:i] valueForKeyPath:@"aviLevel"] intValue];
-                    lookupMatch = true;
-                    NSLog(@"matching date found; regionId: %@; slot: %i; date: %@; aviLevel: %i", self.regionId, i, dateString, aviLevel);
-                    break;
+                    id aviLevelObject = [[self.forecastJSON objectAtIndex:i] valueForKeyPath:@"aviLevel"]; 
+                    if (aviLevelObject) {
+                        aviLevel = [aviLevelObject intValue];
+                        lookupMatch = true;
+                        NSLog(@"matching date found; regionId: %@; slot: %i; date: %@; aviLevel: %i", self.regionId, i, dateString, aviLevel);
+                        break;
+                    }
                 }
             }
         }
