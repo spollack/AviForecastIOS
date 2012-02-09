@@ -325,7 +325,7 @@
 }
 
 - (IBAction)infoPressed {
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:HOW_TO_USE_ALERT message:@"* The map displays avalanche forecast regions, colored based on the overall danger level\n* Use the buttons at the bottom to select the forecast timeframe\n* Tap the top legend to see descriptions of the danger levels\n* Click a region on the map to go to the detailed avalanche forecast" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:HOW_TO_USE_ALERT message:@"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Click a region on the map to go to the detailed avalanche forecast" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alertView show];
 }
 
