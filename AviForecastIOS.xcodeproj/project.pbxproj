@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2E00EE5914D2F23B00112294 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E00EE5814D2F23B00112294 /* DetailsViewController.xib */; };
+		2E3EAC4414E4A22E009ED78D /* legend4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EAC4314E4A22E009ED78D /* legend4@2x.png */; };
+		2E3EAC4714E4A236009ED78D /* legend4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EAC4614E4A236009ED78D /* legend4.png */; };
 		2E47CB7914E0B9F5004CE9EA /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB7814E0B9F5004CE9EA /* logo@2x.png */; };
 		2E47CB7B14E0BA03004CE9EA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB7A14E0BA03004CE9EA /* logo.png */; };
 		2E47CB8114E0C0D3004CE9EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB8014E0C0D3004CE9EA /* Default.png */; };
@@ -33,8 +35,6 @@
 		2EA9CA9F14C075A6008DD986 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9CA8C14C075A6008DD986 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2EA9FB0D14D375AB001633E1 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA9FB0C14D375AB001633E1 /* libFlurryAnalytics.a */; };
 		2EAA4E2214C874D500D93E24 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA4E2114C874D500D93E24 /* DataManager.m */; };
-		2EAA9AB114D1FD0F007AC5A3 /* legend3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */; };
-		2EAA9AB314D1FD19007AC5A3 /* legend3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AB214D1FD19007AC5A3 /* legend3.png */; };
 		2EAA9AE714D2EA60007AC5A3 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AE614D2EA60007AC5A3 /* MainViewController.xib */; };
 		2EAF251D14C75942005E0410 /* RegionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF251C14C75942005E0410 /* RegionData.m */; };
 		2EB0580C14D0D575004DDD59 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0580B14D0D575004DDD59 /* OverlayView.m */; };
@@ -52,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		2E00EE5814D2F23B00112294 /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailsViewController.xib; path = ../DetailsViewController.xib; sourceTree = "<group>"; };
+		2E3EAC4314E4A22E009ED78D /* legend4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend4@2x.png"; sourceTree = "<group>"; };
+		2E3EAC4614E4A236009ED78D /* legend4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend4.png; sourceTree = "<group>"; };
 		2E47CB7814E0B9F5004CE9EA /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		2E47CB7A14E0BA03004CE9EA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2E47CB8014E0C0D3004CE9EA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -97,8 +99,6 @@
 		2EA9FB0C14D375AB001633E1 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		2EAA4E2014C874D500D93E24 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		2EAA4E2114C874D500D93E24 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
-		2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend3@2x.png"; sourceTree = "<group>"; };
-		2EAA9AB214D1FD19007AC5A3 /* legend3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend3.png; sourceTree = "<group>"; };
 		2EAA9AE614D2EA60007AC5A3 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewController.xib; path = ../MainViewController.xib; sourceTree = "<group>"; };
 		2EAF251B14C75942005E0410 /* RegionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionData.h; sourceTree = "<group>"; };
 		2EAF251C14C75942005E0410 /* RegionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionData.m; sourceTree = "<group>"; };
@@ -165,8 +165,8 @@
 				2E47CB7A14E0BA03004CE9EA /* logo.png */,
 				2E47CB8214E0C0DC004CE9EA /* Default@2x.png */,
 				2E47CB8014E0C0D3004CE9EA /* Default.png */,
-				2EAA9AB014D1FD0F007AC5A3 /* legend3@2x.png */,
-				2EAA9AB214D1FD19007AC5A3 /* legend3.png */,
+				2E3EAC4314E4A22E009ED78D /* legend4@2x.png */,
+				2E3EAC4614E4A236009ED78D /* legend4.png */,
 				2E47CB9114E16F70004CE9EA /* dangerScaleFront@2x.jpg */,
 				2E47CB9314E16F77004CE9EA /* dangerScaleFront.jpg */,
 			);
@@ -347,8 +347,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EC6DC7A14BF52FC005D3EC1 /* InfoPlist.strings in Resources */,
-				2EAA9AB114D1FD0F007AC5A3 /* legend3@2x.png in Resources */,
-				2EAA9AB314D1FD19007AC5A3 /* legend3.png in Resources */,
 				2EAA9AE714D2EA60007AC5A3 /* MainViewController.xib in Resources */,
 				2E00EE5914D2F23B00112294 /* DetailsViewController.xib in Resources */,
 				2E47CB7914E0B9F5004CE9EA /* logo@2x.png in Resources */,
@@ -358,6 +356,8 @@
 				2E47CB8914E15B31004CE9EA /* DangerScaleViewController.xib in Resources */,
 				2E47CB9214E16F70004CE9EA /* dangerScaleFront@2x.jpg in Resources */,
 				2E47CB9414E16F77004CE9EA /* dangerScaleFront.jpg in Resources */,
+				2E3EAC4414E4A22E009ED78D /* legend4@2x.png in Resources */,
+				2E3EAC4714E4A236009ED78D /* legend4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

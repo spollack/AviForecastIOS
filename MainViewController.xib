@@ -52,7 +52,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">legend3.png</string>
+							<string key="NSResourceName">legend4.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="505997753">
@@ -95,7 +95,6 @@
 						<string key="NSFrame">{{0, 60}, {320, 356}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:800</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -152,7 +151,6 @@
 								<string key="NSFrame">{{290, 13}, {18, 19}}</string>
 								<reference key="NSSuperview" ref="624325858"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -449,7 +447,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">legend3.png</string>
+			<string key="NS.key.0">legend4.png</string>
 			<string key="NS.object.0">{320, 60}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
