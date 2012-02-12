@@ -423,48 +423,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2E3F9B0614C4E77700D2E2C8 /* Ad Hoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
-				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Ad Hoc";
-		};
-		2E3F9B0714C4E77700D2E2C8 /* Ad Hoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seth Pollack (8DWRZQ3M3G)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
-				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryAnalytics\"",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7658AAFE-8A4B-4984-AE79-670299D43780";
-				WRAPPER_EXTENSION = app;
-			};
-			name = "Ad Hoc";
-		};
-		2E47CB9514E20731004CE9EA /* Distribution */ = {
+		2E47CB9514E20731004CE9EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -486,9 +445,9 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Distribution;
+			name = Release;
 		};
-		2E47CB9614E20731004CE9EA /* Distribution */ = {
+		2E47CB9614E20731004CE9EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seth Pollack (8DWRZQ3M3G)";
@@ -504,7 +463,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7658AAFE-8A4B-4984-AE79-670299D43780";
 				WRAPPER_EXTENSION = app;
 			};
-			name = Distribution;
+			name = Release;
 		};
 		2EC6DC9C14BF52FC005D3EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -534,29 +493,6 @@
 			};
 			name = Debug;
 		};
-		2EC6DC9D14BF52FC005D3EC1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
-				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		2EC6DC9F14BF52FC005D3EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -575,24 +511,6 @@
 			};
 			name = Debug;
 		};
-		2EC6DCA014BF52FC005D3EC1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seth Pollack (8DWRZQ3M3G)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
-				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/FlurryAnalytics\"",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7658AAFE-8A4B-4984-AE79-670299D43780";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -600,23 +518,19 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2EC6DC9C14BF52FC005D3EC1 /* Debug */,
-				2EC6DC9D14BF52FC005D3EC1 /* Release */,
-				2E47CB9514E20731004CE9EA /* Distribution */,
-				2E3F9B0614C4E77700D2E2C8 /* Ad Hoc */,
+				2E47CB9514E20731004CE9EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2EC6DC9E14BF52FC005D3EC1 /* Build configuration list for PBXNativeTarget "Avalanche" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2EC6DC9F14BF52FC005D3EC1 /* Debug */,
-				2EC6DCA014BF52FC005D3EC1 /* Release */,
-				2E47CB9614E20731004CE9EA /* Distribution */,
-				2E3F9B0714C4E77700D2E2C8 /* Ad Hoc */,
+				2E47CB9614E20731004CE9EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

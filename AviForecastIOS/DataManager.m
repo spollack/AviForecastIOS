@@ -99,8 +99,11 @@
         {
             RegionData * regionData = [self.regionsDict objectForKey:regionId];
             
-            // regionData could be null, if we are serving forecasts for regions that this client isn't aware of yet
+            // NOTE regionData could be null, if we are serving forecasts for regions that this client isn't aware of yet
             if (regionData) {
+                
+                // NOTE forecastJSON may be nil, if no forecast is currently available for this region
+
                 // save the new forecast data
                 regionData.forecastJSON = forecastJSON;
                 

@@ -69,6 +69,7 @@
     int aviLevel = AVI_LEVEL_UNKNOWN; 
     BOOL lookupMatch = false; 
 
+    // NOTE forecastJSON may be nil, if no forecast is currently available for this region
     if (self.forecastJSON) {
         if ([self.forecastJSON isKindOfClass:[NSArray class]]) {
             

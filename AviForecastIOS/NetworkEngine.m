@@ -107,7 +107,9 @@
                     NSString * regionId = [[JSON objectAtIndex:i] valueForKeyPath:@"regionId"];
                     NSArray * forecast = [[JSON objectAtIndex:i] valueForKeyPath:@"forecast"];
                     
-                    if (regionId && forecast && [forecast isKindOfClass:[NSArray class]]) {
+                    if (regionId) {
+                        
+                        // NOTE forecast may be nil, if no forecast is currently available for this region
                                                 
                         numRegions++;
                         NSLog(@"loaded forecast for regionId: %@", regionId);
