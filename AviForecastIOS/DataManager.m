@@ -61,16 +61,18 @@
                 {
                     NSLog(@"finished initial data load");
                     [FlurryAnalytics endTimedEvent:@"INITIAL_DATA_LOAD" withParameters:nil];
+
+                    successBlock();
                 }
                 failure:^()
                 {
                     NSLog(@"initial data load failed");
                     [FlurryAnalytics endTimedEvent:@"INITIAL_DATA_LOAD" 
                                     withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"failed", nil]];
+                    
+                    failureBlock();
                 }
             ];
-            
-            successBlock();
         }
         failure:^()
         {
