@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2E00EE5914D2F23B00112294 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E00EE5814D2F23B00112294 /* DetailsViewController.xib */; };
-		2E3EAC4414E4A22E009ED78D /* legend4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EAC4314E4A22E009ED78D /* legend4@2x.png */; };
-		2E3EAC4714E4A236009ED78D /* legend4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EAC4614E4A236009ED78D /* legend4.png */; };
+		2E3EACAD14EABA74009ED78D /* legend4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EACAC14EABA74009ED78D /* legend4@2x.png */; };
+		2E3EACAF14EABA7E009ED78D /* legend4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EACAE14EABA7E009ED78D /* legend4.png */; };
 		2E47CB7914E0B9F5004CE9EA /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB7814E0B9F5004CE9EA /* logo@2x.png */; };
 		2E47CB7B14E0BA03004CE9EA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB7A14E0BA03004CE9EA /* logo.png */; };
 		2E47CB8114E0C0D3004CE9EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB8014E0C0D3004CE9EA /* Default.png */; };
@@ -52,8 +52,8 @@
 
 /* Begin PBXFileReference section */
 		2E00EE5814D2F23B00112294 /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailsViewController.xib; path = ../DetailsViewController.xib; sourceTree = "<group>"; };
-		2E3EAC4314E4A22E009ED78D /* legend4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend4@2x.png"; sourceTree = "<group>"; };
-		2E3EAC4614E4A236009ED78D /* legend4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend4.png; sourceTree = "<group>"; };
+		2E3EACAC14EABA74009ED78D /* legend4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend4@2x.png"; sourceTree = "<group>"; };
+		2E3EACAE14EABA7E009ED78D /* legend4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend4.png; sourceTree = "<group>"; };
 		2E47CB7814E0B9F5004CE9EA /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		2E47CB7A14E0BA03004CE9EA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2E47CB8014E0C0D3004CE9EA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -165,8 +165,8 @@
 				2E47CB7A14E0BA03004CE9EA /* logo.png */,
 				2E47CB8214E0C0DC004CE9EA /* Default@2x.png */,
 				2E47CB8014E0C0D3004CE9EA /* Default.png */,
-				2E3EAC4314E4A22E009ED78D /* legend4@2x.png */,
-				2E3EAC4614E4A236009ED78D /* legend4.png */,
+				2E3EACAC14EABA74009ED78D /* legend4@2x.png */,
+				2E3EACAE14EABA7E009ED78D /* legend4.png */,
 				2E47CB9114E16F70004CE9EA /* dangerScaleFront@2x.jpg */,
 				2E47CB9314E16F77004CE9EA /* dangerScaleFront.jpg */,
 			);
@@ -356,8 +356,8 @@
 				2E47CB8914E15B31004CE9EA /* DangerScaleViewController.xib in Resources */,
 				2E47CB9214E16F70004CE9EA /* dangerScaleFront@2x.jpg in Resources */,
 				2E47CB9414E16F77004CE9EA /* dangerScaleFront.jpg in Resources */,
-				2E3EAC4414E4A22E009ED78D /* legend4@2x.png in Resources */,
-				2E3EAC4714E4A236009ED78D /* legend4.png in Resources */,
+				2E3EACAD14EABA74009ED78D /* legend4@2x.png in Resources */,
+				2E3EACAF14EABA7E009ED78D /* legend4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

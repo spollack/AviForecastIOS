@@ -1,19 +1,29 @@
 //
-// Prefix header for all source files of the 'AviForecastIOS' target in the 'AviForecastIOS' project
+//  AviForecastIOS-Prefix.pch
+//  AviForecastIOS
+//
+//  Created by Seth Pollack on 1/12/12.
+//  Copyright (c) 2012 Sebnarware. All rights reserved.
 //
 
-#import <Availability.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "AFNetworking.h"
+#import "contants.h"
 
-#ifndef __IPHONE_5_0
-#warning "This project uses features only available in iOS SDK 5.0 and later."
+
+// DLog is almost a drop-in replacement for NSLog
+// DLog();
+// DLog(@"here");
+// DLog(@"value: %d", x);
+// Unfortunately this doesn't work DLog(aStringVariable); you have to do this instead DLog(@"%@", aStringVariable);
+#ifdef DEBUG
+#	define DLog(fmt, ...) NSLog((@"%s [Line %d] \n\t" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#	define DLog(...)
 #endif
 
-#ifdef __OBJC__
-    #import <UIKit/UIKit.h>
-    #import <Foundation/Foundation.h>
-    #import <MapKit/MapKit.h>
-    #import <CoreLocation/CoreLocation.h>
-    #import "AFNetworking.h"
-    #import "contants.h"
-#endif
-
+// ALog always displays output regardless of the DEBUG setting
+#define ALog(fmt, ...) NSLog((@"%s [Line %d] \n\t" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);

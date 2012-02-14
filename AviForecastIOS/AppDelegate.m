@@ -27,8 +27,10 @@
 
 void uncaughtExceptionHandler(NSException * exception)
 {
-    NSLog(@"uncaught exception: %@", exception);
+    DLog(@"uncaught exception: %@", exception);
+#ifndef DEBUG
     [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+#endif
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -37,7 +39,9 @@ void uncaughtExceptionHandler(NSException * exception)
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 
     // begin statistics tracking
+#ifndef DEBUG
     [FlurryAnalytics startSession:@"9VCKPEJWLABZVBVJ2JS3"];
+#endif
     
     // set up persistent URL caching
     // NOTE this cache is not currently size limited in any way...

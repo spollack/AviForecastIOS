@@ -82,7 +82,7 @@
                     if (aviLevelObject) {
                         aviLevel = [aviLevelObject intValue];
                         lookupMatch = true;
-                        NSLog(@"matching date found; regionId: %@; slot: %i; date: %@; aviLevel: %i", self.regionId, i, dateString, aviLevel);
+                        DLog(@"matching date found; regionId: %@; slot: %i; date: %@; aviLevel: %i", self.regionId, i, dateString, aviLevel);
                         break;
                     }
                 }
@@ -91,7 +91,7 @@
     }
     
     if (!lookupMatch) {
-        NSLog(@"matching date not found in forecast data; regionId: %@; date: %@", self.regionId, dateString);
+        DLog(@"matching date not found in forecast data; regionId: %@; date: %@", self.regionId, dateString);
     }
     
     return aviLevel;

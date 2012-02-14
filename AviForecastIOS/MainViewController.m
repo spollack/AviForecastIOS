@@ -89,19 +89,20 @@
         
         if (location.latitude < 0.1 && location.longitude < 0.1) {
             // this can happen if the user does not allow the app to access their location
-            NSLog(@"reported user location is near (0,0), not updating");
+            DLog(@"reported user location is near (0,0), not updating");
         } else {
-            NSLog(@"updating map position based on user location");
+            DLog(@"updating map position based on user location");
 
             MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location, MAP_VIEW_DEFAULT_METERS, MAP_VIEW_DEFAULT_METERS); 
             [mapView setRegion:region animated:TRUE];
             
             // record an event
+#ifndef DEBUG
             [FlurryAnalytics setLatitude:userLocation.location.coordinate.latitude
                       longitude:userLocation.location.coordinate.longitude
                       horizontalAccuracy:userLocation.location.horizontalAccuracy
                       verticalAccuracy:userLocation.location.verticalAccuracy]; 
-
+#endif
             self.haveUpdatedUserLocation = TRUE; 
         }
     }
@@ -137,22 +138,25 @@
         
         // look up the region data
         RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
-        NSAssert(regionData, @"regionData should not be nil!");
         
-        NSLog(@"refreshing overlay for regionId: %@", regionData.regionId);
+        if (!regionData) {
+            NSAssert(false, @"regionData should not be nil!");
+        } else {        
+            DLog(@"refreshing overlay for regionId: %@", regionData.regionId);
 
-        // set the aviLevel-based overlay color
-        int aviLevel = [regionData aviLevelForMode: self.mode];
-        overlayView.fillColor = [self colorForAviLevel: aviLevel];
-        
-        // redraw the overlay
-        [overlayView setNeedsDisplay];
+            // set the aviLevel-based overlay color
+            int aviLevel = [regionData aviLevelForMode: self.mode];
+            overlayView.fillColor = [self colorForAviLevel: aviLevel];
+            
+            // redraw the overlay
+            [overlayView setNeedsDisplay];
+        }
     }
 }
 
 - (void) refreshAllOverlays
 {
-    NSLog(@"refreshAllOverlays called");
+    DLog(@"refreshAllOverlays called");
 
     NSArray * allKeys = [self.overlayViewDict allKeys];
     
@@ -166,7 +170,7 @@
 {
     int newMode = self.dayControl.selectedSegmentIndex; 
 
-    NSLog(@"dayPressed called, new mode is: %i", newMode);
+    DLog(@"dayPressed called, new mode is: %i", newMode);
 
     if (newMode != self.mode) {
         self.mode = newMode;
@@ -181,7 +185,7 @@
     dangerScaleViewController.delegate = self;
     dangerScaleViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         
-    NSLog(@"starting danger scale view");
+    DLog(@"starting danger scale view");
     
     [self presentModalViewController:dangerScaleViewController animated:YES];
 }
@@ -190,7 +194,7 @@
 {
     // this method is called by the danger scale view, when its time for that view to go away
     
-    NSLog(@"finished danger scale view");
+    DLog(@"finished danger scale view");
     
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -205,33 +209,43 @@
     detailsViewController.delegate = self;
     detailsViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
-
-    // find the URL associated with the selected region, and set it in the view
     RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
-    NSAssert(regionData, @"regionData should not be nil!");
-    NSAssert(regionData.URL, @"regionData.URL should not be nil!");
-    NSURL * URL = [NSURL URLWithString:regionData.URL]; 
     
-    [detailsViewController setURL:URL];
-    
-    NSLog(@"starting details view");
-    
-    // log a timed event
-    [FlurryAnalytics logEvent:@"DETAILS_VIEW" 
-               withParameters:[NSDictionary dictionaryWithObjectsAndKeys:regionId, @"regionId", nil] timed:YES];
-    
-    [self presentModalViewController:detailsViewController animated:YES];
+    if (!regionData) {
+        NSAssert(false, @"regionData should not be nil!");
+    } else {
+        if (!regionData.URL) {
+            NSAssert(false, @"regionData.URL should not be nil!");
+        } else {
+            // inform the view of the URL associated with the selected region
+
+            NSURL * URL = [NSURL URLWithString:regionData.URL]; 
+            
+            [detailsViewController setURL:URL];
+            
+            DLog(@"starting details view");
+            
+            // log a timed event
+#ifndef DEBUG
+            [FlurryAnalytics logEvent:@"DETAILS_VIEW" 
+                       withParameters:[NSDictionary dictionaryWithObjectsAndKeys:regionId, @"regionId", nil] timed:YES];
+#endif            
+            [self presentModalViewController:detailsViewController animated:YES];
+        }
+    }
 }
 
 - (void) detailsViewControllerDidFinish:(DetailsViewController *)controller
 {
     // this method is called by the detail view, when its time for that view to go away
     
-    NSLog(@"finished details view");
+    DLog(@"finished details view");
     
     // close the timed event
+#ifndef DEBUG
     [FlurryAnalytics endTimedEvent:@"DETAILS_VIEW" withParameters:nil];
-
+#endif
+    
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -260,7 +274,7 @@
         BOOL mapCoordinateIsInPolygon = CGPathContainsPoint(overlayView.path, NULL, polygonViewPoint, NO);
         
         if (mapCoordinateIsInPolygon) {
-            NSLog(@"tap in overlay detected; regionId: %@", overlayView.regionId);
+            DLog(@"tap in overlay detected; regionId: %@", overlayView.regionId);
             
             // respond to the selection by changing to the details view
             [self showDetailsView:overlayView.regionId];     
@@ -272,7 +286,7 @@
 
 - (void) updateAllForecastData:(id)notification
 {
-    NSLog(@"updateAllForecastData called");
+    DLog(@"updateAllForecastData called");
     
     // load the forecasts, then refresh each overlay as new data arrives
     [self.dataManager loadForecasts:
@@ -290,14 +304,19 @@
         ^(NSString * regionId) {
             
             RegionData * regionData = [self.dataManager.regionsDict objectForKey:regionId];
-            NSAssert(regionData, @"regionData should not be nil!");
             
-            // add the region to the map as an overlay (overlay data, not overlay view)
-            [self.map addOverlay:regionData];
+            if (!regionData) {
+                NSAssert(false, @"regionData should not be nil!");
+            } else {
+                // add the region to the map as an overlay (overlay data, not overlay view)
+                [self.map addOverlay:regionData];
+            }
         }
         success:^() {}
         failure:^() {
-            [FlurryAnalytics logEvent:@"Could not load regions data"];
+#ifndef DEBUG
+            [FlurryAnalytics logEvent:@"INITIAL_DATA_LOAD_FAILED"];
+#endif
             
             UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:NETWORK_ERROR_ALERT_TITLE message:NETWORK_ERROR_ALERT_TEXT delegate:self cancelButtonTitle:NETWORK_ERROR_ALERT_BUTTON_TITLE otherButtonTitles:nil];
             [alertView show];
@@ -379,7 +398,7 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"MainViewController viewDidLoad called");
+    DLog(@"MainViewController viewDidLoad called");
     
     // NOTE local initialization has to happen here for UIViewController sub-classes, not in the init method
     [self completeInitialization];
@@ -389,7 +408,7 @@
 
 - (void)viewDidUnload
 {
-    NSLog(@"MainViewController viewDidUnload called");
+    DLog(@"MainViewController viewDidUnload called");
 
     [self.map setDelegate:nil];
     [self setMap:nil];

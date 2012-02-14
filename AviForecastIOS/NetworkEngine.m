@@ -32,7 +32,7 @@
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
         success:^(NSURLRequest * request, NSHTTPURLResponse * response, id JSON)
         {
-            NSLog(@"loadRegions network operation success");
+            DLog(@"loadRegions network operation success");
             
             int numRegions = 0;
             
@@ -63,7 +63,7 @@
                         RegionData * regionData = [[RegionData alloc] initWithRegionId:regionId displayName:displayName URL:URL polygon:polygon];
                                                 
                         numRegions++;
-                        NSLog(@"created regionData for regionId: %@", regionId);
+                        DLog(@"created regionData for regionId: %@", regionId);
                         
                         // invoke the callback for each region read successfully
                         dataBlock(regionData);
@@ -71,13 +71,13 @@
                 }
             }
             
-            NSLog(@"created %i regions", numRegions);
+            DLog(@"created %i regions", numRegions);
             
             successBlock();
         }
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
-            NSLog(@"loadRegions network operation failure; error: %@", error);
+            DLog(@"loadRegions network operation failure; error: %@", error);
             
             failureBlock();
         }];
@@ -95,7 +95,7 @@
     AFJSONRequestOperation * operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request 
         success:^(NSURLRequest * request, NSHTTPURLResponse * response, id JSON)
         {
-            NSLog(@"loadForecasts network operation success");
+            DLog(@"loadForecasts network operation success");
 
             int numRegions = 0;
             
@@ -112,7 +112,7 @@
                         // NOTE forecast may be nil, if no forecast is currently available for this region
                                                 
                         numRegions++;
-                        NSLog(@"loaded forecast for regionId: %@", regionId);
+                        DLog(@"loaded forecast for regionId: %@", regionId);
                         
                         // invoke the callback for each region read successfully
                         dataBlock(regionId, forecast);
@@ -120,13 +120,13 @@
                 }
             }
             
-            NSLog(@"read forecasts for %i regions", numRegions);
+            DLog(@"read forecasts for %i regions", numRegions);
             
             successBlock();
         }
         failure:^(NSURLRequest * request, NSHTTPURLResponse * response, NSError * error, id JSON)
         {
-            NSLog(@"loadForecasts network operation failure; error: %@", error);
+            DLog(@"loadForecasts network operation failure; error: %@", error);
             
             failureBlock();
         }];
