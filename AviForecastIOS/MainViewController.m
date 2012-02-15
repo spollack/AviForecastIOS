@@ -30,7 +30,7 @@
 #define DISCLAIMER_ALERT_BUTTON_TITLE @"I Agree"
 
 #define HOW_TO_USE_ALERT_TITLE @"How To Use"
-#define HOW_TO_USE_ALERT_TEXT @"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Click a region on the map to go to the detailed avalanche forecast\n\nAvalanche %@ (%@)"
+#define HOW_TO_USE_ALERT_TEXT @"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Click a region on the map to go to the detailed avalanche forecast\n\nAvalanche v%@ (%@)"
 #define HOW_TO_USE_ALERT_BUTTON_TITLE @"Ok"
 
 #define NETWORK_ERROR_ALERT_TITLE @"Network Error"
