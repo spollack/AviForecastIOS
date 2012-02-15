@@ -10,6 +10,8 @@
 		2E00EE5914D2F23B00112294 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E00EE5814D2F23B00112294 /* DetailsViewController.xib */; };
 		2E3EACAD14EABA74009ED78D /* legend4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EACAC14EABA74009ED78D /* legend4@2x.png */; };
 		2E3EACAF14EABA7E009ED78D /* legend4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EACAE14EABA7E009ED78D /* legend4.png */; };
+		2E3EACB314EBF84F009ED78D /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3EACB214EBF84F009ED78D /* Appirater.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2E3EACB514EBF954009ED78D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3EACB414EBF954009ED78D /* CFNetwork.framework */; };
 		2E47CB7914E0B9F5004CE9EA /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB7814E0B9F5004CE9EA /* logo@2x.png */; };
 		2E47CB7B14E0BA03004CE9EA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB7A14E0BA03004CE9EA /* logo.png */; };
 		2E47CB8114E0C0D3004CE9EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB8014E0C0D3004CE9EA /* Default.png */; };
@@ -54,6 +56,9 @@
 		2E00EE5814D2F23B00112294 /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailsViewController.xib; path = ../DetailsViewController.xib; sourceTree = "<group>"; };
 		2E3EACAC14EABA74009ED78D /* legend4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend4@2x.png"; sourceTree = "<group>"; };
 		2E3EACAE14EABA7E009ED78D /* legend4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend4.png; sourceTree = "<group>"; };
+		2E3EACB114EBF84F009ED78D /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
+		2E3EACB214EBF84F009ED78D /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
+		2E3EACB414EBF954009ED78D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2E47CB7814E0B9F5004CE9EA /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		2E47CB7A14E0BA03004CE9EA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2E47CB8014E0C0D3004CE9EA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -127,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E3EACB514EBF954009ED78D /* CFNetwork.framework in Frameworks */,
 				2E5E4C7414D73F3400CAA36C /* SystemConfiguration.framework in Frameworks */,
 				2EC6DCA914BF54B7005D3EC1 /* CoreLocation.framework in Frameworks */,
 				2EC6DCA714BF54B1005D3EC1 /* MapKit.framework in Frameworks */,
@@ -140,6 +146,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E3EACB014EBF84F009ED78D /* Appirater */ = {
+			isa = PBXGroup;
+			children = (
+				2E3EACB114EBF84F009ED78D /* Appirater.h */,
+				2E3EACB214EBF84F009ED78D /* Appirater.m */,
+			);
+			path = Appirater;
+			sourceTree = "<group>";
+		};
 		2E5E4C6914D73CE800CAA36C /* RNCachingURLProtocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +245,7 @@
 				2E5E4C6914D73CE800CAA36C /* RNCachingURLProtocol */,
 				2E5E4C7514D7437C00CAA36C /* Reachability */,
 				2EA9FB0A14D375AB001633E1 /* FlurryAnalytics */,
+				2E3EACB014EBF84F009ED78D /* Appirater */,
 				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
 				2EC6DC6C14BF52FC005D3EC1 /* Products */,
 			);
@@ -246,6 +262,7 @@
 		2EC6DC6E14BF52FC005D3EC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E3EACB414EBF954009ED78D /* CFNetwork.framework */,
 				2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */,
 				2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */,
 				2EC6DCA614BF54B1005D3EC1 /* MapKit.framework */,
@@ -406,6 +423,7 @@
 				2E5E4C6F14D73CE800CAA36C /* RNCachingURLProtocol.m in Sources */,
 				2E5E4C7814D7437C00CAA36C /* Reachability.m in Sources */,
 				2E47CB8C14E15D57004CE9EA /* DangerScaleViewController.m in Sources */,
+				2E3EACB314EBF84F009ED78D /* Appirater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +479,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -507,6 +526,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

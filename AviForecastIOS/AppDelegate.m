@@ -10,14 +10,16 @@
 #import "MainViewController.h"
 #import "FlurryAnalytics.h"
 #import "RNCachingURLProtocol.h"
+#import "Appirater.h"
 
 
-// NOTE on iOS4 support
+// NOTE on iOS4/armv6 support
 //
 // if or when we drop iOS4/iPhone 3G support, we can make the following changes:
 // 1) for all properties, change "unsafe_unretained" to "weak" (ARC)
 // 2) no longer need the JSONKit library (AFNetworking will use NSJSONSerialization instead)
 // 3) remove armv6 from build settings / architecture (was needed for iPhone 3G hardware)
+// 4) add armv7 to Required device capabilities
 
 
 @implementation AppDelegate
@@ -53,6 +55,9 @@ void uncaughtExceptionHandler(NSException * exception)
     self.window.rootViewController = self.mainViewController;
     [self.window makeKeyAndVisible];
     
+    // encourage users to rate the app in the app store
+    [Appirater appLaunched:YES];
+    
     return YES;
 }
 							
@@ -77,6 +82,8 @@ void uncaughtExceptionHandler(NSException * exception)
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
+    
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
