@@ -30,7 +30,7 @@
 #define DISCLAIMER_ALERT_BUTTON_TITLE @"I Agree"
 
 #define HOW_TO_USE_ALERT_TITLE @"How To Use"
-#define HOW_TO_USE_ALERT_TEXT @"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Click a region on the map to go to the detailed avalanche forecast"
+#define HOW_TO_USE_ALERT_TEXT @"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Click a region on the map to go to the detailed avalanche forecast\n\nAvalanche %@ (%@)"
 #define HOW_TO_USE_ALERT_BUTTON_TITLE @"Ok"
 
 #define NETWORK_ERROR_ALERT_TITLE @"Network Error"
@@ -353,7 +353,11 @@
 }
 
 - (IBAction)infoPressed {
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:HOW_TO_USE_ALERT_TITLE message:HOW_TO_USE_ALERT_TEXT delegate:self cancelButtonTitle:HOW_TO_USE_ALERT_BUTTON_TITLE otherButtonTitles:nil];
+    NSString * version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]; 
+    NSString * build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]; 
+    NSString * alertText = [NSString stringWithFormat:HOW_TO_USE_ALERT_TEXT, version, build];
+    
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:HOW_TO_USE_ALERT_TITLE message:alertText delegate:self cancelButtonTitle:HOW_TO_USE_ALERT_BUTTON_TITLE otherButtonTitles:nil];
     [alertView show];
 }
 
