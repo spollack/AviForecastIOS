@@ -9,6 +9,16 @@
 #import "NetworkEngine.h"
 #import "RegionData.h"
 
+// NOTE to test against localhost, uncomment the following line
+//#define LOCAL_TEST
+#ifdef LOCAL_TEST
+#	define REGIONS_URL @"http://localhost:5000/v1/regions.json"
+#	define FORECASTS_URL @"http://localhost:5000/v1/forecasts.json"
+#else
+#	define REGIONS_URL @"http://aviforecast.herokuapp.com/v1/regions.json"
+#	define FORECASTS_URL @"http://aviforecast.herokuapp.com/v1/forecasts.json"
+#endif
+
 @implementation NetworkEngine
 
 - (id) init
@@ -24,8 +34,7 @@
 
 - (void) loadRegions:(RegionResponseBlock)dataBlock success:(SuccessCompletionBlock)successBlock failure:(FailureCompletionBlock)failureBlock
 {
-//    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/regions.json"];
-    NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/regions.json"];
+    NSURL * url = [NSURL URLWithString:REGIONS_URL];
     
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
@@ -87,8 +96,7 @@
 
 - (void) loadForecasts:(ForecastResponseBlock)dataBlock success:(SuccessCompletionBlock)successBlock failure:(FailureCompletionBlock)failureBlock
 {
-//    NSURL * url = [NSURL URLWithString:@"http://localhost:5000/v1/forecasts.json"];
-    NSURL * url = [NSURL URLWithString:@"http://aviforecast.herokuapp.com/v1/forecasts.json"];
+    NSURL * url = [NSURL URLWithString:FORECASTS_URL];
     
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
 
