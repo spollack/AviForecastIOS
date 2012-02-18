@@ -9,14 +9,21 @@
 #import "NetworkEngine.h"
 #import "RegionData.h"
 
-// NOTE to test against localhost, uncomment the following line
-//#define LOCAL_TEST
-#ifdef LOCAL_TEST
+// NOTE set the server environment to run against; defaults to the PRODUCTION env
+//#define LOCALHOST
+//#define STAGING
+
+#ifdef LOCALHOST
 #	define REGIONS_URL @"http://localhost:5000/v1/regions.json"
 #	define FORECASTS_URL @"http://localhost:5000/v1/forecasts.json"
 #else
-#	define REGIONS_URL @"http://aviforecast.herokuapp.com/v1/regions.json"
-#	define FORECASTS_URL @"http://aviforecast.herokuapp.com/v1/forecasts.json"
+#   ifdef STAGING
+#	    define REGIONS_URL @"http://aviforecast-staging.herokuapp.com/v1/regions.json"
+#	    define FORECASTS_URL @"http://aviforecast-staging.herokuapp.com/v1/forecasts.json"
+#   else // PRODUCTION
+#	    define REGIONS_URL @"http://aviforecast.herokuapp.com/v1/regions.json"
+#	    define FORECASTS_URL @"http://aviforecast.herokuapp.com/v1/forecasts.json"
+#   endif
 #endif
 
 @implementation NetworkEngine
