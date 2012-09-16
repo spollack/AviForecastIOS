@@ -56,6 +56,12 @@ void uncaughtExceptionHandler(NSException * exception)
     [self.window makeKeyAndVisible];
     
     // encourage users to rate the app in the app store
+    [Appirater setAppId:@"501231389"];
+    [Appirater setDaysUntilPrompt:0];
+    [Appirater setUsesUntilPrompt:4];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:1];
+    // [Appirater setDebug:YES]; // NOTE for testing purposes
     [Appirater appLaunched:YES];
     
     return YES;
