@@ -17,8 +17,6 @@
 		2E47CB8314E0C0DC004CE9EA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB8214E0C0DC004CE9EA /* Default@2x.png */; };
 		2E47CB8914E15B31004CE9EA /* DangerScaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB8814E15B31004CE9EA /* DangerScaleViewController.xib */; };
 		2E47CB8C14E15D57004CE9EA /* DangerScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47CB8B14E15D57004CE9EA /* DangerScaleViewController.m */; };
-		2E47CB9214E16F70004CE9EA /* dangerScaleFront@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB9114E16F70004CE9EA /* dangerScaleFront@2x.jpg */; };
-		2E47CB9414E16F77004CE9EA /* dangerScaleFront.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E47CB9314E16F77004CE9EA /* dangerScaleFront.jpg */; };
 		2E5D1DA914D04D7C007AD25A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */; };
 		2E5E4C7414D73F3400CAA36C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */; };
 		2E5E4C7814D7437C00CAA36C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E4C7714D7437C00CAA36C /* Reachability.m */; };
@@ -36,6 +34,7 @@
 		2E95308616058681006C5191 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95307C16058681006C5191 /* AFXMLRequestOperation.m */; };
 		2E95308716058681006C5191 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95307E16058681006C5191 /* UIImageView+AFNetworking.m */; };
 		2E95308916058908006C5191 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E95308816058908006C5191 /* Default-568h@2x.png */; };
+		2E95309116069FA2006C5191 /* dangerScaleFrontLarge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E95309016069FA1006C5191 /* dangerScaleFrontLarge.jpg */; };
 		2EA9C9FE14BFC15A008DD986 /* NetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9C9FD14BFC15A008DD986 /* NetworkEngine.m */; };
 		2EAA4E2214C874D500D93E24 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAA4E2114C874D500D93E24 /* DataManager.m */; };
 		2EAA9AE714D2EA60007AC5A3 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAA9AE614D2EA60007AC5A3 /* MainViewController.xib */; };
@@ -64,8 +63,6 @@
 		2E47CB8814E15B31004CE9EA /* DangerScaleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DangerScaleViewController.xib; sourceTree = "<group>"; };
 		2E47CB8A14E15D57004CE9EA /* DangerScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DangerScaleViewController.h; sourceTree = "<group>"; };
 		2E47CB8B14E15D57004CE9EA /* DangerScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DangerScaleViewController.m; sourceTree = "<group>"; };
-		2E47CB9114E16F70004CE9EA /* dangerScaleFront@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dangerScaleFront@2x.jpg"; sourceTree = "<group>"; };
-		2E47CB9314E16F77004CE9EA /* dangerScaleFront.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dangerScaleFront.jpg; sourceTree = "<group>"; };
 		2E4E643714C0B03300D11461 /* contants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contants.h; sourceTree = "<group>"; };
 		2E5D1DA714D04D7C007AD25A /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
@@ -99,6 +96,7 @@
 		2E95307D16058681006C5191 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		2E95307E16058681006C5191 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		2E95308816058908006C5191 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2E95309016069FA1006C5191 /* dangerScaleFrontLarge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dangerScaleFrontLarge.jpg; sourceTree = "<group>"; };
 		2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2EA9C9FC14BFC15A008DD986 /* NetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkEngine.h; sourceTree = "<group>"; };
 		2EA9C9FD14BFC15A008DD986 /* NetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkEngine.m; sourceTree = "<group>"; };
@@ -181,8 +179,7 @@
 				2E47CB8014E0C0D3004CE9EA /* Default.png */,
 				2E3EACAC14EABA74009ED78D /* legend4@2x.png */,
 				2E3EACAE14EABA7E009ED78D /* legend4.png */,
-				2E47CB9114E16F70004CE9EA /* dangerScaleFront@2x.jpg */,
-				2E47CB9314E16F77004CE9EA /* dangerScaleFront.jpg */,
+				2E95309016069FA1006C5191 /* dangerScaleFrontLarge.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -367,11 +364,10 @@
 				2E47CB8114E0C0D3004CE9EA /* Default.png in Resources */,
 				2E47CB8314E0C0DC004CE9EA /* Default@2x.png in Resources */,
 				2E47CB8914E15B31004CE9EA /* DangerScaleViewController.xib in Resources */,
-				2E47CB9214E16F70004CE9EA /* dangerScaleFront@2x.jpg in Resources */,
-				2E47CB9414E16F77004CE9EA /* dangerScaleFront.jpg in Resources */,
 				2E3EACAD14EABA74009ED78D /* legend4@2x.png in Resources */,
 				2E3EACAF14EABA7E009ED78D /* legend4.png in Resources */,
 				2E95308916058908006C5191 /* Default-568h@2x.png in Resources */,
+				2E95309116069FA2006C5191 /* dangerScaleFrontLarge.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
