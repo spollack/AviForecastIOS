@@ -104,6 +104,8 @@
     self.scrollView.minimumZoomScale = minScale;
     
     self.scrollView.maximumZoomScale = 1.0f;
+    
+    // NOTE set the initial zoom to fill the scroll view vertically with the image
     self.scrollView.zoomScale = scaleHeight;
     
     [self centerScrollViewContents];
