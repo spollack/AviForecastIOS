@@ -363,16 +363,16 @@
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (alertView.title == DISCLAIMER_ALERT_TITLE) {
+    if ([alertView.title isEqualToString:DISCLAIMER_ALERT_TITLE]) {
         // update the settings to show disclaimer has been accepted
         [self.settings setObject:@"yes" forKey:ACCEPTED_DISCLAIMER_KEY];
         [self saveSettings];
     } 
-    else if (alertView.title == NETWORK_ERROR_ALERT_TITLE) {
+    else if ([alertView.title isEqualToString:NETWORK_ERROR_ALERT_TITLE]) {
         // try loading the data again
         [self loadData];
     }
-    else if (alertView.title == HOW_TO_USE_ALERT_TITLE) {
+    else if ([alertView.title isEqualToString:HOW_TO_USE_ALERT_TITLE]) {
         // do nothing
     }
 }
