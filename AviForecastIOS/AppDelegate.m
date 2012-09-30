@@ -45,6 +45,10 @@ void uncaughtExceptionHandler(NSException * exception)
     [FlurryAnalytics startSession:@"9VCKPEJWLABZVBVJ2JS3"];
 #endif
     
+    // explain to the user why we need location services
+    CLLocationManager * locationManager = [[CLLocationManager alloc] init];
+    [locationManager setPurpose:@"In order to position the forecast map around your current location"];
+    
     // set up persistent URL caching
     // NOTE this cache is not currently size limited in any way...
     [NSURLProtocol registerClass:[RNCachingURLProtocol class]];

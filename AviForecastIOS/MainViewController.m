@@ -88,7 +88,7 @@
         CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
         
         if (location.latitude < 0.1 && location.longitude < 0.1) {
-            // this can happen if the user does not allow the app to access their location
+            // NOTE this can happen if the user did not (yet) allow the app to access their location
             DLog(@"reported user location is near (0,0), not updating");
         } else {
             DLog(@"updating map position based on user location");
