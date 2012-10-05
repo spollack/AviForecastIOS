@@ -47,7 +47,6 @@ NSString *const kAppiraterDeclinedToRate			= @"kAppiraterDeclinedToRate";
 NSString *const kAppiraterReminderRequestDate		= @"kAppiraterReminderRequestDate";
 
 NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=APP_ID";
-NSString *templateReviewURLiOS6 = @"itms-apps://itunes.apple.com/LANGUAGE/app/idAPP_ID";
 
 static NSString *_appId;
 static double _daysUntilPrompt = 30;
@@ -55,6 +54,7 @@ static NSInteger _usesUntilPrompt = 20;
 static NSInteger _significantEventsUntilPrompt = -1;
 static double _timeBeforeReminding = 1;
 static BOOL _debug = NO;
+static id<AppiraterDelegate> _delegate;
 
 @interface Appirater ()
 - (BOOL)connectedToNetwork;
@@ -92,7 +92,9 @@ static BOOL _debug = NO;
 + (void) setDebug:(BOOL)debug {
     _debug = debug;
 }
-
++ (void)setDelegate:(id<AppiraterDelegate>)delegate{
+	_delegate = delegate;
+}
 
 - (BOOL)connectedToNetwork {
     // Create zero addy
@@ -132,6 +134,7 @@ static BOOL _debug = NO;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             appirater = [[Appirater alloc] init];
+			appirater.delegate = _delegate;
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:
                 UIApplicationWillResignActiveNotification object:nil];
         });
@@ -148,6 +151,10 @@ static BOOL _debug = NO;
 											   otherButtonTitles:APPIRATER_RATE_BUTTON, APPIRATER_RATE_LATER, nil];
 	self.ratingAlert = alertView;
 	[alertView show];
+	
+	if(self.delegate && [self.delegate respondsToSelector:@selector(appiraterDidDisplayAlert:)]){
+		[self.delegate appiraterDidDisplayAlert:self];
+	}
 }
 
 - (BOOL)ratingConditionsHaveBeenMet {
@@ -359,16 +366,8 @@ static BOOL _debug = NO;
 #else
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-	// added work arround for wrong URL Scheme used in new App store on iOS 6
-	NSString *reviewURL;
-	if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
-        reviewURL = [templateReviewURLiOS6 stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%@", _appId]];
-        
-        reviewURL = [reviewURL stringByReplacingOccurrencesOfString:@"LANGUAGE" withString:[NSString stringWithFormat:@"%@", [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode]]];
-		
-	} else {
-        reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%@", _appId]];
-	}
+	// this URL Scheme should work in the iOS 6 App Store in addition to older stores
+	NSString *reviewURL = [templateReviewURL stringByReplacingOccurrencesOfString:@"APP_ID" withString:[NSString stringWithFormat:@"%@", _appId]];
 	
 	[userDefaults setBool:YES forKey:kAppiraterRatedCurrentVersion];
 	[userDefaults synchronize];
@@ -385,18 +384,27 @@ static BOOL _debug = NO;
 			// they don't want to rate it
 			[userDefaults setBool:YES forKey:kAppiraterDeclinedToRate];
 			[userDefaults synchronize];
+			if(self.delegate && [self.delegate respondsToSelector:@selector(appiraterDidDeclineToRate:)]){
+				[self.delegate appiraterDidDeclineToRate:self];
+			}
 			break;
 		}
 		case 1:
 		{
 			// they want to rate it
 			[Appirater rateApp];
+			if(self.delegate && [self.delegate respondsToSelector:@selector(appiraterDidOptToRate:)]){
+				[self.delegate appiraterDidOptToRate:self];
+			}
 			break;
 		}
 		case 2:
 			// remind them later
 			[userDefaults setDouble:[[NSDate date] timeIntervalSince1970] forKey:kAppiraterReminderRequestDate];
 			[userDefaults synchronize];
+			if(self.delegate && [self.delegate respondsToSelector:@selector(appiraterDidOptToRemindLater:)]){
+				[self.delegate appiraterDidOptToRemindLater:self];
+			}
 			break;
 		default:
 			break;

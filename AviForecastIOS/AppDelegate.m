@@ -65,7 +65,7 @@ void uncaughtExceptionHandler(NSException * exception)
     [Appirater setUsesUntilPrompt:4];
     [Appirater setSignificantEventsUntilPrompt:-1];
     [Appirater setTimeBeforeReminding:1];
-    // [Appirater setDebug:YES]; // NOTE for testing purposes
+    //[Appirater setDebug:YES]; // NOTE for testing purposes
     [Appirater appLaunched:YES];
     
     return YES;

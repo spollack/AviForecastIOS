@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E00EE5914D2F23B00112294 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E00EE5814D2F23B00112294 /* DetailsViewController.xib */; };
+		2E055274161E82C8009B2E12 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E055272161E82C8009B2E12 /* Appirater.m */; };
 		2E3EACAD14EABA74009ED78D /* legend4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EACAC14EABA74009ED78D /* legend4@2x.png */; };
 		2E3EACAF14EABA7E009ED78D /* legend4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EACAE14EABA7E009ED78D /* legend4.png */; };
 		2E3EACB514EBF954009ED78D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3EACB414EBF954009ED78D /* CFNetwork.framework */; };
@@ -23,7 +24,6 @@
 		2E9003D4161803C80084C0C0 /* dangerScaleFrontLarge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E9003D3161803C80084C0C0 /* dangerScaleFrontLarge.jpg */; };
 		2E9530601604FACF006C5191 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95305F1604FACF006C5191 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2E9530631604FB49006C5191 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9530621604FB49006C5191 /* libFlurryAnalytics.a */; };
-		2E9530681605752C006C5191 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9530671605752C006C5191 /* Appirater.m */; };
 		2E95306B160583E8006C5191 /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95306A160583E8006C5191 /* RNCachingURLProtocol.m */; };
 		2E95307F16058681006C5191 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95306D16058681006C5191 /* AFHTTPClient.m */; };
 		2E95308016058681006C5191 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95306F16058681006C5191 /* AFHTTPRequestOperation.m */; };
@@ -53,6 +53,9 @@
 
 /* Begin PBXFileReference section */
 		2E00EE5814D2F23B00112294 /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailsViewController.xib; path = ../DetailsViewController.xib; sourceTree = "<group>"; };
+		2E055271161E82C8009B2E12 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
+		2E055272161E82C8009B2E12 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
+		2E055273161E82C8009B2E12 /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
 		2E3EACAC14EABA74009ED78D /* legend4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend4@2x.png"; sourceTree = "<group>"; };
 		2E3EACAE14EABA7E009ED78D /* legend4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend4.png; sourceTree = "<group>"; };
 		2E3EACB414EBF954009ED78D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -73,8 +76,6 @@
 		2E95305F1604FACF006C5191 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		2E9530611604FB49006C5191 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		2E9530621604FB49006C5191 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
-		2E9530661605752C006C5191 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
-		2E9530671605752C006C5191 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		2E953069160583E8006C5191 /* RNCachingURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCachingURLProtocol.h; sourceTree = "<group>"; };
 		2E95306A160583E8006C5191 /* RNCachingURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCachingURLProtocol.m; sourceTree = "<group>"; };
 		2E95306C16058681006C5191 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -145,8 +146,9 @@
 		2E3EACB014EBF84F009ED78D /* Appirater */ = {
 			isa = PBXGroup;
 			children = (
-				2E9530661605752C006C5191 /* Appirater.h */,
-				2E9530671605752C006C5191 /* Appirater.m */,
+				2E055271161E82C8009B2E12 /* Appirater.h */,
+				2E055272161E82C8009B2E12 /* Appirater.m */,
+				2E055273161E82C8009B2E12 /* AppiraterDelegate.h */,
 			);
 			path = Appirater;
 			sourceTree = "<group>";
@@ -405,7 +407,6 @@
 				2E5E4C7814D7437C00CAA36C /* Reachability.m in Sources */,
 				2E47CB8C14E15D57004CE9EA /* DangerScaleViewController.m in Sources */,
 				2E9530601604FACF006C5191 /* JSONKit.m in Sources */,
-				2E9530681605752C006C5191 /* Appirater.m in Sources */,
 				2E95306B160583E8006C5191 /* RNCachingURLProtocol.m in Sources */,
 				2E95307F16058681006C5191 /* AFHTTPClient.m in Sources */,
 				2E95308016058681006C5191 /* AFHTTPRequestOperation.m in Sources */,
@@ -416,6 +417,7 @@
 				2E95308516058681006C5191 /* AFURLConnectionOperation.m in Sources */,
 				2E95308616058681006C5191 /* AFXMLRequestOperation.m in Sources */,
 				2E95308716058681006C5191 /* UIImageView+AFNetworking.m in Sources */,
+				2E055274161E82C8009B2E12 /* Appirater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
