@@ -60,6 +60,19 @@
     [super viewDidUnload];
 }
 
+// for iOS6+
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+// for iOS6+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+// for iOS5 and earlier
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // we allow this view to be flipped to either landscape, plus portrait

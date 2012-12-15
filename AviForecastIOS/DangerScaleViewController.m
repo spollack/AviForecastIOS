@@ -138,6 +138,19 @@
     [super viewDidUnload];
 }
 
+// for iOS6+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+// for iOS6+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+// for iOS5 and earlier
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // this view only supports portrait
