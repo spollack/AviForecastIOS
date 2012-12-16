@@ -217,11 +217,10 @@
         if (!regionData.URL) {
             NSAssert(false, @"regionData.URL should not be nil!");
         } else {
-            // inform the view of the URL associated with the selected region
-
+            // inform the view of the URL and region name for the selected region
             NSURL * URL = [NSURL URLWithString:regionData.URL]; 
-            
             [detailsViewController setURL:URL];
+            [detailsViewController setCustomTitle:regionData.displayName];
             
             DLog(@"starting details view");
             

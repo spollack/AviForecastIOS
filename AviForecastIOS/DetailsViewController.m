@@ -13,8 +13,10 @@
 @implementation DetailsViewController
 
 @synthesize URL = _URL;
+@synthesize customTitle = _customTitle;
 @synthesize delegate = _delegate;
 @synthesize webView = _webView;
+@synthesize uiNavigationItem = _uiNavigationItem;
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
@@ -44,6 +46,10 @@
 {
     [super viewDidLoad];
     
+    if (self.customTitle) {
+        [self.uiNavigationItem setTitle:self.customTitle];
+    }
+    
     if (self.URL) {
         NSURLRequest * request = [[NSURLRequest alloc] initWithURL:self.URL];
         [self.webView loadRequest:request];
@@ -57,6 +63,7 @@
     [self setWebView:nil];
     [self setURL:nil];
     
+    [self setUiNavigationItem:nil];
     [super viewDidUnload];
 }
 
