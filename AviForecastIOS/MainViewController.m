@@ -30,7 +30,7 @@
 #define DISCLAIMER_ALERT_BUTTON_TITLE @"I Agree"
 
 #define HOW_TO_USE_ALERT_TITLE @"How To Use"
-#define HOW_TO_USE_ALERT_TEXT @"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Tap a region on the map to go to the detailed avalanche forecast\n\nAvalanche Forecasts iOS v%@ (%@)"
+#define HOW_TO_USE_ALERT_TEXT @"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Tap a region on the map to go to the detailed avalanche forecast\n\n- Even regions shown as \"No Rating\" on the map often have more information available in the detailed forecast\n\nAvalanche Forecasts iOS v%@ (%@)"
 #define HOW_TO_USE_ALERT_BUTTON_TITLE @"Ok"
 
 #define NETWORK_ERROR_ALERT_TITLE @"Network Error"
@@ -127,6 +127,24 @@
     }
         
     return overlayView;
+}
+
+- (void) highlightOverlay:(OverlayView *)overlayView
+{
+    overlayView.strokeColor = [UIColor colorWithRed:(0/255.0) green:(0/255.0) blue:(128/255.0) alpha:OVERLAY_ALPHA];
+    overlayView.lineWidth = 5;
+    
+    // redraw the overlay
+    [overlayView setNeedsDisplay];
+}
+
+- (void) unhighlightOverlay:(OverlayView *)overlayView
+{
+    overlayView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:OVERLAY_ALPHA];
+    overlayView.lineWidth = 2;
+    
+    // redraw the overlay
+    [overlayView setNeedsDisplay];
 }
 
 - (void) refreshOverlay:(NSString *)regionId
@@ -275,8 +293,19 @@
         if (mapCoordinateIsInPolygon) {
             DLog(@"tap in overlay detected; regionId: %@", overlayView.regionId);
             
-            // respond to the selection by changing to the details view
-            [self showDetailsView:overlayView.regionId];     
+            // highlight the selected region
+            [self highlightOverlay:overlayView];
+            
+            // wait a short bit
+            double delayInSeconds = 0.5;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                // respond to the selection by changing to the details view
+                [self showDetailsView:overlayView.regionId];
+
+                // turn off the highlight
+                [self unhighlightOverlay:overlayView];
+            });
 
             break;
         }
