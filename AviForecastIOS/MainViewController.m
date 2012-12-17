@@ -45,6 +45,7 @@
 @synthesize settings = _settings;
 @synthesize dataManager = _dataManager;
 @synthesize overlayViewDict = _overlayViewDict;
+@synthesize spinner = _spinner;
 @synthesize haveUpdatedUserLocation = _haveUpdatedUserLocation;
 @synthesize mode = _mode; 
 
@@ -316,18 +317,28 @@
 {
     DLog(@"updateAllForecastData called");
     
+    [self.spinner startAnimating];
+
     // load the forecasts, then refresh each overlay as new data arrives
     [self.dataManager loadForecasts:
         ^(NSString * regionId) {
             [self refreshOverlay:regionId];
         }
-        success:^() {}
-        failure:^() {}
+        success:^() {
+            [self.spinner stopAnimating];
+        }
+        failure:^() {
+            [self.spinner stopAnimating];
+        }
     ];
 }
 
 - (void)loadData
 {
+    DLog(@"loadData called");
+
+    [self.spinner startAnimating];
+
     [self.dataManager loadRegions:
         ^(NSString * regionId) {
             
@@ -340,8 +351,11 @@
                 [self.map addOverlay:regionData];
             }
         }
-        success:^() {}
+        success:^() {
+            [self.spinner stopAnimating];
+        }
         failure:^() {
+            [self.spinner stopAnimating];
 #ifndef DEBUG
             [FlurryAnalytics logEvent:@"INITIAL_DATA_LOAD_FAILED"];
 #endif
@@ -454,6 +468,7 @@
     [self setDataManager:nil];
     [self setOverlayViewDict:nil];
     
+    [self setSpinner:nil];
     [super viewDidUnload];
 }
 
