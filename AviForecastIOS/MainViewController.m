@@ -116,8 +116,7 @@
     if ([overlay isKindOfClass:[RegionData class]]) {
         RegionData * regionData = (RegionData *)overlay; 
         overlayView = [[OverlayView alloc] initWithPolygon:regionData.polygon regionId:regionData.regionId]; 
-        overlayView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:OVERLAY_ALPHA];
-        overlayView.lineWidth = 2;
+        [self setStandardOutline:overlayView];
 
         // set the aviLevel-based overlay color
         int aviLevel = [regionData aviLevelForMode: self.mode];                        
@@ -130,10 +129,21 @@
     return overlayView;
 }
 
-- (void) highlightOverlay:(OverlayView *)overlayView
+- (void)setStandardOutline:(OverlayView *)overlayView
+{
+    overlayView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:OVERLAY_ALPHA];
+    overlayView.lineWidth = 2;
+}
+
+- (void)setHighlightOutline:(OverlayView *)overlayView
 {
     overlayView.strokeColor = [UIColor colorWithRed:(0/255.0) green:(0/255.0) blue:(128/255.0) alpha:OVERLAY_ALPHA];
     overlayView.lineWidth = 5;
+}
+
+- (void) highlightOverlay:(OverlayView *)overlayView
+{
+    [self setHighlightOutline:overlayView];
     
     // redraw the overlay
     [overlayView setNeedsDisplay];
@@ -141,8 +151,7 @@
 
 - (void) unhighlightOverlay:(OverlayView *)overlayView
 {
-    overlayView.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:OVERLAY_ALPHA];
-    overlayView.lineWidth = 2;
+    [self setStandardOutline:overlayView];
     
     // redraw the overlay
     [overlayView setNeedsDisplay];
