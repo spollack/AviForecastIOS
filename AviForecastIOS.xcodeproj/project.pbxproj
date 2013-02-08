@@ -470,7 +470,7 @@
 		2E47CB9614E20731004CE9EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Seth Pollack";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
@@ -484,6 +484,7 @@
 					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -523,7 +524,7 @@
 		2EC6DC9F14BF52FC005D3EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seth Pollack (8DWRZQ3M3G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AviForecastIOS/AviForecastIOS-Prefix.pch";
 				INFOPLIST_FILE = "AviForecastIOS/AviForecastIOS-Info.plist";
@@ -537,7 +538,7 @@
 					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A9462AE1-AE1A-47B8-8DC0-3347ED9D0D2A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
