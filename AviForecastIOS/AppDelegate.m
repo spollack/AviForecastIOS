@@ -60,7 +60,7 @@ void uncaughtExceptionHandler(NSException * exception)
     // encourage users to rate the app in the app store
     [Appirater setAppId:@"501231389"];
     [Appirater setDaysUntilPrompt:0];
-    [Appirater setUsesUntilPrompt:4];
+    [Appirater setUsesUntilPrompt:2];
     [Appirater setSignificantEventsUntilPrompt:-1];
     [Appirater setTimeBeforeReminding:1];
     //[Appirater setDebug:YES]; // NOTE for testing purposes
