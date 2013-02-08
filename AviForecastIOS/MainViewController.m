@@ -203,6 +203,10 @@
     if (newMode != self.mode) {
         self.mode = newMode;
         
+#ifndef DEBUG
+        [Flurry logEvent:@"TIMEFRAME_MODE_CHANGED"];
+#endif
+        
         [self refreshAllOverlays];
     }
 }
