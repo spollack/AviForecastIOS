@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "RNCachingURLProtocol.h"
 #import "Appirater.h"
 
@@ -29,7 +29,7 @@ void uncaughtExceptionHandler(NSException * exception)
 {
     DLog(@"uncaught exception: %@", exception);
 #ifndef DEBUG
-    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+    [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
 #endif
 }
 
@@ -40,7 +40,7 @@ void uncaughtExceptionHandler(NSException * exception)
 
     // begin statistics tracking
 #ifndef DEBUG
-    [FlurryAnalytics startSession:@"9VCKPEJWLABZVBVJ2JS3"];
+    [Flurry startSession:@"N9YFD4HPQDDPHCSMXQ44"];
 #endif
     
     // explain to the user why we need location services

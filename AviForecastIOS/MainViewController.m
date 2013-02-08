@@ -11,7 +11,7 @@
 #import "RegionData.h"
 #import "DataManager.h"
 #import "OverlayView.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 
 
 // transparency level for overlays
@@ -99,7 +99,7 @@
             
             // record an event
 #ifndef DEBUG
-            [FlurryAnalytics setLatitude:userLocation.location.coordinate.latitude
+            [Flurry setLatitude:userLocation.location.coordinate.latitude
                       longitude:userLocation.location.coordinate.longitude
                       horizontalAccuracy:userLocation.location.horizontalAccuracy
                       verticalAccuracy:userLocation.location.verticalAccuracy]; 
@@ -254,7 +254,7 @@
             
             // log a timed event
 #ifndef DEBUG
-            [FlurryAnalytics logEvent:@"DETAILS_VIEW" 
+            [Flurry logEvent:@"DETAILS_VIEW" 
                        withParameters:[NSDictionary dictionaryWithObjectsAndKeys:regionId, @"regionId", nil] timed:YES];
 #endif            
             [self presentModalViewController:detailsViewController animated:YES];
@@ -270,7 +270,7 @@
     
     // close the timed event
 #ifndef DEBUG
-    [FlurryAnalytics endTimedEvent:@"DETAILS_VIEW" withParameters:nil];
+    [Flurry endTimedEvent:@"DETAILS_VIEW" withParameters:nil];
 #endif
     
     [self dismissModalViewControllerAnimated:YES];
@@ -366,7 +366,7 @@
         failure:^() {
             [self.spinner stopAnimating];
 #ifndef DEBUG
-            [FlurryAnalytics logEvent:@"INITIAL_DATA_LOAD_FAILED"];
+            [Flurry logEvent:@"INITIAL_DATA_LOAD_FAILED"];
 #endif
             
             UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:NETWORK_ERROR_ALERT_TITLE message:NETWORK_ERROR_ALERT_TEXT delegate:self cancelButtonTitle:NETWORK_ERROR_ALERT_BUTTON_TITLE otherButtonTitles:nil];

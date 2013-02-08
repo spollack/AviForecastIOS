@@ -9,7 +9,7 @@
 #import "DataManager.h"
 #import "NetworkEngine.h"
 #import "RegionData.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 
 
 @implementation DataManager
@@ -37,13 +37,13 @@
     // start timed events
     DLog(@"starting initial data load");
 #ifndef DEBUG
-    [FlurryAnalytics logEvent:@"INITIAL_DATA_LOAD" 
+    [Flurry logEvent:@"INITIAL_DATA_LOAD" 
                withParameters:nil 
                         timed:YES];
 #endif
     DLog(@"starting load regions");
 #ifndef DEBUG
-    [FlurryAnalytics logEvent:@"LOAD_REGIONS" 
+    [Flurry logEvent:@"LOAD_REGIONS" 
                withParameters:nil 
                         timed:YES];
 #endif
@@ -58,7 +58,7 @@
         {
             DLog(@"finished load regions");
 #ifndef DEBUG
-            [FlurryAnalytics endTimedEvent:@"LOAD_REGIONS" withParameters:nil];
+            [Flurry endTimedEvent:@"LOAD_REGIONS" withParameters:nil];
 #endif            
             // now that we have the regions, load the forecasts
             [self loadForecasts:dataUpdatedBlock
@@ -66,7 +66,7 @@
                 {
                     DLog(@"finished initial data load");
 #ifndef DEBUG
-                    [FlurryAnalytics endTimedEvent:@"INITIAL_DATA_LOAD" withParameters:nil];
+                    [Flurry endTimedEvent:@"INITIAL_DATA_LOAD" withParameters:nil];
 #endif
                     successBlock();
                 }
@@ -74,7 +74,7 @@
                 {
                     DLog(@"initial data load failed");
 #ifndef DEBUG
-                    [FlurryAnalytics endTimedEvent:@"INITIAL_DATA_LOAD" 
+                    [Flurry endTimedEvent:@"INITIAL_DATA_LOAD" 
                                     withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"failed", nil]];
 #endif                    
                     failureBlock();
@@ -85,12 +85,12 @@
         {
             DLog(@"load regions failed");
 #ifndef DEBUG
-            [FlurryAnalytics endTimedEvent:@"LOAD_REGIONS" 
+            [Flurry endTimedEvent:@"LOAD_REGIONS" 
                             withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"failed", nil]];
 #endif
             DLog(@"initial data load failed");
 #ifndef DEBUG
-            [FlurryAnalytics endTimedEvent:@"INITIAL_DATA_LOAD" 
+            [Flurry endTimedEvent:@"INITIAL_DATA_LOAD" 
                             withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"failed", nil]];
 #endif
             failureBlock();
@@ -103,7 +103,7 @@
     // start timed event
     DLog(@"starting load forecasts");
 #ifndef DEBUG
-    [FlurryAnalytics logEvent:@"LOAD_FORECASTS" 
+    [Flurry logEvent:@"LOAD_FORECASTS" 
                withParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%i",self.regionsDict.count], @"region count", nil] 
                         timed:YES];
 #endif
@@ -129,7 +129,7 @@
         {
             DLog(@"finished load forecasts");
 #ifndef DEBUG
-            [FlurryAnalytics endTimedEvent:@"LOAD_FORECASTS" withParameters:nil];
+            [Flurry endTimedEvent:@"LOAD_FORECASTS" withParameters:nil];
 #endif            
             successBlock();
         }
@@ -137,7 +137,7 @@
         {
             DLog(@"load forecasts failed");
 #ifndef DEBUG
-            [FlurryAnalytics endTimedEvent:@"LOAD_FORECASTS" 
+            [Flurry endTimedEvent:@"LOAD_FORECASTS" 
                             withParameters:[NSDictionary dictionaryWithObjectsAndKeys:@"true", @"failed", nil]];
 #endif            
             failureBlock();
