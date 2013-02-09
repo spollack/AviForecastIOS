@@ -30,7 +30,7 @@
 #define DISCLAIMER_ALERT_BUTTON_TITLE @"I Agree"
 
 #define HOW_TO_USE_ALERT_TITLE @"How To Use"
-#define HOW_TO_USE_ALERT_TEXT @"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Tap a region on the map to go to the detailed avalanche forecast\n\n- Even regions shown as \"No Rating\" on the map often have more information available in the detailed forecast\n\nAvalanche Forecasts iOS v%@ (%@)"
+#define HOW_TO_USE_ALERT_TEXT @"- Each avalanche forecast region is colored based on the overall danger level\n\n- Use the buttons at the bottom to select the forecast timeframe\n\n- Tap the top legend to see descriptions of the danger levels\n\n- Tap a region on the map to go to the detailed avalanche forecast\n\n- Even regions shown as \"No Rating\" on the map often have more information available in the detailed forecast\n\nAvalanche Forecasts iOS v%@ (%@%@)"
 #define HOW_TO_USE_ALERT_BUTTON_TITLE @"Ok"
 
 #define NETWORK_ERROR_ALERT_TITLE @"Network Error"
@@ -410,7 +410,12 @@
 - (IBAction)infoPressed {
     NSString * version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]; 
     NSString * build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]; 
-    NSString * alertText = [NSString stringWithFormat:HOW_TO_USE_ALERT_TEXT, version, build];
+    NSString * buildType = @"d";
+#ifndef DEBUG
+    buildType = @"r";
+#endif
+
+    NSString * alertText = [NSString stringWithFormat:HOW_TO_USE_ALERT_TEXT, version, build, buildType];
     
     UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:HOW_TO_USE_ALERT_TITLE message:alertText delegate:self cancelButtonTitle:HOW_TO_USE_ALERT_BUTTON_TITLE otherButtonTitles:nil];
     [alertView show];
