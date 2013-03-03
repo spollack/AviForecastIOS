@@ -65,7 +65,10 @@ static NSString *RNCachingURLHeader = @"X-RNCache";
   // only handle http requests we haven't marked with our header.
   if ([[[request URL] scheme] isEqualToString:@"http"] &&
       ([request valueForHTTPHeaderField:RNCachingURLHeader] == nil)) {
-    return YES;
+      // NOTE explicitly avoid touching any flurry requests, as this was causing flurry issues
+      if (![[[request URL] host] isEqualToString:@"data.flurry.com"]) {
+          return YES;
+      }
   }
   return NO;
 }
