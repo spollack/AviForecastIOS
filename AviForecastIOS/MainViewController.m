@@ -412,7 +412,7 @@
     NSString * build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]; 
     NSString * buildType = @"d";
 #ifndef DEBUG
-    buildType = @"r";
+    buildType = @"";
 #endif
 
     NSString * alertText = [NSString stringWithFormat:HOW_TO_USE_ALERT_TEXT, version, build, buildType];
