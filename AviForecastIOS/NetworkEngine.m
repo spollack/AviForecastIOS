@@ -79,7 +79,7 @@
                         RegionData * regionData = [[RegionData alloc] initWithRegionId:regionId displayName:displayName URL:URL polygon:polygon];
                                                 
                         numRegions++;
-                        DLog(@"created regionData for regionId: %@", regionId);
+//                        DLog(@"created regionData for regionId: %@", regionId);
                         
                         // invoke the callback for each region read successfully
                         dataBlock(regionData);
@@ -127,7 +127,7 @@
                         // NOTE forecast may be nil, if no forecast is currently available for this region
                                                 
                         numRegions++;
-                        DLog(@"loaded forecast for regionId: %@", regionId);
+//                        DLog(@"loaded forecast for regionId: %@", regionId);
                         
                         // invoke the callback for each region read successfully
                         dataBlock(regionId, forecast);
