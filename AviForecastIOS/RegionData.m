@@ -82,7 +82,7 @@
                     if (aviLevelObject) {
                         aviLevel = [aviLevelObject intValue];
                         lookupMatch = true;
-                        DLog(@"matching date found; regionId: %@; slot: %i; date: %@; aviLevel: %i", self.regionId, i, dateString, aviLevel);
+//                        DLog(@"matching date found; regionId: %@; slot: %i; date: %@; aviLevel: %i", self.regionId, i, dateString, aviLevel);
                         break;
                     }
                 }
