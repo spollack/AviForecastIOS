@@ -38,7 +38,12 @@ void uncaughtExceptionHandler(NSException * exception)
     // set up uncaught exception handler
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 
+    // set up persistent URL caching
+    // NOTE this cache is not currently size limited in any way...
+    [NSURLProtocol registerClass:[RNCachingURLProtocol class]];
+
     // begin statistics tracking
+//    [Flurry setDebugLogEnabled:YES];
 #ifndef DEBUG
     [Flurry startSession:@"N9YFD4HPQDDPHCSMXQ44"];
 #endif
@@ -46,10 +51,6 @@ void uncaughtExceptionHandler(NSException * exception)
     // explain to the user why we need location services
     CLLocationManager * locationManager = [[CLLocationManager alloc] init];
     [locationManager setPurpose:@"In order to position the forecast map around your current location"];
-    
-    // set up persistent URL caching
-    // NOTE this cache is not currently size limited in any way...
-    [NSURLProtocol registerClass:[RNCachingURLProtocol class]];
     
     // initialize main view
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
