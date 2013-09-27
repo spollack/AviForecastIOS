@@ -17,7 +17,6 @@
 //
 // if or when we drop iOS4 support, we can make the following changes:
 // 1) for all properties, change "unsafe_unretained" to "weak" (ARC)
-// 2) no longer need the JSONKit library (AFNetworking will use NSJSONSerialization instead)
 
 
 @implementation AppDelegate

@@ -34,7 +34,6 @@
 		2E72D23B17F5F83300F44A07 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E72D23A17F5F83300F44A07 /* Security.framework */; };
 		2E858B4917F5FBDB0085C521 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E858B4817F5FBDB0085C521 /* libFlurry_4.2.3.a */; };
 		2E9003D4161803C80084C0C0 /* dangerScaleFrontLarge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E9003D3161803C80084C0C0 /* dangerScaleFrontLarge.jpg */; };
-		2E9530601604FACF006C5191 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95305F1604FACF006C5191 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2E95306B160583E8006C5191 /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95306A160583E8006C5191 /* RNCachingURLProtocol.m */; };
 		2E95308916058908006C5191 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E95308816058908006C5191 /* Default-568h@2x.png */; };
 		2EA9C9FE14BFC15A008DD986 /* NetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA9C9FD14BFC15A008DD986 /* NetworkEngine.m */; };
@@ -97,8 +96,6 @@
 		2E858B4717F5FBDB0085C521 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		2E858B4817F5FBDB0085C521 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		2E9003D3161803C80084C0C0 /* dangerScaleFrontLarge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dangerScaleFrontLarge.jpg; sourceTree = "<group>"; };
-		2E95305E1604FACF006C5191 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		2E95305F1604FACF006C5191 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		2E953069160583E8006C5191 /* RNCachingURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCachingURLProtocol.h; sourceTree = "<group>"; };
 		2E95306A160583E8006C5191 /* RNCachingURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCachingURLProtocol.m; sourceTree = "<group>"; };
 		2E95308816058908006C5191 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -227,15 +224,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		2EC5226114D34E170083386C /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				2E95305E1604FACF006C5191 /* JSONKit.h */,
-				2E95305F1604FACF006C5191 /* JSONKit.m */,
-			);
-			path = JSONKit;
-			sourceTree = "<group>";
-		};
 		2EC6DC6014BF52FC005D3EC1 = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +231,6 @@
 				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
 				2E31CD1017F5FE9A00DE4BF6 /* AFNetworking */,
 				2E858B4617F5FBDB0085C521 /* Flurry */,
-				2EC5226114D34E170083386C /* JSONKit */,
 				2E5E4C6914D73CE800CAA36C /* RNCachingURLProtocol */,
 				2E5E4C7514D7437C00CAA36C /* Reachability */,
 				2E3EACB014EBF84F009ED78D /* Appirater */,
@@ -421,7 +408,6 @@
 				2E31CD2B17F5FE9A00DE4BF6 /* AFXMLRequestOperation.m in Sources */,
 				2E5E4C7814D7437C00CAA36C /* Reachability.m in Sources */,
 				2E47CB8C14E15D57004CE9EA /* DangerScaleViewController.m in Sources */,
-				2E9530601604FACF006C5191 /* JSONKit.m in Sources */,
 				2E31CD2517F5FE9A00DE4BF6 /* AFHTTPRequestOperation.m in Sources */,
 				2E31CD2717F5FE9A00DE4BF6 /* AFJSONRequestOperation.m in Sources */,
 				2E95306B160583E8006C5191 /* RNCachingURLProtocol.m in Sources */,
@@ -485,14 +471,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/Flurry\\\\\\\"",
-					/Users/spollack/workspace/AviForecastIOS,
 					/Users/spollack/workspace/AviForecastIOS/Flurry,
 				);
-				"LIBRARY_SEARCH_PATHS[arch=*]" = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Flurry\"",
-				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -546,14 +527,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/Flurry\\\\\\\"",
-					/Users/spollack/workspace/AviForecastIOS,
 					/Users/spollack/workspace/AviForecastIOS/Flurry,
 				);
-				"LIBRARY_SEARCH_PATHS[arch=*]" = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Flurry\"",
-				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
