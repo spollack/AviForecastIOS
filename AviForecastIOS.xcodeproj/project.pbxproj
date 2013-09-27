@@ -31,8 +31,9 @@
 		2E5D1DA914D04D7C007AD25A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */; };
 		2E5E4C7414D73F3400CAA36C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */; };
 		2E5E4C7814D7437C00CAA36C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E4C7714D7437C00CAA36C /* Reachability.m */; };
+		2E72D23B17F5F83300F44A07 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E72D23A17F5F83300F44A07 /* Security.framework */; };
+		2E858B4917F5FBDB0085C521 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E858B4817F5FBDB0085C521 /* libFlurry_4.2.3.a */; };
 		2E9003D4161803C80084C0C0 /* dangerScaleFrontLarge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E9003D3161803C80084C0C0 /* dangerScaleFrontLarge.jpg */; };
-		2E952BF316C567AB00788F42 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E952BF216C567AB00788F42 /* libFlurry.a */; };
 		2E9530601604FACF006C5191 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95305F1604FACF006C5191 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2E95306B160583E8006C5191 /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E95306A160583E8006C5191 /* RNCachingURLProtocol.m */; };
 		2E95308916058908006C5191 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E95308816058908006C5191 /* Default-568h@2x.png */; };
@@ -92,9 +93,10 @@
 		2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		2E5E4C7614D7437C00CAA36C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		2E5E4C7714D7437C00CAA36C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		2E72D23A17F5F83300F44A07 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		2E858B4717F5FBDB0085C521 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		2E858B4817F5FBDB0085C521 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		2E9003D3161803C80084C0C0 /* dangerScaleFrontLarge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dangerScaleFrontLarge.jpg; sourceTree = "<group>"; };
-		2E952BF116C567AB00788F42 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		2E952BF216C567AB00788F42 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		2E95305E1604FACF006C5191 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		2E95305F1604FACF006C5191 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		2E953069160583E8006C5191 /* RNCachingURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCachingURLProtocol.h; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E72D23B17F5F83300F44A07 /* Security.framework in Frameworks */,
 				2E559D0916C573FD007186E3 /* MobileCoreServices.framework in Frameworks */,
 				2E5E4C7414D73F3400CAA36C /* SystemConfiguration.framework in Frameworks */,
 				2E3EACB514EBF954009ED78D /* CFNetwork.framework in Frameworks */,
@@ -139,7 +142,7 @@
 				2EC6DC7014BF52FC005D3EC1 /* UIKit.framework in Frameworks */,
 				2EC6DC7214BF52FC005D3EC1 /* Foundation.framework in Frameworks */,
 				2EC6DC7414BF52FC005D3EC1 /* CoreGraphics.framework in Frameworks */,
-				2E952BF316C567AB00788F42 /* libFlurry.a in Frameworks */,
+				2E858B4917F5FBDB0085C521 /* libFlurry_4.2.3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,11 +203,11 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
-		2E952BF016C567AB00788F42 /* Flurry */ = {
+		2E858B4617F5FBDB0085C521 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
-				2E952BF116C567AB00788F42 /* Flurry.h */,
-				2E952BF216C567AB00788F42 /* libFlurry.a */,
+				2E858B4717F5FBDB0085C521 /* Flurry.h */,
+				2E858B4817F5FBDB0085C521 /* libFlurry_4.2.3.a */,
 			);
 			path = Flurry;
 			sourceTree = "<group>";
@@ -236,14 +239,13 @@
 		2EC6DC6014BF52FC005D3EC1 = {
 			isa = PBXGroup;
 			children = (
-				2E559D0816C573FD007186E3 /* MobileCoreServices.framework */,
 				2EA9CA0614C06921008DD986 /* Resources */,
 				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
 				2E559CEB16C5735E007186E3 /* AFNetworking */,
+				2E858B4617F5FBDB0085C521 /* Flurry */,
 				2EC5226114D34E170083386C /* JSONKit */,
 				2E5E4C6914D73CE800CAA36C /* RNCachingURLProtocol */,
 				2E5E4C7514D7437C00CAA36C /* Reachability */,
-				2E952BF016C567AB00788F42 /* Flurry */,
 				2E3EACB014EBF84F009ED78D /* Appirater */,
 				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
 				2EC6DC6C14BF52FC005D3EC1 /* Products */,
@@ -261,6 +263,8 @@
 		2EC6DC6E14BF52FC005D3EC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E72D23A17F5F83300F44A07 /* Security.framework */,
+				2E559D0816C573FD007186E3 /* MobileCoreServices.framework */,
 				2E3EACB414EBF954009ED78D /* CFNetwork.framework */,
 				2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */,
 				2EC6DCA814BF54B7005D3EC1 /* CoreLocation.framework */,
@@ -338,7 +342,7 @@
 		2EC6DC6214BF52FC005D3EC1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 2EC6DC6514BF52FC005D3EC1 /* Build configuration list for PBXProject "AviForecastIOS" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -443,9 +447,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -454,9 +459,12 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -477,7 +485,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Flurry\"",
+					"\\\\\\\"$(SRCROOT)/Flurry\\\\\\\"",
+					/Users/spollack/workspace/AviForecastIOS,
+					/Users/spollack/workspace/AviForecastIOS/Flurry,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
@@ -494,9 +504,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -511,11 +522,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
@@ -531,7 +546,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Flurry\"",
+					"\\\\\\\"$(SRCROOT)/Flurry\\\\\\\"",
+					/Users/spollack/workspace/AviForecastIOS,
+					/Users/spollack/workspace/AviForecastIOS/Flurry,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",

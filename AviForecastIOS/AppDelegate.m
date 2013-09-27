@@ -46,6 +46,7 @@ void uncaughtExceptionHandler(NSException * exception)
 //    [Flurry setDebugLogEnabled:YES];
 #ifndef DEBUG
     [Flurry startSession:@"N9YFD4HPQDDPHCSMXQ44"];
+    [Flurry setCrashReportingEnabled:YES];
 #endif
     
     // explain to the user why we need location services
