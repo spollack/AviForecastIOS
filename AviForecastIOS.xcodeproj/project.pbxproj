@@ -18,6 +18,7 @@
 		2E31CD2A17F5FE9A00DE4BF6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E31CD1F17F5FE9A00DE4BF6 /* AFURLConnectionOperation.m */; };
 		2E31CD2B17F5FE9A00DE4BF6 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E31CD2117F5FE9A00DE4BF6 /* AFXMLRequestOperation.m */; };
 		2E31CD2C17F5FE9A00DE4BF6 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E31CD2317F5FE9A00DE4BF6 /* UIImageView+AFNetworking.m */; };
+		2E31CD3017F601BB00DE4BF6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E31CD2F17F601BB00DE4BF6 /* Reachability.m */; };
 		2E3EACAD14EABA74009ED78D /* legend4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EACAC14EABA74009ED78D /* legend4@2x.png */; };
 		2E3EACAF14EABA7E009ED78D /* legend4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3EACAE14EABA7E009ED78D /* legend4.png */; };
 		2E3EACB514EBF954009ED78D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3EACB414EBF954009ED78D /* CFNetwork.framework */; };
@@ -30,7 +31,6 @@
 		2E559D0916C573FD007186E3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E559D0816C573FD007186E3 /* MobileCoreServices.framework */; };
 		2E5D1DA914D04D7C007AD25A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */; };
 		2E5E4C7414D73F3400CAA36C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EA9C9F814BFBD46008DD986 /* SystemConfiguration.framework */; };
-		2E5E4C7814D7437C00CAA36C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E4C7714D7437C00CAA36C /* Reachability.m */; };
 		2E72D23B17F5F83300F44A07 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E72D23A17F5F83300F44A07 /* Security.framework */; };
 		2E858B4917F5FBDB0085C521 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E858B4817F5FBDB0085C521 /* libFlurry_4.2.3.a */; };
 		2E9003D4161803C80084C0C0 /* dangerScaleFrontLarge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E9003D3161803C80084C0C0 /* dangerScaleFrontLarge.jpg */; };
@@ -76,6 +76,8 @@
 		2E31CD2117F5FE9A00DE4BF6 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		2E31CD2217F5FE9A00DE4BF6 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		2E31CD2317F5FE9A00DE4BF6 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		2E31CD2E17F601BB00DE4BF6 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		2E31CD2F17F601BB00DE4BF6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2E3EACAC14EABA74009ED78D /* legend4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "legend4@2x.png"; sourceTree = "<group>"; };
 		2E3EACAE14EABA7E009ED78D /* legend4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legend4.png; sourceTree = "<group>"; };
 		2E3EACB414EBF954009ED78D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -90,8 +92,6 @@
 		2E559D0816C573FD007186E3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2E5D1DA714D04D7C007AD25A /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		2E5D1DA814D04D7C007AD25A /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
-		2E5E4C7614D7437C00CAA36C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		2E5E4C7714D7437C00CAA36C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2E72D23A17F5F83300F44A07 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		2E858B4717F5FBDB0085C521 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		2E858B4817F5FBDB0085C521 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.3.a; sourceTree = "<group>"; };
@@ -172,6 +172,15 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		2E31CD2D17F601BB00DE4BF6 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				2E31CD2E17F601BB00DE4BF6 /* Reachability.h */,
+				2E31CD2F17F601BB00DE4BF6 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		2E3EACB014EBF84F009ED78D /* Appirater */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,15 +198,6 @@
 				2E95306A160583E8006C5191 /* RNCachingURLProtocol.m */,
 			);
 			path = RNCachingURLProtocol;
-			sourceTree = "<group>";
-		};
-		2E5E4C7514D7437C00CAA36C /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				2E5E4C7614D7437C00CAA36C /* Reachability.h */,
-				2E5E4C7714D7437C00CAA36C /* Reachability.m */,
-			);
-			path = Reachability;
 			sourceTree = "<group>";
 		};
 		2E858B4617F5FBDB0085C521 /* Flurry */ = {
@@ -231,8 +231,8 @@
 				2EC6DC7514BF52FC005D3EC1 /* AviForecastIOS */,
 				2E31CD1017F5FE9A00DE4BF6 /* AFNetworking */,
 				2E858B4617F5FBDB0085C521 /* Flurry */,
+				2E31CD2D17F601BB00DE4BF6 /* Reachability */,
 				2E5E4C6914D73CE800CAA36C /* RNCachingURLProtocol */,
-				2E5E4C7514D7437C00CAA36C /* Reachability */,
 				2E3EACB014EBF84F009ED78D /* Appirater */,
 				2EC6DC6E14BF52FC005D3EC1 /* Frameworks */,
 				2EC6DC6C14BF52FC005D3EC1 /* Products */,
@@ -401,12 +401,12 @@
 				2E31CD2917F5FE9A00DE4BF6 /* AFPropertyListRequestOperation.m in Sources */,
 				2EAA4E2214C874D500D93E24 /* DataManager.m in Sources */,
 				2E31CD2C17F5FE9A00DE4BF6 /* UIImageView+AFNetworking.m in Sources */,
+				2E31CD3017F601BB00DE4BF6 /* Reachability.m in Sources */,
 				2E5D1DA914D04D7C007AD25A /* DetailsViewController.m in Sources */,
 				2E31CD2817F5FE9A00DE4BF6 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				2E31CD2617F5FE9A00DE4BF6 /* AFImageRequestOperation.m in Sources */,
 				2EB0580C14D0D575004DDD59 /* OverlayView.m in Sources */,
 				2E31CD2B17F5FE9A00DE4BF6 /* AFXMLRequestOperation.m in Sources */,
-				2E5E4C7814D7437C00CAA36C /* Reachability.m in Sources */,
 				2E47CB8C14E15D57004CE9EA /* DangerScaleViewController.m in Sources */,
 				2E31CD2517F5FE9A00DE4BF6 /* AFHTTPRequestOperation.m in Sources */,
 				2E31CD2717F5FE9A00DE4BF6 /* AFJSONRequestOperation.m in Sources */,
