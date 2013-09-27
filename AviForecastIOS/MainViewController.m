@@ -292,6 +292,7 @@
     CGPoint touchPoint = [tapGestureRecognizer locationInView:self.map];
     CLLocationCoordinate2D touchMapCoordinate = [self.map convertPoint:touchPoint toCoordinateFromView:self.map];
     MKMapPoint mapPoint = MKMapPointForCoordinate(touchMapCoordinate);
+    CGPoint mapPointAsCGP = CGPointMake(mapPoint.x, mapPoint.y);
 
     // do our hit-testing, to see if the user tapped in a region
     // NOTE this hit-testing will become inefficient as the number of regions grows, as we are doing linear search;
@@ -301,8 +302,8 @@
     
     for (id value in allValues) {
         OverlayView * overlayView = (OverlayView *)value;
-        CGPoint polygonViewPoint = [overlayView pointForMapPoint:mapPoint];
-        BOOL mapCoordinateIsInPolygon = CGPathContainsPoint(overlayView.path, NULL, polygonViewPoint, NO);
+        // BUGBUG we use .savedPath here, vs. path, due to an iOS7 bug; see comments in OverView.m
+        BOOL mapCoordinateIsInPolygon = CGPathContainsPoint(overlayView.savedPath, NULL, mapPointAsCGP, NO);
         
         if (mapCoordinateIsInPolygon) {
             DLog(@"tap in overlay detected; regionId: %@", overlayView.regionId);

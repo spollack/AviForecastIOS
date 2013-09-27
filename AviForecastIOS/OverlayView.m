@@ -23,6 +23,20 @@
     
     if (self) {
         self.regionId = regionId;
+        
+        // BUGBUG work around an iOS7 bug with CGPathContainsPoint; see:
+        // http://stackoverflow.com/questions/19014926/detecting-a-point-in-a-mkpolygon-broke-with-ios7-cgpathcontainspoint
+        self.savedPath = CGPathCreateMutable();
+        MKMapPoint *polygonPoints = polygon.points;
+        for (int p = 0; p < polygon.pointCount; p++)
+        {
+            MKMapPoint mp = polygonPoints[p];
+            if (p == 0) {
+                CGPathMoveToPoint(self.savedPath, NULL, mp.x, mp.y);
+            } else {
+                CGPathAddLineToPoint(self.savedPath, NULL, mp.x, mp.y);
+            }
+        }
     }
     
     return self;
