@@ -36,6 +36,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AppiraterDelegate.h"
+#import <StoreKit/StoreKit.h>
 
 extern NSString *const kAppiraterFirstUseDate;
 extern NSString *const kAppiraterUseCount;
@@ -48,49 +49,54 @@ extern NSString *const kAppiraterReminderRequestDate;
 /*
  Your localized app's name.
  */
-#define APPIRATER_LOCALIZED_APP_NAME    [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:(NSString *)kCFBundleNameKey]
+#define APPIRATER_LOCALIZED_APP_NAME    [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:@"CFBundleDisplayName"]
 
 /*
  Your app's name.
  */
-#define APPIRATER_APP_NAME				APPIRATER_LOCALIZED_APP_NAME ? APPIRATER_LOCALIZED_APP_NAME : [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey]
+#define APPIRATER_APP_NAME				APPIRATER_LOCALIZED_APP_NAME ? APPIRATER_LOCALIZED_APP_NAME : [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
 
 /*
  This is the message your users will see once they've passed the day+launches
  threshold.
  */
-#define APPIRATER_LOCALIZED_MESSAGE     NSLocalizedStringFromTable(@"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!", @"AppiraterLocalizable", nil)
+#define APPIRATER_LOCALIZED_MESSAGE     NSLocalizedStringFromTableInBundle(@"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!", @"AppiraterLocalizable", [Appirater bundle], nil)
 #define APPIRATER_MESSAGE				[NSString stringWithFormat:APPIRATER_LOCALIZED_MESSAGE, APPIRATER_APP_NAME]
 
 /*
  This is the title of the message alert that users will see.
  */
-#define APPIRATER_LOCALIZED_MESSAGE_TITLE   NSLocalizedStringFromTable(@"Rate %@", @"AppiraterLocalizable", nil)
+#define APPIRATER_LOCALIZED_MESSAGE_TITLE   NSLocalizedStringFromTableInBundle(@"Rate %@", @"AppiraterLocalizable", [Appirater bundle], nil)
 #define APPIRATER_MESSAGE_TITLE             [NSString stringWithFormat:APPIRATER_LOCALIZED_MESSAGE_TITLE, APPIRATER_APP_NAME]
 
 /*
  The text of the button that rejects reviewing the app.
  */
-#define APPIRATER_CANCEL_BUTTON			NSLocalizedStringFromTable(@"No, Thanks", @"AppiraterLocalizable", nil)
+#define APPIRATER_CANCEL_BUTTON			NSLocalizedStringFromTableInBundle(@"No, Thanks", @"AppiraterLocalizable", [Appirater bundle], nil)
 
 /*
  Text of button that will send user to app review page.
  */
-#define APPIRATER_LOCALIZED_RATE_BUTTON NSLocalizedStringFromTable(@"Rate %@", @"AppiraterLocalizable", nil)
+#define APPIRATER_LOCALIZED_RATE_BUTTON NSLocalizedStringFromTableInBundle(@"Rate %@", @"AppiraterLocalizable", [Appirater bundle], nil)
 #define APPIRATER_RATE_BUTTON			[NSString stringWithFormat:APPIRATER_LOCALIZED_RATE_BUTTON, APPIRATER_APP_NAME]
 
 /*
  Text for button to remind the user to review later.
  */
-#define APPIRATER_RATE_LATER			NSLocalizedStringFromTable(@"Remind me later", @"AppiraterLocalizable", nil)
+#define APPIRATER_RATE_LATER			NSLocalizedStringFromTableInBundle(@"Remind me later", @"AppiraterLocalizable", [Appirater bundle], nil)
 
-@interface Appirater : NSObject <UIAlertViewDelegate> {
+@interface Appirater : NSObject <UIAlertViewDelegate, SKStoreProductViewControllerDelegate> {
 
 	UIAlertView		*ratingAlert;
 }
 
 @property(nonatomic, strong) UIAlertView *ratingAlert;
+@property(nonatomic) BOOL openInAppStore;
+#if __has_feature(objc_arc_weak)
+@property(nonatomic, weak) NSObject <AppiraterDelegate> *delegate;
+#else
 @property(nonatomic, unsafe_unretained) NSObject <AppiraterDelegate> *delegate;
+#endif
 
 /*
  Tells Appirater that the app has launched, and on devices that do NOT
@@ -138,6 +144,16 @@ extern NSString *const kAppiraterReminderRequestDate;
 + (void)userDidSignificantEvent:(BOOL)canPromptForRating;
 
 /*
+ Tells Appirater to show the prompt (a rating alert). The prompt will be showed
+ if there is connection available, the user hasn't declined to rate
+ or hasn't rated current version.
+ 
+ You could call to show the prompt regardless Appirater settings,
+ e.g., in case of some special event in your app.
+ */
++ (void)showPrompt;
+
+/*
  Tells Appirater to open the App Store page where the user can specify a
  rating for the app. Also records the fact that this has happened, so the
  user won't be prompted again to rate the app.
@@ -149,6 +165,11 @@ extern NSString *const kAppiraterReminderRequestDate;
  whether to rate the app.
  */
 + (void)rateApp;
+
+/*
+ Tells Appirater to immediately close any open rating modals (e.g. StoreKit rating VCs).
+*/
++ (void)closeModal;
 
 @end
 
@@ -183,7 +204,7 @@ extern NSString *const kAppiraterReminderRequestDate;
  In a game, it might be beating a level or a boss. This is just another
  layer of filtering that can be used to make sure that only the most
  loyal of your users are being prompted to rate you on the app store.
- If you leave this at a value of -1, then this won't be a criteria
+ If you leave this at a value of -1, then this won't be a criterion
  used for rating. To tell Appirater that the user has performed
  a significant event, call the method:
  [Appirater userDidSignificantEvent:];
@@ -209,8 +230,37 @@ extern NSString *const kAppiraterReminderRequestDate;
  */
 + (void)setDelegate:(id<AppiraterDelegate>)delegate;
 
+/*
+ Set whether or not Appirater uses animation (currently respected when pushing modal StoreKit rating VCs).
+ */
++ (void)setUsesAnimation:(BOOL)animation;
+
+/*
+ If set to YES, Appirater will open App Store link (instead of SKStoreProductViewController on iOS 6). Default NO.
+ */
++ (void)setOpenInAppStore:(BOOL)openInAppStore;
+
+/*
+ If set to YES, the main bundle will always be used to load localized strings.
+ Set this to YES if you have provided your own custom localizations in AppiraterLocalizable.strings
+ in your main bundle.  Default is NO.
+ */
++ (void)setAlwaysUseMainBundle:(BOOL)useMainBundle;
+
 @end
 
+
+/*
+ Methods in this interface are public out of necessity, but may change without notice
+ */
+@interface Appirater(Unsafe)
+
+/*
+ The bundle localized strings will be loaded from.
+*/
++(NSBundle *)bundle;
+
+@end
 
 @interface Appirater(Deprecated)
 
