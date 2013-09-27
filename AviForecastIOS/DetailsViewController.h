@@ -19,13 +19,11 @@
 
 @interface DetailsViewController : UIViewController <UIWebViewDelegate>
 
-// NOTE if we drop iOS4.x support, change "unsafe_unretained" to "weak"
-
 @property (strong, nonatomic) NSURL * URL; 
 @property (strong, nonatomic) NSString * customTitle;
-@property (unsafe_unretained, nonatomic) IBOutlet id <DetailsViewControllerDelegate> delegate;
-@property (unsafe_unretained, nonatomic) IBOutlet UIWebView * webView;
-@property (unsafe_unretained, nonatomic) IBOutlet UINavigationItem *uiNavigationItem;
+@property (weak, nonatomic) IBOutlet id <DetailsViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIWebView * webView;
+@property (weak, nonatomic) IBOutlet UINavigationItem *uiNavigationItem;
 
 - (IBAction)donePressed:(id)sender;
 

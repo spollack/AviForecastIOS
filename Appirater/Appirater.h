@@ -95,7 +95,7 @@ extern NSString *const kAppiraterReminderRequestDate;
 #if __has_feature(objc_arc_weak)
 @property(nonatomic, weak) NSObject <AppiraterDelegate> *delegate;
 #else
-@property(nonatomic, unsafe_unretained) NSObject <AppiraterDelegate> *delegate;
+@property(nonatomic, weak) NSObject <AppiraterDelegate> *delegate;
 #endif
 
 /*

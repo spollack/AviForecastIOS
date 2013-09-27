@@ -19,11 +19,9 @@
 
 @interface MainViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate, DetailsViewControllerDelegate, DangerScaleViewControllerDelegate, UIAlertViewDelegate>
 
-// NOTE if we drop iOS4.x support, change "unsafe_unretained" to "weak"
-
-@property (unsafe_unretained, nonatomic) IBOutlet MKMapView * map;
-@property (unsafe_unretained, nonatomic) IBOutlet UISegmentedControl * dayControl;
-@property (unsafe_unretained, nonatomic) IBOutlet UIActivityIndicatorView * spinner;
+@property (weak, nonatomic) IBOutlet MKMapView * map;
+@property (weak, nonatomic) IBOutlet UISegmentedControl * dayControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView * spinner;
 @property (strong, nonatomic) NSMutableDictionary * settings;
 @property (strong, nonatomic) DataManager * dataManager;
 @property (strong, nonatomic) NSMutableDictionary * overlayViewDict;

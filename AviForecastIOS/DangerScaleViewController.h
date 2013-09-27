@@ -15,10 +15,8 @@
 
 @interface DangerScaleViewController : UIViewController <UIScrollViewDelegate>
 
-// NOTE if we drop iOS4.x support, change "unsafe_unretained" to "weak"
-
-@property (unsafe_unretained, nonatomic) IBOutlet id <DangerScaleViewControllerDelegate> delegate;
-@property (unsafe_unretained, nonatomic) IBOutlet UIScrollView * scrollView;
+@property (weak, nonatomic) IBOutlet id <DangerScaleViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIScrollView * scrollView;
 
 - (IBAction)donePressed:(id)sender;
 

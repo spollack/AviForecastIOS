@@ -13,12 +13,6 @@
 #import "Appirater.h"
 
 
-// NOTE on iOS4 support
-//
-// if or when we drop iOS4 support, we can make the following changes:
-// 1) for all properties, change "unsafe_unretained" to "weak" (ARC)
-
-
 @implementation AppDelegate
 
 @synthesize window = _window;
