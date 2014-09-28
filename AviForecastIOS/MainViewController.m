@@ -449,11 +449,6 @@
     
     // register so that on app re-entering the foreground, we update our forecasts
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAllForecastData:) name:UIApplicationWillEnterForegroundNotification object:nil];
-    
-    // NOTE set our user agent string to something benign and non-mobile looking, to work around website
-    // popups from nwac.us asking if you would like to be redirected to the mobile version of the site
-    NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0", @"UserAgent", nil];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];  
 }
 
 - (void)viewDidLoad
