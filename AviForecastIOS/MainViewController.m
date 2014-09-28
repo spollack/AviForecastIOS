@@ -196,7 +196,7 @@
 
 - (IBAction) dayPressed
 {
-    int newMode = self.dayControl.selectedSegmentIndex; 
+    int newMode = (int)self.dayControl.selectedSegmentIndex;
 
     DLog(@"dayPressed called, new mode is: %i", newMode);
 
