@@ -64,7 +64,7 @@
 
                     if (regionId && displayName && URL && points && [points isKindOfClass:[NSArray class]] && points.count > 3) {
                         
-                        int numPts = ((NSArray *)points).count;
+                        int numPts = (int)((NSArray *)points).count;
                         MKMapPoint pts[numPts];
 
                         for (int j = 0; j < numPts; j++) {
