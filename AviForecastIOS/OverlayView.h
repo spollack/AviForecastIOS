@@ -1,12 +1,4 @@
 //
-//  OverlayView.h
-//  AviForecastIOS
-//
-//  Created by Seth Pollack on 1/25/12.
-//  Copyright (c) 2012 Sebnarware. All rights reserved.
-//
-
-//
 // overlay view for the map
 //
 

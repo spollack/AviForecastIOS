@@ -1,11 +1,3 @@
-//
-//  DangerScaleViewController.m
-//  AviForecastIOS
-//
-//  Created by Seth Pollack on 2/7/12.
-//  Copyright (c) 2012 Sebnarware. All rights reserved.
-//
-
 #import "DangerScaleViewController.h"
 
 @interface DangerScaleViewController ()

@@ -1,11 +1,3 @@
-//
-//  RegionData.m
-//  AviForecastIOS
-//
-//  Created by Seth Pollack on 1/18/12.
-//  Copyright (c) 2012 Sebnarware. All rights reserved.
-//
-
 #import "RegionData.h"
 
 @implementation RegionData

@@ -1,12 +1,4 @@
 //
-//  DataManager.h
-//  AviForecastIOS
-//
-//  Created by Seth Pollack on 1/19/12.
-//  Copyright (c) 2012 Sebnarware. All rights reserved.
-//
-
-//
 // manages all region and forecast data
 //
 

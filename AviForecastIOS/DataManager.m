@@ -1,11 +1,3 @@
-//
-//  DataManager.m
-//  AviForecastIOS
-//
-//  Created by Seth Pollack on 1/19/12.
-//  Copyright (c) 2012 Sebnarware. All rights reserved.
-//
-
 #import "DataManager.h"
 #import "NetworkEngine.h"
 #import "RegionData.h"

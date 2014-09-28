@@ -1,12 +1,4 @@
 //
-//  RegionData.h
-//  AviForecastIOS
-//
-//  Created by Seth Pollack on 1/18/12.
-//  Copyright (c) 2012 Sebnarware. All rights reserved.
-//
-
-//
 // contains data for a single region; also acts as an overlay (data, not view) 
 //
 
