@@ -22,7 +22,6 @@
 		2E31CD3217F6026E00DE4BF6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E31CD3117F6026E00DE4BF6 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2E31CD5617F6066200DE4BF6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2E31CD3417F6066200DE4BF6 /* .gitignore */; };
 		2E31CD5717F6066200DE4BF6 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E31CD3617F6066200DE4BF6 /* Appirater.m */; };
-		2E31CD5817F6066200DE4BF6 /* Appirater.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2E31CD3717F6066200DE4BF6 /* Appirater.podspec */; };
 		2E31CD5917F6066200DE4BF6 /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E31CD3917F6066200DE4BF6 /* AppiraterLocalizable.strings */; };
 		2E31CD5A17F6066200DE4BF6 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 2E31CD3B17F6066200DE4BF6 /* CHANGELOG.md */; };
 		2E31CD5B17F6066200DE4BF6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2E31CD4E17F6066200DE4BF6 /* README.md */; };
@@ -86,7 +85,6 @@
 		2E31CD3417F6066200DE4BF6 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		2E31CD3517F6066200DE4BF6 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		2E31CD3617F6066200DE4BF6 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
-		2E31CD3717F6066200DE4BF6 /* Appirater.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Appirater.podspec; sourceTree = "<group>"; };
 		2E31CD3817F6066200DE4BF6 /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
 		2E31CD3A17F6066200DE4BF6 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		2E31CD3B17F6066200DE4BF6 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -225,7 +223,6 @@
 				2E31CD3417F6066200DE4BF6 /* .gitignore */,
 				2E31CD3517F6066200DE4BF6 /* Appirater.h */,
 				2E31CD3617F6066200DE4BF6 /* Appirater.m */,
-				2E31CD3717F6066200DE4BF6 /* Appirater.podspec */,
 				2E31CD3817F6066200DE4BF6 /* AppiraterDelegate.h */,
 				2E31CD3917F6066200DE4BF6 /* AppiraterLocalizable.strings */,
 				2E31CD3B17F6066200DE4BF6 /* CHANGELOG.md */,
@@ -441,7 +438,6 @@
 				2E31CD5B17F6066200DE4BF6 /* README.md in Resources */,
 				2E3EACAF14EABA7E009ED78D /* legend4.png in Resources */,
 				2E95308916058908006C5191 /* Default-568h@2x.png in Resources */,
-				2E31CD5817F6066200DE4BF6 /* Appirater.podspec in Resources */,
 				2E31CD5617F6066200DE4BF6 /* .gitignore in Resources */,
 				2E9003D4161803C80084C0C0 /* dangerScaleFrontLarge.jpg in Resources */,
 			);
